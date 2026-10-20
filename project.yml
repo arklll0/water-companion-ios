@@ -34,9 +34,10 @@ targets:
         buildPhase: resources
       # App 图标：Assets.xcassets 里只有 AppIcon.appiconset，
       # 界面上的图标一律走 SF Symbols，没有图片图标。
+      # 注意：.xcassets 必须交给 XcodeGen 默认处理（编译成 Assets.car），
+      # 不能用 type: group + buildPhase: resources，否则内部两个 Contents.json
+      # 会被平铺拷进 bundle 根目录重名冲突，报 "Multiple commands produce Contents.json"。
       - path: Resources/Assets.xcassets
-        type: group
-        buildPhase: resources
       # 音频：folder reference（蓝色文件夹），整个 Audio/ 原样拷进 bundle，
       # 运行期路径是 Audio/<file>.m4a。
       # 用 folder 而不是 group 是因为这里有 3000+ 个文件 —— 逐个进
