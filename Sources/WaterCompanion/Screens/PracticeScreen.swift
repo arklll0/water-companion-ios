@@ -307,7 +307,7 @@ struct PracticeScreen: View {
                     correctIndex: reading.a,
                     explanation: reading.ex,
                     passage: reading.p,
-                    readAloud: { text in _ = audio.play(text: text) }
+                    readAloud: { text in _ = audio.togglePlay(text: text) }
                 ) { chosen in
                     answered = true
                     recordReadingAnswer(index, chosen)
@@ -590,7 +590,7 @@ struct PracticeScreen: View {
                     correctIndex: ref.item.a,
                     explanation: ref.item.ex,
                     passage: ref.item.passage,
-                    readAloud: { text in _ = audio.play(text: text) }
+                    readAloud: { text in _ = audio.togglePlay(text: text) }
                 ) { chosen in
                     answered = true
                     recordPaperAnswer(ref, chosen)
@@ -628,7 +628,7 @@ struct PracticeScreen: View {
                     correctIndex: item.a,
                     explanation: item.ex,
                     passage: item.passage,
-                    readAloud: { text in _ = audio.play(text: text) }
+                    readAloud: { text in _ = audio.togglePlay(text: text) }
                 ) { chosen in
                     answered = true
                     recordPaperAnswer(

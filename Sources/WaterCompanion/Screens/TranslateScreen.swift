@@ -307,7 +307,7 @@ struct TranslateScreen: View {
                     .buttonStyle(.plain)
 
                     SoundChip("读") {
-                        _ = audio.play(text: phrase.en)
+                        _ = audio.togglePlay(text: phrase.en)
                     }
                 }
 

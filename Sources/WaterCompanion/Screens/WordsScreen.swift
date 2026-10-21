@@ -263,10 +263,10 @@ struct WordsScreen: View {
 
                 HStack(spacing: Space.sm) {
                     SoundChip("单词", enabled: hasWordAudio) {
-                        audio.play(text: meta.w)
+                        audio.togglePlay(text: meta.w)
                     }
                     SoundChip("例句", enabled: !meta.e.isEmpty) {
-                        audio.play(text: meta.e)
+                        audio.togglePlay(text: meta.e)
                     }
                 }
                 .padding(.top, Space.xs)

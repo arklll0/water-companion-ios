@@ -246,7 +246,7 @@ struct ExamScreen: View {
 
                 HStack(spacing: Space.sm) {
                     Button {
-                        _ = audio.play(text: item.audio)
+                        _ = audio.togglePlay(text: item.audio)
                     } label: {
                         HStack(spacing: Space.xs) {
                             Image(systemName: "play.fill")

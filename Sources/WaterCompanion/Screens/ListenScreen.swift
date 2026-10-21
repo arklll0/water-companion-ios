@@ -229,15 +229,9 @@ struct ListenScreen: View {
 
                 speedPicker
 
-                Toggle(
-                    "连续播放",
-                    isOn: Binding(
-                        get: { audio.continuous },
-                        set: { audio.continuous = $0 }
-                    )
-                )
-                .font(Typography.body)
-                .tint(Theme.Colors.primary)
+                // 「连续播放」开关已移除：听力现在**放完一句就停**，
+                // 下一句由用户自己点（见 AudioPlayer 的 pollOnce）。
+                // 留一个开关在这里只会和「一句一句听」的行为互相打架。
 
                 if let notice {
                     Text(notice)
@@ -445,6 +439,8 @@ struct ListenScreen: View {
     ) -> some View {
         let isCurrent = item.id == audio.nowPlayingId
         let isDone = doneIds.contains(item.id)
+        // 正在响的就是这一条 —— 按钮显示成「暂停」，暗示再点一下会停。
+        let isPlayingThis = isCurrent && audio.isPlaying
 
         return AppCard(
             padding: Space.lg,
@@ -482,12 +478,12 @@ struct ListenScreen: View {
 
                 HStack(spacing: Space.sm) {
                     Button {
-                        play(list, title: listTitle, index: list.firstIndex { $0.id == item.id } ?? 0)
+                        tapSentence(item, list: list, title: listTitle)
                     } label: {
                         HStack(spacing: Space.xs) {
-                            Image(systemName: "play.fill")
+                            Image(systemName: isPlayingThis ? "pause.fill" : "play.fill")
                                 .font(.system(size: 11, weight: .semibold))
-                            Text("播放这一句")
+                            Text(isPlayingThis ? "暂停" : "播放这一句")
                                 .font(Typography.micro)
                         }
                         .foregroundStyle(Theme.Colors.primary)
@@ -522,6 +518,16 @@ struct ListenScreen: View {
         queueTitle = title
         let ok = audio.playQueue(items, startAt: min(max(index, 0), list.count - 1))
         notice = ok ? nil : "这条暂无离线音频，换一条试试"
+    }
+
+    /// 句子行上的「播放这一句」：**同一条再点就是暂停 / 继续**，换一条才切过去从头播。
+    /// 播完之后再点是重播这一条（`AudioPlayer.toggle()` 里处理）。
+    private func tapSentence(_ item: ListenItem, list: [ListenItem], title: String) {
+        if audio.nowPlayingId == item.id {
+            audio.toggle()
+            return
+        }
+        play(list, title: title, index: list.firstIndex { $0.id == item.id } ?? 0)
     }
 
     private func step(_ delta: Int) {

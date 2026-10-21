@@ -53,9 +53,6 @@ final class AudioPlayer {
     var currentTime: Double = 0
     /// 当前音频总时长（秒）。没有加载音频时为 0。
     var duration: Double = 0
-    /// 连续播放：一条播完自动接下一句（听力页的「连续播放」开关）。
-    /// 播到最后一句就停住，不循环 —— 循环会让「听到第几句了」变得没有意义。
-    var continuous: Bool = true
     /// 索引里有多少条音频（0 表示音频包不可用）
     var indexedCount: Int = 0
     /// 播完一条后的回调（播队列时用来推进「下一句」）
@@ -69,6 +66,10 @@ final class AudioPlayer {
     @ObservationIgnored private var queueIndex: Int = 0
     @ObservationIgnored private var pollTask: Task<Void, Never>?
     @ObservationIgnored private var didLoadIndex = false
+    /// 这一条是不是「已经播完了」。用来区分「暂停中」和「播完了」——
+    /// 两者的 `isPlaying` 都是 false，但再点一下的含义不同：
+    /// 暂停 → 接着放；播完 → 从头重播。
+    @ObservationIgnored private var didFinish = false
 
     /// index.json 里的一条
     private struct Entry: Decodable {
@@ -244,6 +245,7 @@ final class AudioPlayer {
             isPlaying = started
             currentTime = 0
             duration = p.duration
+            didFinish = false
             if started {
                 startPolling()
             }
@@ -269,19 +271,40 @@ final class AudioPlayer {
         try? session.setActive(true)
     }
 
-    /// 播放 / 暂停 切换
+    /// 播放 / 暂停 切换。
+    ///
+    /// 播完之后 `AVAudioPlayer` 停在末尾（或被系统归零），此时再点一下是
+    /// **从头重播这一条** —— 否则会从一个已经结束的位置继续，点下去像没反应。
     func toggle() {
         guard let p = player else { return }
         if p.isPlaying {
             p.pause()
             isPlaying = false
             stopPolling()
-        } else {
-            p.rate = playbackRate
-            let started = p.play()
-            isPlaying = started
-            if started { startPolling() }
+            return
         }
+        if didFinish {
+            p.currentTime = 0
+            didFinish = false
+        }
+        p.rate = playbackRate
+        let started = p.play()
+        isPlaying = started
+        if started { startPolling() }
+    }
+
+    /// 点一下播放、再点一下暂停。
+    ///
+    /// **同一个条目**才算「再点」：正在响的就是它 → 暂停 / 接着放；
+    /// 换了另一条 → 直接切过去从头播。所有「发音 / 播放这一句」按钮都走这里。
+    @discardableResult
+    func togglePlay(text: String, id: String? = nil) -> Bool {
+        let targetId = id ?? AudioPlayer.key(of: text) ?? text
+        if nowPlayingId == targetId {
+            toggle()
+            return isPlaying
+        }
+        return play(text: text, id: id)
     }
 
     func pause() {
@@ -298,6 +321,7 @@ final class AudioPlayer {
         nowPlayingId = nil
         currentTime = 0
         duration = 0
+        didFinish = false
     }
 
     /// 跳到第 `seconds` 秒。
@@ -407,6 +431,7 @@ final class AudioPlayer {
         // 不拿 currentTime 和 duration 比：播完后 currentTime 会被系统归零，
         // 用「到没到尾巴」判断反而会漏掉结束事件。
         isPlaying = false
+        didFinish = true
         stopPolling()
 
         guard let id = nowPlayingId else { return }
@@ -414,11 +439,8 @@ final class AudioPlayer {
             onFinish?(item)
         }
 
-        // 连续播放：自动接下一句。最后一句播完就停在这儿，
-        // 让「今天听到第几句」停在一个确定的位置上。
-        if continuous, queueIndex + 1 < queue.count {
-            queueIndex += 1
-            playCurrent()
-        }
+        // 播完一句就停在这里，**不再自动往下接** ——
+        // 听力页要的是「一句一句听」：听完想再来一遍就再点一次，
+        // 想听下一句自己点「下一句」或点那一条。顺序由用户决定，不由播放器替他决定。
     }
 }

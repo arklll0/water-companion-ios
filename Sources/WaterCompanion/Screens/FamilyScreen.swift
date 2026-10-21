@@ -212,7 +212,7 @@ struct FamilyScreen: View {
                         .foregroundStyle(Theme.Colors.textPrimary)
                         .multilineTextAlignment(.center)
                     SoundChip("跟读", enabled: hasAudio) {
-                        audio.play(text: member.word)
+                        audio.togglePlay(text: member.word)
                     }
                     if !family.sentence.isEmpty {
                         Text(family.sentence)
@@ -232,7 +232,7 @@ struct FamilyScreen: View {
                         .font(Typography.micro)
                         .foregroundStyle(Theme.Colors.textSecondary)
                     SoundChip("听一遍", enabled: hasAudio) {
-                        audio.play(text: member.word)
+                        audio.togglePlay(text: member.word)
                     }
                     Button {
                         withAnimation(.snappy) { flipped = true }
