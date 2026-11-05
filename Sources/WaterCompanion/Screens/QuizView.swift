@@ -84,24 +84,9 @@ struct QuizView: View {
 
     private var passageCard: some View {
         AppCard {
-            VStack(alignment: .leading, spacing: Space.md) {
-                ForEach(passage.indices, id: \.self) { i in
-                    let paragraph = passage[i]
-                    VStack(alignment: .leading, spacing: Space.sm) {
-                        Text(paragraph)
-                            .appBody()
-                            .fixedSize(horizontal: false, vertical: true)
-
-                        // 离线包是按「段」合成的，所以朗读也给到段的粒度：
-                        // 想复读哪段点哪段，不必为了重听一句而从头放整篇。
-                        if let readAloud {
-                            SoundChip("朗读本段") {
-                                readAloud(paragraph)
-                            }
-                        }
-                    }
-                }
-            }
+            // 段距由组件内部管理（28 ≥ 行高），不再靠页面级 VStack 顺带产生的 12。
+            // readAloud 传进去，保留「按段朗读」的粒度：离线包就是按段合成的。
+            ReadingParagraphs(passage, readAloud: readAloud)
         }
     }
 
@@ -143,7 +128,7 @@ struct QuizView: View {
                 Text(text)
                     .font(Typography.body)
                     .foregroundStyle(tint(isCorrect: isCorrect, isWrong: isWrong))
-                    .lineSpacing(Typography.captionLineSpacing)
+                    .lineSpacing(Typography.lineSpacing)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
 
@@ -217,9 +202,7 @@ struct QuizView: View {
                         .font(Typography.micro)
                         .foregroundStyle(Theme.Colors.textSecondary)
                 }
-                Text(explanation)
-                    .appBody()
-                    .fixedSize(horizontal: false, vertical: true)
+                ReadingPassage(text: explanation)
             }
         }
     }

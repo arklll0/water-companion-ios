@@ -124,10 +124,12 @@ final class ContentStore {
         transPractices = decodeArray(TransPractice.self, file: "trans_practice", issues: &issues)
 
         // 卷序号就是数组下标，paperDone 存的是 "卷序号-题序号"。
-        // 成考卷**追加在末尾**（16-18）：只有往后追加才不会让老存档的下标移位。
+        // 所有新卷**只追加不重排**：只有往后追加才不会让老存档的下标移位。
+        // 四级 0..15 / 成考 16..18 / 考研 19..33。
         let cetPapers = decodeArray(Paper.self, file: "papers", issues: &issues)
         let ckPapers = decodeArray(Paper.self, file: "ck_papers", issues: &issues)
-        papers = cetPapers + ckPapers
+        let kyPapers = decodeArray(Paper.self, file: "ky_papers", issues: &issues)
+        papers = cetPapers + ckPapers + kyPapers
 
         loadListening(&issues)
 

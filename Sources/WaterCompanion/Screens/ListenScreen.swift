@@ -192,10 +192,9 @@ struct ListenScreen: View {
                     }
                 }
 
+                // 单句粒度，段距 28 不适用；统一到正文 16/26（16pt + 行距 6）。
                 Text(currentItem?.en ?? "点下面的句子开始")
-                    .font(Typography.title)
-                    .foregroundStyle(currentItem == nil ? Theme.Colors.textSecondary : Theme.Colors.textPrimary)
-                    .lineSpacing(Typography.captionLineSpacing)
+                    .appArticleBody(currentItem == nil ? Theme.Colors.textSecondary : Theme.Colors.textPrimary)
                     .fixedSize(horizontal: false, vertical: true)
 
                 if showChinese, let item = currentItem, !item.cn.isEmpty {
@@ -477,12 +476,12 @@ struct ListenScreen: View {
                 Text(item.en)
                     .font(isCurrent ? Typography.bodyEmph : Typography.body)
                     .foregroundStyle(Theme.Colors.textPrimary)
-                    .lineSpacing(Typography.captionLineSpacing)
+                    .lineSpacing(Typography.lineSpacing)
                     .fixedSize(horizontal: false, vertical: true)
 
                 if !item.cn.isEmpty {
                     Text(item.cn)
-                        .appCaption()
+                        .appArticleBody(Theme.Colors.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
 

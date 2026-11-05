@@ -215,9 +215,7 @@ struct FullSetScreen: View {
 
             AppCard {
                 VStack(alignment: .leading, spacing: Space.md) {
-                    Text(paper.writing.directions)
-                        .appBody()
-                        .fixedSize(horizontal: false, vertical: true)
+                    ReadingPassage(text: paper.writing.directions)
 
                     SecondaryButton(
                         showsWritingSample ? "收起范文" : "看范文",
@@ -236,9 +234,7 @@ struct FullSetScreen: View {
                         Text("范文")
                             .font(Typography.captionEmph)
                             .foregroundStyle(Theme.Colors.primary)
-                        Text(paper.writing.sample)
-                            .appBody()
-                            .fixedSize(horizontal: false, vertical: true)
+                        ReadingPassage(text: paper.writing.sample)
                     }
                 }
             }
@@ -325,13 +321,8 @@ struct FullSetScreen: View {
 
             if !cloze.passage.isEmpty {
                 AppCard {
-                    VStack(alignment: .leading, spacing: Space.md) {
-                        ForEach(cloze.passage.indices, id: \.self) { index in
-                            Text(cloze.passage[index])
-                                .appBody()
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                    }
+                    // 已分段数组不猜分段；段距 28 由组件内部管理。
+                    ReadingParagraphs(cloze.passage)
                 }
             }
 
@@ -370,9 +361,7 @@ struct FullSetScreen: View {
                         .font(Typography.bodyEmph)
                         .monospacedDigit()
                         .foregroundStyle(Theme.Colors.textPrimary)
-                    Text(blank.context)
-                        .appBody()
-                        .fixedSize(horizontal: false, vertical: true)
+                    ReadingPassage(text: blank.context)
                 }
 
                 HStack(spacing: Space.sm) {
@@ -408,15 +397,17 @@ struct FullSetScreen: View {
 
             if !matching.paragraphs.isEmpty {
                 AppCard {
-                    VStack(alignment: .leading, spacing: Space.md) {
+                    // 段落字母必须保留（4 套卷跳号，与 answers.matching 判分耦合），
+                    // 所以这里不用 ReadingParagraphs，只把段距 12 → 28、正文换成统一款式。
+                    VStack(alignment: .leading, spacing: ReadingBody.paragraphGap) {
                         ForEach(matching.paragraphs.indices, id: \.self) { index in
                             HStack(alignment: .top, spacing: Space.sm) {
                                 Text(paragraphLetter(matching, index))
                                     .font(Typography.captionEmph)
                                     .foregroundStyle(Theme.Colors.primary)
                                     .frame(width: 18, alignment: .leading)
-                                Text(matching.paragraphs[index])
-                                    .appBody()
+                                Text(ReadingBody.styled(ReadingBody.displayText(matching.paragraphs[index])))
+                                    .lineSpacing(ReadingBody.lineSpacing)
                                     .fixedSize(horizontal: false, vertical: true)
                             }
                         }
@@ -452,9 +443,7 @@ struct FullSetScreen: View {
                         .font(Typography.bodyEmph)
                         .monospacedDigit()
                         .foregroundStyle(Theme.Colors.textPrimary)
-                    Text(text)
-                        .appBody()
-                        .fixedSize(horizontal: false, vertical: true)
+                    ReadingPassage(text: text)
                 }
 
                 HStack(spacing: Space.sm) {
@@ -478,13 +467,7 @@ struct FullSetScreen: View {
                 VStack(alignment: .leading, spacing: Space.lg) {
                     if !group.passage.isEmpty {
                         AppCard {
-                            VStack(alignment: .leading, spacing: Space.md) {
-                                ForEach(group.passage.indices, id: \.self) { index in
-                                    Text(group.passage[index])
-                                        .appBody()
-                                        .fixedSize(horizontal: false, vertical: true)
-                                }
-                            }
+                            ReadingParagraphs(group.passage)
                         }
                     }
 
@@ -513,9 +496,8 @@ struct FullSetScreen: View {
             SectionHeader("翻译", subtitle: "把下面这段中文译成英文")
 
             AppCard {
-                Text(paper.translation.chinese)
-                    .appBody()
-                    .fixedSize(horizontal: false, vertical: true)
+                // 中文原文走组件的中文分支：不切 320、不插 U+2002。
+                ReadingPassage(text: paper.translation.chinese)
             }
 
             SecondaryButton(
@@ -533,9 +515,7 @@ struct FullSetScreen: View {
                         Text("参考译文")
                             .font(Typography.captionEmph)
                             .foregroundStyle(Theme.Colors.primary)
-                        Text(paper.translation.reference)
-                            .appBody()
-                            .fixedSize(horizontal: false, vertical: true)
+                        ReadingPassage(text: paper.translation.reference)
                     }
                 }
             }

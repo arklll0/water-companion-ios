@@ -65,14 +65,31 @@ enum LevelContent {
     /// 第 7 天退回 easy」的锯齿。同档内保持原下标升序，保证顺序稳定可复现。
     static func readingOrder(_ all: [Reading], level: CetLevel) -> [Int] {
         let rank: [String: Int] = ["easy": 0, "medium": 1, "hard": 2]
-        return all.indices
-            .filter { level.accepts(all[$0].lv) }
-            .sorted { lhs, rhs in
-                let l = rank[all[lhs].level] ?? 1
-                let r = rank[all[rhs].level] ?? 1
-                if l != r { return l < r }
-                return lhs < rhs
+
+        // 考研阅读单独判：reading.json 末尾追加了 60 篇 lv:"ky"（下标 160..219）。
+        // accepts 对 .ky 是宽口径（还收 untagged / cet4 / both / ky），
+        // 直接按 accepts 会把前 160 篇四级/六级阅读混进考研池。
+        // kyOnly 为空（素材整份丢失）才退回宽口径，避免考研阅读页变空白。
+        var pool = all.indices.filter { i in level.accepts(all[i].lv) }
+        if level == .ky {
+            let kyOnly = all.indices.filter { i in
+                all[i].lv
+                    .lowercased()
+                    .components(separatedBy: ",")
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .contains("ky")
             }
+            if !kyOnly.isEmpty {
+                pool = kyOnly
+            }
+        }
+
+        return pool.sorted { lhs, rhs in
+            let l = rank[all[lhs].level] ?? 1
+            let r = rank[all[rhs].level] ?? 1
+            if l != r { return l < r }
+            return lhs < rhs
+        }
     }
 
     /// 真题可见卷的**原始下标**。
@@ -91,6 +108,20 @@ enum LevelContent {
             }
             if !ckOnly.isEmpty {
                 return ckOnly
+            }
+        }
+        // 考研卷同理：ky_papers.json 追加在末尾（下标 19..33，全 lv:"ky"）。
+        // accepts 对 .ky 是宽口径，不收窄会把 16 套四级卷一起列进考研页。
+        if level == .ky {
+            let kyOnly = all.indices.filter { i in
+                all[i].lv
+                    .lowercased()
+                    .components(separatedBy: ",")
+                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .contains("ky")
+            }
+            if !kyOnly.isEmpty {
+                return kyOnly
             }
         }
         return all.indices.filter { i in level.accepts(all[i].lv) }

@@ -167,9 +167,7 @@ struct TranslateScreen: View {
                     if !output.isEmpty {
                         VStack(alignment: .leading, spacing: Space.xs) {
                             Divider()
-                            Text(output)
-                                .appBody()
-                                .fixedSize(horizontal: false, vertical: true)
+                            ReadingPassage(text: output)
                                 .padding(.top, Space.sm)
                         }
                         .transition(.opacity)
@@ -216,18 +214,14 @@ struct TranslateScreen: View {
 
         return AppCard {
             VStack(alignment: .leading, spacing: Space.sm) {
-                Text(item.cn)
-                    .font(Typography.bodyEmph)
-                    .foregroundStyle(Theme.Colors.textPrimary)
-                    .fixedSize(horizontal: false, vertical: true)
+                // 汉译英原文是中文：走组件中文分支，不切 320、不插 U+2002。
+                ReadingPassage(text: item.cn)
 
                 if opened {
                     Divider()
                         .padding(.vertical, Space.xs)
 
-                    Text(item.ref)
-                        .appBody()
-                        .fixedSize(horizontal: false, vertical: true)
+                    ReadingPassage(text: item.ref)
 
                     ForEach(item.tips.indices, id: \.self) { index in
                         Text("· \(item.tips[index])")

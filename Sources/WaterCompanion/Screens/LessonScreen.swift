@@ -32,7 +32,18 @@ struct LessonScreen: View {
                                 .appCaption()
                         } else {
                             ForEach(lesson.blocks.indices, id: \.self) { index in
-                                blockView(lesson.blocks[index])
+                                let block = lesson.blocks[index]
+                                blockView(block)
+                                    // 只在相邻 p 块之间把 LazyVStack 的 16 补到 28；
+                                    // 其余块（h / l / t）保持 16，整列改 28 会撑散层级。
+                                    .padding(
+                                        .top,
+                                        index > 0
+                                            && lesson.blocks[index - 1].k == "p"
+                                            && block.k == "p"
+                                            ? Space.paragraphSpacing - Space.lg
+                                            : 0
+                                    )
                             }
                         }
                     }
@@ -94,10 +105,11 @@ struct LessonScreen: View {
 
         case "p":
             if !block.s.isEmpty {
-                Text(block.s)
-                    .appBody()
-                    // 不锁宽度的话，长段落会被压成一行再截断。
-                    .fixedSize(horizontal: false, vertical: true)
+                // 讲义块：只统一字号 / 行高 / 块距，不切 320、不插 U+2002。
+                // 讲义是中英混排（英文例句 / 选项行），insertSentenceGaps 必须关掉，
+                // 否则 sentenceGap 会把英文例句里的句末空格替换掉，等于改了原文。
+                // 长段落不锁宽度会被压成一行再截断，这点由组件内部的 fixedSize 保证。
+                ReadingParagraphs([block.s], insertSentenceGaps: false)
             }
 
         case "l":

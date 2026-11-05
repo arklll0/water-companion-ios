@@ -176,9 +176,7 @@ struct WordDetailSection: View {
                             .foregroundStyle(Theme.Colors.textPrimary)
                             .fixedSize(horizontal: false, vertical: true)
                         // 词源常是一大段，必须允许纵向展开，否则会被截成一行。
-                        Text(item.d)
-                            .appBody()
-                            .fixedSize(horizontal: false, vertical: true)
+                        ReadingPassage(text: item.d)
                     }
                 }
             }

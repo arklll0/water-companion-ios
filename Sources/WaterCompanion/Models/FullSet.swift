@@ -70,14 +70,12 @@ private enum FlexParagraph {
         return []
     }
 
-    /// 按换行切段。素材里目前整段没有换行，切开只会得到一个元素，
-    /// 但将来排版带上空行时也不用改代码。
+    /// 单串正文交给统一的文章组件排版：英文按 `(?<=[.!?])\s+` 切句 + 320 字预算合并，
+    /// 中文原样返回（不切 320、不插 U+2002）。素材里目前整段没有换行，
+    /// 所以之前按 `\n` 切开只会得到一个元素；现在这一步统一走 `ReadingPassage`。
+    /// 已经是 `[String]` 的分支（`list`）保持 1:1 直返，不猜分段。
     static func split(_ text: String) -> [String] {
-        let parts = text
-            .components(separatedBy: "\n")
-            .map { $0.trimmingCharacters(in: .whitespaces) }
-            .filter { !$0.isEmpty }
-        return parts.isEmpty ? (text.isEmpty ? [] : [text]) : parts
+        ReadingBody.splitReadingParagraphs(text)
     }
 }
 
