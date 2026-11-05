@@ -127,15 +127,18 @@ enum LevelContent {
         return all.indices.filter { i in level.accepts(all[i].lv) }
     }
 
-    /// 整套真题：考研只出考研卷（`ky_full.json`，15 套）。
+    /// 整套真题：考研只出考研卷（`ky_full.json`，15 套）、成考只出成考卷（`ck_full.json`，10 套）。
     ///
-    /// 不能走 `accepts`：`.ky` 的口径同时接受 cet4，会把 15 套四级整套一起列出来，
-    /// 考研用户点进去做的还是四级卷。只有 ky 素材整份丢失才退回通用规则。
+    /// 不能走 `accepts`：`.ky` / `.ck` 的口径都同时接受 cet4（它们的今日任务流水线要靠
+    /// 四级素材撑起来），照 accepts 走会把 15 套四级整套一起列出来，考研 / 成考用户
+    /// 点进去做的还是四级卷。只有该级别自己的整套素材为空时才退回通用规则 ——
+    /// 退回比让「整套」页空白好。
     static func fullSetIndices(_ all: [FullPaper], level: CetLevel) -> [Int] {
-        if level == .ky {
-            let kyOnly = all.indices.filter { i in all[i].meta.level == "ky" }
-            if !kyOnly.isEmpty {
-                return kyOnly
+        let own: String? = level == .ky ? "ky" : (level == .ck ? "ck" : nil)
+        if let own = own {
+            let only = all.indices.filter { i in all[i].meta.level == own }
+            if !only.isEmpty {
+                return only
             }
         }
         return all.indices.filter { i in level.accepts(all[i].meta.level) }

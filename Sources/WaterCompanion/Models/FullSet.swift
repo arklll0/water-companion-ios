@@ -380,9 +380,19 @@ struct FullPaper: Decodable, Identifiable {
     /// 音频相对路径，如 "set_audio/cet4-2020-07-s1.m4a"
     var audio: String
 
-    /// 「2020 年 7 月 · 第 1 套」
+    /// 「2020 年 7 月 · 第 1 套」/「2020 年考研英语（二）」/「模拟题 3」
+    ///
+    /// 三种卷的年月字段含义不同，不能共用一套拼法：四六级有年月套号，
+    /// 考研只有年（month = 0），成考的模拟卷**没有年份**（year = 0）。
     var title: String {
-        "\(meta.year) 年 \(meta.month) 月 · 第 \(meta.setNo) 套"
+        if meta.level == "ck" {
+            return "模拟题 \(meta.setNo)"
+        }
+        if meta.month <= 0 {
+            return "\(meta.year) 年" + (meta.level == "ky" ? "考研英语（二）" : "")
+        }
+        let head = "\(meta.year) 年 \(meta.month) 月"
+        return meta.setNo > 1 ? head + " · 第 \(meta.setNo) 套" : head
     }
 
     enum CodingKeys: String, CodingKey {

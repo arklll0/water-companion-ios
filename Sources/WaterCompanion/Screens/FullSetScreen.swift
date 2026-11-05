@@ -146,7 +146,8 @@ struct FullSetScreen: View {
         }
     }
 
-    /// 卡片副标题：考研卷没有听力，写「听力 0 题」像是数据丢了；缺题也如实标出来。
+    /// 卡片副标题：考研 / 成考卷没有听力，写「听力 0 题」像是数据丢了；缺题也如实标出来。
+    /// 题数与缺口都从卷子里数出来，别写死 —— 考研是 45 题，成考是 48 题。
     private func paperSubtitle(_ paper: FullPaper) -> String {
         var parts = [paper.meta.levelLabel]
         let listen = paper.listening.questions.count
@@ -156,10 +157,13 @@ struct FullSetScreen: View {
         let read = paper.reading.cloze.blanks.count
             + paper.reading.matching.statements.count
             + paper.reading.careful.reduce(0) { $0 + $1.questions.count }
-        parts.append("阅读 \(read) 题")
-        let gap = paper.answerGaps.careful.count
+        // 成考的「阅读」区里装着词汇语法 + 完形 + 阅读三段，
+        // 笼统写「阅读 48 题」会把词汇题算成阅读题
+        parts.append(paper.meta.level == "ck" ? "共 \(read) 题" : "阅读 \(read) 题")
+        let gap = paper.answerGaps.listening.count + paper.answerGaps.cloze.count
+            + paper.answerGaps.matching.count + paper.answerGaps.careful.count
         if gap > 0 {
-            parts.append("收录 \(45 - gap)/45 题")
+            parts.append("收录 \(read - gap)/\(read) 题")
         }
         return parts.joined(separator: " · ")
     }
@@ -242,10 +246,14 @@ struct FullSetScreen: View {
         VStack(alignment: .leading, spacing: Space.lg) {
             SectionHeader(
                 "写作",
-                // 考研英语二是一篇 100 词、一篇 150 词，压成一个区间会误导
+                // 考研英语二是一篇 100 词、一篇 150 词，压成一个区间会误导。
+                // minutes = 0 表示原卷没写这段单独给多久（成考模拟卷只给了全卷 90 分钟），
+                // 拼成「0 分钟」比不写更糟。
                 subtitle: paper.meta.level == "ky"
                     ? "建议 Part A 约 100 词 · Part B 约 150 词"
-                    : "\(paper.writing.minutes) 分钟 / \(paper.writing.minWords)-\(paper.writing.maxWords) 词"
+                    : (paper.writing.minutes > 0
+                        ? "\(paper.writing.minutes) 分钟 / \(paper.writing.minWords)-\(paper.writing.maxWords) 词"
+                        : "建议 \(paper.writing.minWords)-\(paper.writing.maxWords) 词")
             )
 
             AppCard {
@@ -325,9 +333,10 @@ struct FullSetScreen: View {
 
     private func readingSection(_ paper: FullPaper) -> some View {
         VStack(alignment: .leading, spacing: Space.lg) {
-            // 考研卷的阅读只有 careful 一段（完形 1-20、Part A 21-40、Part B 41-45
-            // 都被映射进 careful），没有选词填空 / 段落匹配，不给它三个页签。
-            if paper.meta.level == "ky" {
+            // 考研 / 成考卷的阅读只有 careful 一段（考研是完形 + Part A + Part B，
+            // 成考是词汇语法 + 完形 + 阅读，都被映射进 careful），没有选词填空 / 段落匹配，
+            // 不给它们三个页签 —— 点进去一片空白的页签比没有更糟。
+            if paper.meta.level == "ky" || paper.meta.level == "ck" {
                 carefulSection(paper)
             } else {
                 Picker("阅读部分", selection: $readingTab) {
@@ -502,8 +511,20 @@ struct FullSetScreen: View {
 
     // MARK: 仔细阅读
 
-    /// 考研卷的组标题：完形（1-20）、Part A（21-40）、Part B（41-45）共用 careful。
-    private func carefulGroupTitle(_ firstNo: Int) -> String {
+    /// 组标题：考研与成考的 carefully 里装着不止「阅读」。
+    ///
+    /// 考研：1-20 完形、21-40 阅读、41-45 Part B；
+    /// 成考：1-20 词汇与语法、21-40 完形、41-48 阅读（每篇 4 题）。
+    /// 一律标「第 N 篇」会把词汇题和完形叫成阅读篇。
+    ///
+    /// 考研 2011 那套缺了前 4 题，完形组首题号是 5 —— 所以完形判定写 `<= 20`
+    /// 而不是 `1...20`，否则那组会被算成「第 -2 篇」。
+    private func carefulGroupTitle(_ level: String, _ firstNo: Int) -> String {
+        if level == "ck" {
+            if firstNo <= 20 { return "词汇与语法" }
+            if firstNo <= 40 { return "完形填空" }
+            return "第 \((firstNo - 41) / 4 + 1) 篇"
+        }
         if firstNo <= 20 { return "完形填空" }
         if firstNo >= 41 { return "Part B 新题型" }
         return "第 \((firstNo - 21) / 5 + 1) 篇"
@@ -513,9 +534,11 @@ struct FullSetScreen: View {
         VStack(alignment: .leading, spacing: Space.lg) {
             ForEach(paper.reading.careful) { group in
                 VStack(alignment: .leading, spacing: Space.lg) {
-                    // 一律标「第 N 篇」会把完形叫成第 1 篇、Part B 叫成第 6 篇。
-                    if paper.meta.level == "ky", let firstNo = group.questions.first?.no {
-                        Text(carefulGroupTitle(firstNo))
+                    // 四六级这块就是「仔细阅读」，按篇数标题不标也不会认错；
+                    // 考研 / 成考这块混着三种题型，必须标。
+                    if paper.meta.level == "ky" || paper.meta.level == "ck",
+                       let firstNo = group.questions.first?.no {
+                        Text(carefulGroupTitle(paper.meta.level, firstNo))
                             .font(Typography.captionEmph)
                             .foregroundStyle(Theme.Colors.primary)
                     }

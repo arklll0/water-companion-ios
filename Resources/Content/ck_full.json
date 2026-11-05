@@ -1,0 +1,5902 @@
+[
+ {
+  "id": "ck-full-mock-01",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 1,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic Being Successful Through Self-Study. You should base your composition on the outline given in Chinese below.\n\n比尔·盖茨曾说过：“我不认为只有上大学，上名牌大学才能成才，这是多数家长痴迷的传统想法。自学是自己最好的大学，自学不但能成才，而且能成大才。”\n\n1.你是否认同比尔·盖茨的说法？\n\n2.为什么？\n\n3.结合自己的经历谈谈你的想法。",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "Someday in the future they are bound to ____ for the crimes they have committed today.",
+       "options": [
+        "pay",
+        "cost",
+        "catch",
+        "spend"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "So much_____about his ships on the sea that he didn’t sleep for a single minute all night.",
+       "options": [
+        "did he worry",
+        "he did worry",
+        "he worried",
+        "worried he"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "There is a popular belief among parents _______ schools don’t pay any attention to handwriting.",
+       "options": [
+        "which",
+        "whose",
+        "that",
+        "what"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "Young boys and girls stood on _____ sides of the street to welcome the president from Africa.",
+       "options": [
+        "every",
+        "each",
+        "both",
+        "all"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "She put on a _______ for the occasion.",
+       "options": [
+        "red bright silk dress",
+        "silk red bright dress",
+        "bright silk red dress",
+        "bright red silk dress"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "He tried several times to pass the exam. _____the end, he succeeded.",
+       "options": [
+        "On",
+        "In",
+        "At",
+        "By"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "It is no ________ arguing about it, because he will never agree with us.",
+       "options": [
+        "use",
+        "time",
+        "help",
+        "room"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "Shanghai is _____ biggest city in _____ China in terms of population.",
+       "options": [
+        "the; the",
+        "the; /",
+        "/; the",
+        "/; /"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "When Jenny came to my place, I _____ breakfast with James.",
+       "options": [
+        "have",
+        "had",
+        "have had",
+        "was having"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "The shop assistant was dismissed as she was ________ of stealing money.",
+       "options": [
+        "accused",
+        "charged",
+        "scolded",
+        "blamed"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "_____ I in your position, I would not accept the job.",
+       "options": [
+        "Were",
+        "Was",
+        "Am",
+        "Been"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "They have decided to put the meeting _____ till next Monday.",
+       "options": [
+        "up",
+        "on",
+        "off",
+        "forward"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "His new novel is said_____into a film last year.",
+       "options": [
+        "to make",
+        "to have made",
+        "to be made",
+        "to have been made"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "_______ my mother objected, I chose to go to USA to further my study.",
+       "options": [
+        "In spite of",
+        "Because of",
+        "Despite",
+        "Although"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "It’s not a good habit to ______ what you can do today till tomorrow.",
+       "options": [
+        "take off",
+        "put off",
+        "get off",
+        "turn off"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "If you get into difficulties, don’t hesitate to ask _____ advice.",
+       "options": [
+        "of",
+        "out",
+        "after",
+        "for"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "While we were on holiday, our neighbor took _____ our house.",
+       "options": [
+        "notice of",
+        "care of",
+        "after",
+        "on"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "The doctor kept him _______ on a life-support machine.",
+       "options": [
+        "tidy",
+        "alive",
+        "gentle",
+        "proud"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "We must ________ preparations for the coming speech contest.",
+       "options": [
+        "do",
+        "make",
+        "get",
+        "keep"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "Excuse me for breaking in, ______ I have some news for you.",
+       "options": [
+        "so",
+        "and",
+        "but",
+        "yet"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Cars are an important part of life in the United States. Without a car, most people feel that they are poor. And even if a person is poor he doesn’t feel really poor ___21___he has a car.\n\nHenry Ford was the man ____22____ first started making cars in large numbers. He probably didn’t know _____23_____ the car was going to change American culture. The car made the United States a nation on wheels. ____24_____ it helped make the United States what it is today.\n\nThere are three main reasons the car became so ____25____ in the United States. ____26____, the country is a huge one and Americans like to move ____27____ it. The car provides the most comfortable and ____28____ form of transportation. ____29____ a car people can go to any place without spending a lot of money.\n\nThe second reason cars are popular is the fact ____30_____the United States never really _____31____a practical and cheap public travel system. Long-distance trains have never been ____32___ common in the United States as they are ___33____ other parts of the world. Now there is a good system of air-service ____34____ by planes. But it is ____35____ expensive to be used frequently.\n\nThe third reason is the most important one, though. The American spirit of independence is ____36_____ really made cars popular. Americans don’t like to wait ____37____a bus, or a train or even a plane. They don’t like to have to ____38____ an exact timetable. A car gives them the freedom to plan ___39____ time. And this is the freedom that Americans want ___40___ to have.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "when",
+        "although",
+        "so"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "he",
+        "who",
+        "whom"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "how many",
+        "how far",
+        "how much"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "And",
+        "But",
+        "For"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "qualified",
+        "popular",
+        "different"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "First of all",
+        "Firstly of all",
+        "In all"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "toward",
+        "on",
+        "around"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "most expensive",
+        "cheapest",
+        "slowest"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "As",
+        "With",
+        "Like"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "which",
+        "that",
+        "why"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "developed",
+        "bought",
+        "made"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "too",
+        "as",
+        "more"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "in",
+        "on",
+        "about"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "provided",
+        "providing",
+        "provide"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "so",
+        "as",
+        "too"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "how",
+        "what",
+        "that"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "for",
+        "on",
+        "at"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "follow",
+        "draw",
+        "make"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "themselves own",
+        "theirs own",
+        "their own"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "best",
+        "most",
+        "least"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "If Dakota Access Pipeline (输油管道) completed, it will carry nearly half a million barrels of oil across four states every day. Energy Transfer Partners (ETP), a Texas-based company behind the $3.8 billion project hopes to finish construction this year. But the Standing Rock Sioux, an American Indian tribe (部落), is determined to stop the 1,172-mile pipeline from being built. Both sides show no signs of backing down.\n\nThe Dakota Access Pipeline was announced in 2014. A section of it will run near the Standing Rock Sioux reservation. A reservation is an area of land set aside for American Indians. The tribe says the construction threatens to destroy historical areas and ancient burial sites. They also say the pipeline could pollute their main water source, the Missouri River. In April, the Standing Rock Sioux began a protest against the project. They camped at the construction site. Since then, thousands of people, including people from other American Indian tribes, have traveled to the side to join the protest.\n\nETP says that the pipeline will have built-in measures to protect against oil leaks. Workers will also monitor it remotely, and will be able to close valves (阀) within three minutes if leaks are detected.\n\nAmerican Indians have been staging a nonviolent protest for months. The protest took a turn last week when police were called to keep the peace between protesters and armed security guards hired by the company.\n\nTwenty-eight people have been arrested since then and charged with interfering with the pipeline construction.",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "Which of the following is the main idea of the passage?",
+       "options": [
+        "The Dakota Access Pipeline will create more markets for oil and gas.",
+        "The Dakota Access Pipeline will create many job opportunities.",
+        "American Indians oppose the construction of an oil pipeline.",
+        "American Indians fight for equal voting rights."
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "Why do American Indians protect against the construction of this pipeline?",
+       "options": [
+        "Because it will cost up to $3.8 billion.",
+        "Because it threatens the region’s water supply.",
+        "Because it will make many people lose their jobs.",
+        "Because it will force many people to leave their homes."
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "According to the passage, the workers can _____ in case of pipeline leaks.",
+       "options": [
+        "report to the local government",
+        "ask people to leave the leak affected areas",
+        "call 911",
+        "close valves"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "According to the passage, which of the following statements is NOT TRUE?",
+       "options": [
+        "This pipeline will cross four states.",
+        "This pipeline is 1,172 miles long.",
+        "All the protesters are from the Standing Rock Sioux.",
+        "Neither sides of the dispute is willing to compromise."
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Today most people speak English when they meet foreigners. It has become the international language.\n\nThere are many reasons why English has become so popular. One of them is that English has become the language of business. Another important reason is that popular American culture, like movies, music, and McDonald’s, has quickly spread throughout the world. It has brought its language with it.\n\nIs it good that English has spread to all parts of the world so quickly? I don’t know. It’s important to have a language that the people of the earth have in common. Our world has become very global and we need to communicate with one another. On the other hand, English is a quite complicated language to learn and it brings its culture with it. Do we really need that?\n\nScientists have already tried to create an artificial language that isn’t too difficult and doesn’t include any one group’s culture. It is called Esperanto. But it hasn’t become popular. But maybe the popularity of English won’t last that long either. Who knows? There are more people in the world who speak Chinese than any other language. Maybe someday Chinese will be the new international language.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "According to the author, one reason for the popularity of English is that ________",
+       "options": [
+        "American culture is spreading throughout the world",
+        "American people like to do business with foreigners",
+        "English is a beautiful language",
+        "English is not difficult to learn"
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "In “It has brought its language with it” (the second paragraph), the first word “it” refers to __________.",
+       "options": [
+        "an important reason",
+        "American people as a whole",
+        "popular American culture",
+        "the world"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "The author thinks that __________.",
+       "options": [
+        "it is good that English has spread to all parts of the world so quickly",
+        "someday another language might replace English as an international language",
+        "it’s not necessary for us to have an international language",
+        "we can learn a language without learning its culture"
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "There are more people in the world who speak ________ than any other language.",
+       "options": [
+        "English",
+        "Chinese",
+        "French",
+        "Esperanto"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 非常感谢邀请我参加你的聚会。\n\n50. 互联网在我们生活中变得越来越重要了。\n\n51. 不管我们说什么，他都不生气。\n\n52. 我不敢肯定明天她是不是会准时到学校来。\n\n53. 他在这所学校教多久了？",
+   "reference": "49. Thanks a lot for asking me to your party.\n\n50. The Internet has become more and more important in our life.\n\n51. He is not angry with us, no matter what we say.\n\n52. I’m not sure whether she will come to school on time tomorrow.\n\n53. How long has he been teaching in this school?"
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "A",
+    "2": "A",
+    "3": "C",
+    "4": "C",
+    "5": "D",
+    "6": "B",
+    "7": "A",
+    "8": "B",
+    "9": "D",
+    "10": "A",
+    "11": "A",
+    "12": "C",
+    "13": "D",
+    "14": "D",
+    "15": "B",
+    "16": "D",
+    "17": "B",
+    "18": "B",
+    "19": "B",
+    "20": "C",
+    "21": "A",
+    "22": "B",
+    "23": "C",
+    "24": "A",
+    "25": "B",
+    "26": "A",
+    "27": "C",
+    "28": "B",
+    "29": "B",
+    "30": "B",
+    "31": "A",
+    "32": "B",
+    "33": "A",
+    "34": "A",
+    "35": "C",
+    "36": "B",
+    "37": "A",
+    "38": "A",
+    "39": "C",
+    "40": "B",
+    "41": "C",
+    "42": "B",
+    "43": "D",
+    "44": "C",
+    "45": "A",
+    "46": "C",
+    "47": "B",
+    "48": "B"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-02",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 2,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic The Advantages and disadvantages of We-chat. You should base your composition on the outline given in Chinese below.\n\n1. 微信在生活中的应用\n\n2. 微信的利与弊",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "The man fell in love with her at first ______.",
+       "options": [
+        "scene",
+        "sight",
+        "look",
+        "sign"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "Selecting a mobile phone for personal use is no easy task because technology _____ so rapidly.",
+       "options": [
+        "is changing",
+        "was changed",
+        "will change",
+        "will have changed"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "By the end of next month，I ______ writing this paper.",
+       "options": [
+        "will have finished",
+        "have finished",
+        "am going to finish",
+        "should finish"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "Mark often attempts to escape ______ whenever he breaks traffic regulations.",
+       "options": [
+        "having been fined",
+        "to be fined",
+        "to have been fined",
+        "being fined"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "It is ______ that terrorism is a great threat to world peace.",
+       "options": [
+        "widely accepted",
+        "widely accepting",
+        "wide accepted",
+        "wide accepting"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "If you have high blood pressure, you should _____ eating too much salty food.",
+       "options": [
+        "escape",
+        "suggest",
+        "avoid",
+        "relax"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "I can never _______ eating sweet food, which is really bad.",
+       "options": [
+        "remove",
+        "resist",
+        "reject",
+        "object"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "Do you think shopping online will ______ take the place of shopping in stores？",
+       "options": [
+        "commonly",
+        "frequently",
+        "merely",
+        "finally"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "After walking for five hours, we finally got home, ________.",
+       "options": [
+        "was tired and hungry",
+        "being tired and hungry",
+        "tired and hungry",
+        "tiredly and hungrily"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "His explanation made the problem ________.",
+       "options": [
+        "even more complicated",
+        "to be even more complicated",
+        "became even more complicated",
+        "be even more complicated"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "I______ basketball quite well, but I haven’t had time to play since last September.",
+       "options": [
+        "will play",
+        "have played",
+        "played",
+        "play"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "As is known to all, ______ is lighter than ______.",
+       "options": [
+        "oil; water",
+        "the oil; the water",
+        "an oil; a water",
+        "the oil; water"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "The final exam is very important. We must treat it _______.",
+       "options": [
+        "serious",
+        "seriously",
+        "careless",
+        "carelessly"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "The key ____ success is hard work and persistence.",
+       "options": [
+        "on",
+        "to",
+        "for",
+        "of"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "I haven’t seen my brother _______ January.",
+       "options": [
+        "for",
+        "since",
+        "from",
+        "by"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "I have promised to help you and I’ll ______ my word.",
+       "options": [
+        "hold",
+        "follow",
+        "stick",
+        "keep"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "The computer system ______ suddenly while he was searching for information on the Internet.",
+       "options": [
+        "broke down",
+        "broke out",
+        "broke up",
+        "broke in"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "Susan still went to school on time yesterday _____ she didn’t feel well.",
+       "options": [
+        "whether",
+        "though",
+        "when",
+        "while"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "While I was in the university, I learned driving, ________ is very useful now for me.",
+       "options": [
+        "it",
+        "which",
+        "that",
+        "what"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "I’m awfully tired and can’t go any farther, Ted. Let’s have a rest, _____?",
+       "options": [
+        "shall we",
+        "will you",
+        "can you",
+        "may I"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "One time as I was walking on the street，a young man ran by hurriedly，brushing ___21___ my handbag. Even as he continued on his way，he turned back and said “sorry” to me. ____22____ in a rush，he didn’t forget to apologize. One day，after I bought some apples，the salesman was giving me the ___23___, but I wasn’t ready for it，and a coin dropped on the ground. “I’ m sorry,” he said while ___24____ to pick it up. I was ___25___ —why would he apologize when it was my ___26___? Another time，I stepped on a man’s foot in a/an ___27___. At the same time，we ____28____ said “sorry”. I thought it interesting: Was it really ___29___ for him to apologize? Later on，an American friend ____30____ to me that according to the American ideas，the escalator is a public place ___31___ everyone should be able to stand in it. After someone ____32____ a position in the escalator, ____33_____ it difficult for someone else to find a place to stand，isn’t it necessary to ___34____ an apology？During my stay in America，I often came across situations ___35___ I was supposed to say “sorry”. I ____36____ realized that when friction（摩擦）___37____ in daily life，Americans don’t care much about ___38____ is wrong. If someone is troubled，a “sorry” is ____39_____ necessary. Perhaps this is ____40____ I never saw anyone quarreling on the buses, subways or streets in America.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "against",
+        "into",
+        "up"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "Still",
+        "Even",
+        "While"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "fruit",
+        "note",
+        "change"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "bending down",
+        "leaning back",
+        "sitting up"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "pleased",
+        "sad",
+        "puzzled"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "fault",
+        "error",
+        "money"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "bus",
+        "plane",
+        "escalator"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "all",
+        "both",
+        "neither"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "necessary",
+        "pleasant",
+        "annoying"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "told",
+        "explained",
+        "spoke"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "and",
+        "but",
+        "if"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "occupies",
+        "stands",
+        "gets"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "make",
+        "making",
+        "makes"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "have",
+        "express",
+        "send"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "of which",
+        "on which",
+        "in which"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "gradually",
+        "really",
+        "greatly"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "appears",
+        "comes",
+        "arrives"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "where",
+        "why",
+        "who"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "never",
+        "sometimes",
+        "always"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "why",
+        "that",
+        "how"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Today, roller skating is easy and fun. But a long time ago, it wasn’t easy at all. Before 1750, the idea of skating didn’t exist. That changed because of a man named Joseph Merlin. Merlin’s work was making musical instruments. In his spare time he liked to play the violin. Joseph Merlin was a man of ideas and dreams. People called him a dreamer.\n\nOne day Merlin got an invitation to attend a fancy dress ball. He was very pleased and a little excited. As the day of the party came near, Merlin began to think how to make a grand entrance at the party. He had an idea. He thought he would get a lot of attention if he could skate into the room. Merlin tried different ways to make himself roll. Finally, he decided to put two wheels under each shoe. These were the first roller skates. Merlin was proud of his invention and dreamed of arriving at the party on wheels while playing the violin. On the night of party, Merlin rolled into the room playing his violin. Everyone was astonished to see him.\n\nThere was just one problem. Merlin had no way to stop his roller skates. He rolled on and on. Suddenly, he ran into a huge mirror that was hanging on the wall. Down fell the mirror, breaking to pieces. Nobody forgot Merlin’s grand entrance for a long time!",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "The text is mainly about ________.",
+       "options": [
+        "a strange man",
+        "an unusual party",
+        "how roller skating began",
+        "how people enjoyed themselves in the 18th century"
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "People thought Merlin was a dreamer because he _______.",
+       "options": [
+        "often gave others surprises",
+        "was a gifted musician",
+        "invented the roller skates",
+        "was full of ideas and dreams"
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "Merlin put wheels under his shoes in order to ______.",
+       "options": [
+        "impress the party guests",
+        "arrive at the party sooner",
+        "test his invention",
+        "show his skill in walking on wheels"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "What is the main point the writer is trying to make in the last paragraph?",
+       "options": [
+        "The roller skates needed further improvement.",
+        "The party guests took Merlin for a fool.",
+        "Merlin succeeded beyond expectation.",
+        "Merlin got himself into trouble."
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Toronto’s third City Hall, now known as Old City Hall, was designed by Edward James Lennox and declared open on Sept. 18, 1899.\n\nCreated to provide more space for city officials, it turned out to be the largest building in the city and the largest city building in North America at the time.\n\nLennox took three years to design the City Hall and it took 11 years to build it. Contemporaries believe that the odd carving (雕刻) above Queen Street entrance were actually caricatures(漫画) of councilors at the time.\n\nLennox even included himself in the caricatures, on the west side of the central arch（拱门）and left a strange signature in the stonework of the link portions of the building.\n\nThe third City Hall was originally used as councilors’ offices and legal offices, but it is used only as a courthouse today.\n\nWhen the fourth City Hall (the one we know today) was declared open in 1965, Old City Hall was threatened to be pulled down. It was saved by a group of people called the “Friends of Old City.”\n\nThe clock tower stands parallel with the middle of Bay Street, rather than with the centre of the building. The bells in the tower were not installed until the building opened. Old City Hall was declared a historical site in 1989.\n\nThe entire structure close more than $2.5 million to build at the time. This is equal to $53 million today.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "Old City Hall was constructed in ____ years.",
+       "options": [
+        "3",
+        "7",
+        "9",
+        "11"
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "The third City Hall is now used as a _____.",
+       "options": [
+        "middle school",
+        "hospital",
+        "cinema",
+        "courthouse"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "From the passage, we learn that _______.",
+       "options": [
+        "Toronto spends lots of money yearly developing the city",
+        "some of local residents showed a great interest in protecting the city’s cultural site",
+        "the City council of Toronto hasn’t paid sufficient attention to the protection of the city’s culture.",
+        "the City Hal is still the largest city building in North America today."
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "Which of the following statements is TRUE according to the passage?",
+       "options": [
+        "To build a structure like the City Hall will cost $2.5 million today.",
+        "The clock tower stands parallel with the centre of the City Hall.",
+        "Old City Hall was once pulled down in the development of the city.",
+        "Old City Hall is now a historical site."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 你一到上海就给我打个电话好吗？\n\n50. 你认识昨天做报告的那个人吗？\n\n51. 我已下决心要参加这次演讲比赛。\n\n52. 同意这项建议的请举手。\n\n53. 你应该出去玩，而不是老在屋里待着。",
+   "reference": "49. Will you please call me as soon as you get to Shanghai?\n\n50. Do you know the man who gave a lecture yesterday?\n\n51. I have made up my mind to take part in the speech contest.\n\n52. The people who agree on the suggestion please raise your hands.\n\n53. You should be out playing instead of staying in the room all the time."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "B",
+    "2": "A",
+    "3": "A",
+    "4": "D",
+    "5": "A",
+    "6": "C",
+    "7": "B",
+    "8": "D",
+    "9": "C",
+    "10": "A",
+    "11": "D",
+    "12": "A",
+    "13": "B",
+    "14": "B",
+    "15": "B",
+    "16": "D",
+    "17": "A",
+    "18": "B",
+    "19": "B",
+    "20": "A",
+    "21": "A",
+    "22": "B",
+    "23": "C",
+    "24": "A",
+    "25": "C",
+    "26": "A",
+    "27": "C",
+    "28": "B",
+    "29": "A",
+    "30": "B",
+    "31": "A",
+    "32": "A",
+    "33": "B",
+    "34": "B",
+    "35": "C",
+    "36": "A",
+    "37": "A",
+    "38": "C",
+    "39": "C",
+    "40": "A",
+    "41": "C",
+    "42": "D",
+    "43": "A",
+    "44": "C",
+    "45": "D",
+    "46": "D",
+    "47": "B",
+    "48": "D"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-03",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 3,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic A Penny Saved is a Penny Earned. You should base your composition on the outline given in Chinese below.\n\n1. 勤俭节约是老一代人的传统\n\n2. 你如何看待这一传统\n\n3. 你是如何做的",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "________ trees were cut down. And many birds lost their homes.",
+       "options": [
+        "Thousands of",
+        "Two thousand of",
+        "Thousand of",
+        "Two thousands"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "I agree with you to a certain ________ but not entirely.",
+       "options": [
+        "level",
+        "part",
+        "degree",
+        "way"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "The driver ____ the passengers off at the supermarket and then went to the next stop.",
+       "options": [
+        "fell",
+        "sank",
+        "dropped",
+        "stepped"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "I used to _________ at 6:30, but now l get used to __________at 7:00.",
+       "options": [
+        "got up, getting up",
+        "gets up, getting up",
+        "getting up, get up",
+        "get up, getting up"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "If one_____ a crime, he will be punished.",
+       "options": [
+        "makes",
+        "commits",
+        "performs",
+        "achieves"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "Nothing is __________ time; yet nothing is less valued.",
+       "options": [
+        "more precious than",
+        "less precious than",
+        "most precious",
+        "as precious as"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "Mary is the only student in my class _____ speaks Chinese.",
+       "options": [
+        "who",
+        "which",
+        "where",
+        "what"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "I had great difficulty ________ English when I was in middle school.",
+       "options": [
+        "to learn",
+        "on learning",
+        "in learning",
+        "for learning"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "The manager at once lost his ______ when he learned that his secretary was late again for the meeting.",
+       "options": [
+        "mind",
+        "temper",
+        "passion",
+        "way"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "If it is ______to you，I will visit you next Monday.",
+       "options": [
+        "convenient",
+        "fair",
+        "easy",
+        "comfortable"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "When the lights turn red, the traffic _____ stop.",
+       "options": [
+        "can",
+        "may",
+        "must",
+        "need"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "I prefer swimming ______ running.",
+       "options": [
+        "than",
+        "on",
+        "with",
+        "to"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "If you insist on doing that, please take me into_____.",
+       "options": [
+        "think",
+        "thinking",
+        "thought",
+        "consideration"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "I wanted to find ______ to live. But unluckily, I couldn’t find _______.",
+       "options": [
+        "somewhere; somewhere",
+        "anywhere; anywhere",
+        "somewhere; anywhere",
+        "anywhere; somewhere"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "It was well-known that Thomas Edison ______ the electric lamp.",
+       "options": [
+        "discovered",
+        "invented",
+        "found",
+        "developed"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "The manager promised to keep me _______ of how our business was going on.",
+       "options": [
+        "to be informed",
+        "on informing",
+        "informed",
+        "informing"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "Finally，we came _______ the conclusion that he has been telling lies al the time.",
+       "options": [
+        "of",
+        "into",
+        "to",
+        "at"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "If Jack ____ to the office tomorrow, give him the letter please.",
+       "options": [
+        "come",
+        "comes",
+        "came",
+        "come"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "The letters PTA_____parect-teacher association.",
+       "options": [
+        "stand for",
+        "call for",
+        "reach for",
+        "care for"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "Although it is raining hard _____.",
+       "options": [
+        "Tom still wants to go out",
+        "and Tom still wants to go out",
+        "that Tom still wants to go out",
+        "but Tom still wants to go out"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "When I was young, I spent my summer vacations on my grandparents’ farm. The summer that I graduated from college, I __21__ my grandparents once again. When I arrived, I discovered that there was a family __22__ in progress.\n\nGrandpa’s dog and hunting partner, Rusty, had taken on a very bad __23__ in his old age. He had begun __24__ into the chicken coop(鸡笼)and eggs. In the eyes of the local famers, __25__ dogs started stealing eggs, there was no __26__ to cure them. They knew there was only one thing to be done __27__ such a dog—you had to shoot it and the sooner the __28__.\n\nRusty and Grandpa were old friends. Grandpa certainly didn’t __29__ to shoot Rusty, but he knew it needed to be done. The “egg money” was Grandma’s private income, so you can imagine __30__ she felt about the problem. __31__ the inexperienced confidence of youth, I told Grandpa that I thought I could “cure” the egg-stealing dog. I wanted to at least have a __32__ to save Rusty’s life, and save Grandpa from the sadness of __33__ Rusty.\n\nThe next morning, I broke open six fresh eggs and put them in Rusty’s bowl __34__ at the door to the chicken coop. Rusty came __35__ and noticed the eggs. He quickly __36__ the eggs and happily walked off for his nap (打盹).The following morning I did __37__ thing. I put the eggs a few feet away from the chicken coop, toward the back door of the farmhouse __38__ Grandma usually fed Rusty. The next day I again moved the bowl closer to the house，and added some dog food to the eggs. Every day I moved the bowl closer to the back door, mixing more dog food and __39__ eggs. By the time the bowl reached the door, it was all dog food and no eggs. Rusty bad again become __40__ to looking for his food at the back door of the house, and never again went into the chicken coop.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "watched",
+        "noticed",
+        "visited"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "peace",
+        "stress",
+        "crisis"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "habit",
+        "pattern",
+        "custom"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "breaking",
+        "to break",
+        "throwing"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "once",
+        "before",
+        "while"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "desire",
+        "route",
+        "way"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "with",
+        "at",
+        "for"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "wider",
+        "better",
+        "happier"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "care",
+        "start",
+        "want"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "how",
+        "when",
+        "what"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "In",
+        "With",
+        "On"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "rate",
+        "chance",
+        "pity"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "losing",
+        "helping",
+        "worrying"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "next",
+        "right",
+        "behind"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "before",
+        "after",
+        "along"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "saw",
+        "ate",
+        "left"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "specific",
+        "same",
+        "kind"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "what",
+        "which",
+        "where"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "fewer",
+        "more",
+        "little"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "accustomed",
+        "relate",
+        "interested"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Most people have had a dog or wanted one as their companion at some time in their lives. If you are thinking of buying a dog, however, you should first decide what sort of companion you need and whether the dog is likely to be happy in the surroundings you can provide. Specialists’ advice is useful to help you choose the most suitable kind of dog. But in part the decision depends on common sense.\n\nDifferent dogs were originally developed to perform specific tasks. So, if you want a dog to protect you or your house, for example, you should choose the one that has the right size and characteristics. You must also be ready to devote a great deal of time to training the dog when it is young and give it the exercise it needs throughout its life, unless you live in the countryside and can let it run freely. Dogs are demanding pets. Cats love the house and they are satisfactory with their place where it is safe, but a dog is loyal to its master and consequently wants him to show proof of his affection. The best time to buy a baby dog is when it is between 6 and 8 weeks old so that it can transfer its love from its mother to its master. If baby dogs have not established a relationship with the human being until they are over three months old, their strong relationship will always be with dogs. They are likely to be shy when they are brought out into the world to become good pets.",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "Which of the following is NOT true according to the passage?",
+       "options": [
+        "You can always get help from the specialists.",
+        "Common sense is the most important when choosing a dog.",
+        "You should decide what kind of dog you want.",
+        "Size and characteristics of the dogs should be considered too."
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "What is mentioned as a consideration in buying a dog？",
+       "options": [
+        "The color of the dog.",
+        "The price of the dog.",
+        "Whether the dog will fit the environment.",
+        "Whether the dog will get along with the other pets in the house."
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "Why does the writer say a dog is a more demanding pet than a cat?",
+       "options": [
+        "It must be trained so that it won’t bite.",
+        "It demands more food and space.",
+        "It needs more love and care.",
+        "It must be looked after carefully."
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "Why is it advised to buy a baby dog under three months old?",
+       "options": [
+        "It’s easier to buy a baby dog under three months old.",
+        "They are less likely to be shy with human beings.",
+        "They are less likely to run away.",
+        "It’s easier for them to form a relationship with their masters."
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "You probably know who Marie Curie was, but you may not have heard of Rachel Carson. Of the outstanding ladies listed below, who do you think was the most important woman of the past 100 years?\n\nJane Addams (1860-1935)\n\nAnyone who has ever been helped by a social worker has Jane Addams to thank. Addams helped the poor and worked for peace. She encouraged a sense of community by creating shelters and promoting education and services for people in need in 1931, Addams became the first American woman to win the Nobel Peace Prize.\n\nRachel Carson (1907-1964)\n\nIf it weren’t for Rachel Carson, the environmental movement might not exist today. Her popular 1962 book Silent Spring raised awareness of the dangers of pollution and the harmful effects of chemicals on humans and on the world's lakes and oceans.\n\nSandra Day O’Connor (1930-present)\n\nWhen Sandra Day O’Connor finished third in her class at Stanford Law School, in 1952, she could not find work at a law firm because she was a woman. She became an Arizona state senator and in 1981 the first woman to join the U.S. Supreme Court. O’Connor gave the deciding vote in many important cases during her 24 years on the top court.\n\nRosa Parks (1913-2005)\n\nOn December 1, 1955, in Montgomery, Alabama, Rosa Parks would not give up her seat on a bus to a passenger. Her simple act landed Parks in prison. But it also set off the Montgomery bus boycott. It lasted for more than a year, and kicked off the civil-rights movement. “The only tired I was, was tired of giving in,” said Parks.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "What is Jane Addams noted for in history?",
+       "options": [
+        "Her social work.",
+        "Her writing on the dangers of pollution.",
+        "Her efforts to win a prize.",
+        "Her poor background."
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "Why couldn’t Sandra Day O’Connor work at a law firm?",
+       "options": [
+        "Her lack of proper training in law.",
+        "Her little work experience in court.",
+        "The discrimination against women.",
+        "The poor financial conditions."
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "Who made a great contribution to the civil-rights movement in the US?",
+       "options": [
+        "Jane Addams.",
+        "Rachel Carson.",
+        "Sandra Day O’Connor.",
+        "Rosa Parks."
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "What can we infer about the women mentioned in the text?",
+       "options": [
+        "They are highly educated.",
+        "They love the environment.",
+        "They are pioneers.",
+        "They are peace-lovers."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 在他的帮助下，我的英语进步很大。\n\n50. 保护环境和发展经济一样重要。\n\n51. 天色渐晚，我想我们该回家了\n\n52. 如果有机会，约翰也许就已经成为一位杰出的画家了。\n\n53. 我不能去聚会，因为要准备考试。",
+   "reference": "49. With his help, I have made great progress in English.\n\n50. Protecting the environment is as important as developing economy.\n\n51. It’s getting late, so I think it’s time for us to go back home.\n\n52. Given the chance, John might have become an outstanding painter.\n\n53. I can’t go to the party because I have to get prepared for the examination."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "A",
+    "2": "C",
+    "3": "C",
+    "4": "D",
+    "5": "B",
+    "6": "A",
+    "7": "A",
+    "8": "C",
+    "9": "B",
+    "10": "A",
+    "11": "C",
+    "12": "D",
+    "13": "D",
+    "14": "C",
+    "15": "B",
+    "16": "C",
+    "17": "C",
+    "18": "B",
+    "19": "A",
+    "20": "A",
+    "21": "C",
+    "22": "C",
+    "23": "A",
+    "24": "A",
+    "25": "A",
+    "26": "C",
+    "27": "A",
+    "28": "B",
+    "29": "C",
+    "30": "C",
+    "31": "B",
+    "32": "B",
+    "33": "A",
+    "34": "B",
+    "35": "C",
+    "36": "B",
+    "37": "B",
+    "38": "C",
+    "39": "A",
+    "40": "A",
+    "41": "B",
+    "42": "C",
+    "43": "C",
+    "44": "D",
+    "45": "A",
+    "46": "C",
+    "47": "D",
+    "48": "C"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-04",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 4,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic Humor. You should base your composition on the outline given in Chinese below.\n\n1. 幽默有益身心健康\n\n2. 幽默有利于沟通交流",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "It’s no use _____ for a doctor. It’s too late already.",
+       "options": [
+        "to send",
+        "sending",
+        "by sending",
+        "having sent"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "We moved to the front row _______ we could hear and see better.",
+       "options": [
+        "so as",
+        "so that",
+        "because",
+        "such that"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "The river, _______ flows through London, is called the Thames.",
+       "options": [
+        "that",
+        "what",
+        "which",
+        "it"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "I’ll give you a ring if Mike _____ tomorrow.",
+       "options": [
+        "comes",
+        "will come",
+        "came",
+        "is coming"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "Hospital doctors don’t go out very often as their work_____all their time.",
+       "options": [
+        "takes away",
+        "takes in",
+        "takes over",
+        "takes up"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "Sunday is the day ______ people usually don’t go to work.",
+       "options": [
+        "when",
+        "which",
+        "in which",
+        "that"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "The old man was found_____on the floor.",
+       "options": [
+        "lying dead",
+        "lying death",
+        "laying dead",
+        "laying death"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "Though he was born and brought up in America, he can speak ________ Chinese.",
+       "options": [
+        "smooth",
+        "fluent",
+        "fluid",
+        "flowing"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "I remember _______ the book last month. It was very interesting.",
+       "options": [
+        "to read",
+        "reading",
+        "to be read",
+        "being read"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "She sent her application to the university last week, but ___ any response up to now.",
+       "options": [
+        "didn’t receive",
+        "weren’t receiving",
+        "hadn’t received",
+        "hasn’t received"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "I know it’s nothing serious but I really can’t help _______ about it.",
+       "options": [
+        "except to think",
+        "thinking",
+        "think",
+        "to think"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "No sooner had she got back to the kitchen ______ the doorbell rang.",
+       "options": [
+        "than",
+        "when",
+        "while",
+        "if"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "Although our teacher is very strict with us, most students think _____ of her.",
+       "options": [
+        "carefully",
+        "hardly",
+        "highly",
+        "closely"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "The storm has caused __________ to the village.",
+       "options": [
+        "many damaged",
+        "much damages",
+        "few damages",
+        "much damage"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "When I go to heat the milk, please ____ the baby.",
+       "options": [
+        "keep an eye on",
+        "set foot on",
+        "make a guess at",
+        "look forward to"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "Our teacher _______ much importance to listening comprehension and speaking.",
+       "options": [
+        "attaches",
+        "touches",
+        "plays",
+        "pays"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "I am tired _______ telling you what to do again and again.",
+       "options": [
+        "at",
+        "in",
+        "from",
+        "of"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "Childish ______ she may be, she is kind and friendly.",
+       "options": [
+        "if",
+        "although",
+        "as",
+        "however"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "Either my parents or my elder brother _____ going to water the garden.",
+       "options": [
+        "are",
+        "is",
+        "has",
+        "have"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "With the guide _____ the way, we set off on foot into the dark night.",
+       "options": [
+        "leading",
+        "to lead",
+        "led",
+        "being led"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "As I was growing up, my life went around soccer. I played on the national youth soccer teams, and traveled to Europe. At age fifteen, I spent a summer __21__ with a professional team in England. I always knew I was going to be a professional soccer ___22___. I had a ____23___ soccer scholarship to a top Midwest university.\n\nBut when I got to college, things began to __24__. I started to see everything I had missed ___25__ the way. My high school years had been filled __26___ practices and games and I didn’t get to do a lot of the other things my friends were doing. At college, I ___27___ to be “normal”. I was feeling tired out and __28__. Finally, I decided to give __29__ the college life that was similar to my high school days. I walked away ___30___ soccer and my scholarship.\n\nI __31__ myself for the life I was living for a while because soccer was the only thing in my life for which I ever had a passion. After a ___32___ of struggle, I went to another university and finished school there. Then I did quite a ___33___ jobs. I worked in a financial company, then for an Internet company, etc. I ___34___ wasn’t happy.\n\n___35__ back, I can see that these jobs weren’t based on the ___36___ that were important to me, honestly, stability, and family. Then an old soccer coach of mine called and ___37___ an opportunity -----teaching soccer and other sports to little kids. I thought, “Could this be my calling?”\n\nI’ve been teaching now for a ___38___ of years and really love it. I’m working with kids, ___39___ I enjoy. I’m playing soccer again. However, life is ___40___ from that of the past days when I lived for only practices and games. Life is so colorful and attractive now.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "thinking",
+        "training",
+        "hoping"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "leaning",
+        "actor",
+        "player"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "full",
+        "empty",
+        "great"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "enlarge",
+        "change",
+        "raise"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "along",
+        "across",
+        "aside"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "at",
+        "on",
+        "with"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "longed",
+        "insisted",
+        "imagined"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "pleasant",
+        "unhappy",
+        "curious"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "in",
+        "at",
+        "up"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "from",
+        "with",
+        "beside"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "complained",
+        "blamed",
+        "explained"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "distance",
+        "range",
+        "period"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "few",
+        "little",
+        "lot"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "either",
+        "still",
+        "already"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "hearing",
+        "Touring",
+        "Looking"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "educated",
+        "memories",
+        "policies"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "balanced",
+        "presented",
+        "neglected"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "pack",
+        "double",
+        "couple"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "whom",
+        "that",
+        "what"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "different",
+        "similar",
+        "enormous"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "More than 30,000 drivers and front seat passengers are killed or seriously injured each year. At the speed of only 30 miles per hour it is the same as falling from a third-floor window. Wearing a seat belt saves lives; it reduces your chance of death or serious injury by more than half.\n\nTherefore drivers or front seat passengers over 14 in most vehicles must wear a seat belt. If you do not, you could be fined up to ￡50. It will not be up to the drivers to make sure you wear your belt. But it will be the driver’s responsibility to make sure that children under14 do not ride in the front unless they are wearing a seat belt of some kind.\n\nHowever, you do not have to wear a seat belt if you are reversing your vehicle; or you are making a local delivery or collection using a special vehicle; or if you have a valid medical certificate which excuses you from wearing it. Make sure these circumstances apply to you before you decide not to wear you seat belt. Remember you may be taken to court for not doing so, and you may be fined if you cannot prove to the court that you have been excused from wearing it.",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "This text is taken from ______.",
+       "options": [
+        "a medical magazine",
+        "a police report",
+        "a legal document",
+        "a government information booklet"
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "Wearing a seat belt in a vehicle ________.",
+       "options": [
+        "reduces road accidents by more than half",
+        "saves lives while driving at a speed up to 30 miles per hour",
+        "reduces the death rate in traffic accidents",
+        "saves more than 15, 000 lives each year"
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "It is the driver’s responsibility to ________.",
+       "options": [
+        "make the front seat passenger wear a seat belt",
+        "make the front seat children under 14 wear a seat belt",
+        "stop children riding in the front seat",
+        "wear a seat belt each time he drives"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "According to the text, which of the following riding in the front does not have to wear a seat belt?",
+       "options": [
+        "Someone who is backing the car into a space",
+        "Someone who is picking up the children from the local school.",
+        "Someone who is delivering invitation letters.",
+        "Someone who is under 14"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Half of the world’s coral reefs （珊瑚礁）have died in the last 30 years. Now scientists are racing to ensure that the rest survive. Even if global warning were to right now, scientists predict that more than 90% of corals will die by 2050. If no major steps are taken to address the problem, the reefs may be headed for total extinction（灭绝）.\n\nThe planet’s health depends on the survival of coral reefs. They described as “the rainforests of the sea”, because they provide shelter for a wide variety of sea life. In addition, the reefs serve as barriers that protect coastlines from the full force of powerful storms.\n\nCoral are used in medical research for cures to diseases. They are key to local economies as well, since the reefs attract tourists, the fishing industry, and other businesses, bringing in billions of dollars.\n\nCorals are particular sensitive to changes in temperature. A rise of just 1 to 2 degrees can force the corals to drive out the algae（水藻）. Then the corals turn white in a process called “bleaching”. Corals can recover from short-term bleaching, but long-term bleaching can cause permanent damage. In 1998, when sea surface temperatures were the highest in recorded history, coral reefs around the world suffered the most severe bleaching. It is estimated that even under the best of conditions, many of these coral reefs will need decades to recover.\n\nAlthough reefs face other threats from pollution, industrial activities, and overfishing, it is global climate change that most concerns scientists. Scientists remain hopeful that it’s not too late to save the reefs, and some are moving ahead on experiments to accomplish that goal.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "Which of the following is the best title for the passage?",
+       "options": [
+        "Rising Global Temperatures",
+        "Rainforests Are in Danger",
+        "Coral Reefs Face Extinction",
+        "Global Climate Change"
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "The word “address” in Paragraph 1 is closest in meaning to _____.",
+       "options": [
+        "break down",
+        "stick to",
+        "go over",
+        "deal with"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "Why are coral reefs called “the rainforests of the sea”?",
+       "options": [
+        "Because they are home to a wide variety of sea life.",
+        "Because they can protect our coasts from storms.",
+        "Because they might supply natural medicines.",
+        "Because they look like rainforests."
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "The corals turn _____ in the process of “bleaching”.",
+       "options": [
+        "red",
+        "black",
+        "green",
+        "white"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 她已经邀请我们去她的生日聚会。\n\n50. 因为交通拥堵，他们上学迟到了。\n\n51. 在我看来，他们很难掩盖事实真相。\n\n52. 昨天直到雨停了孩子们才离开学校。\n\n53. 你看明天有可能结束这工作吗？",
+   "reference": "49. She has invited us to her birthday party.\n\n50. They were late for school because of the heavy traffic.\n\n51. As far as I am concerned, it is difficult for them to cover the truth.\n\n52. The children didn’t leave school until the rain stopped yesterday.\n\n53. Do you think it’s possible to finish the work tomorrow?"
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "B",
+    "2": "B",
+    "3": "C",
+    "4": "A",
+    "5": "D",
+    "6": "A",
+    "7": "A",
+    "8": "B",
+    "9": "B",
+    "10": "D",
+    "11": "B",
+    "12": "A",
+    "13": "C",
+    "14": "D",
+    "15": "A",
+    "16": "A",
+    "17": "D",
+    "18": "C",
+    "19": "B",
+    "20": "A",
+    "21": "B",
+    "22": "C",
+    "23": "A",
+    "24": "B",
+    "25": "A",
+    "26": "C",
+    "27": "A",
+    "28": "B",
+    "29": "C",
+    "30": "A",
+    "31": "B",
+    "32": "C",
+    "33": "A",
+    "34": "B",
+    "35": "C",
+    "36": "C",
+    "37": "B",
+    "38": "C",
+    "39": "B",
+    "40": "A",
+    "41": "D",
+    "42": "C",
+    "43": "B",
+    "44": "A",
+    "45": "C",
+    "46": "D",
+    "47": "A",
+    "48": "D"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-05",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 5,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic How to deal with Stress in Life? You should base your composition on the outline given in Chinese below.\n\n1. 生活中的压力无处不在\n\n2. 如何应对生活中的压力",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "Your temperature has dropped, so you ____ take that medicine.",
+       "options": [
+        "don’t",
+        "mustn’t",
+        "needn’t",
+        "can’t"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "I was writing a letter in my bedroom _______ Mary came in.",
+       "options": [
+        "while",
+        "where",
+        "when",
+        "why"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "Don’t leave the medicine within _______ of little children.",
+       "options": [
+        "hand",
+        "hold",
+        "grasp",
+        "reach"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "_____ Hong Kong is one of _____ busiest seaports in the word.",
+       "options": [
+        "The; the",
+        "/; /",
+        "The; /",
+        "/; the"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "____with the size of the whole earth, the highest mountain doesn’t seem high at all",
+       "options": [
+        "When compared",
+        "Compare",
+        "While comparing",
+        "Comparing"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "There are trees on _____ side of the street.",
+       "options": [
+        "either",
+        "both",
+        "neither",
+        "all"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "All the children are getting excited and looking forward to _____ the new film.",
+       "options": [
+        "having seen",
+        "be seeing",
+        "see",
+        "seeing"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "The more I look at the picture，_________.",
+       "options": [
+        "the less I like it",
+        "I like it less",
+        "better I like it",
+        "it looks better"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "Do you mind _______ the window？",
+       "options": [
+        "me open",
+        "me to open",
+        "me opening",
+        "me to opening"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "He spoke English so well that I took it for _____ that he was an American.",
+       "options": [
+        "good",
+        "certain",
+        "sure",
+        "granted"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "He is considered to be ______ the other students in his class.",
+       "options": [
+        "less intelligent",
+        "the most intelligent",
+        "intelligent as well",
+        "as intelligent as"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "I don’t know ____ to do deal with this issue.",
+       "options": [
+        "what",
+        "how",
+        "which",
+        "that"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "He couldn’t buy the book because he had ______ money with him.",
+       "options": [
+        "a few",
+        "few",
+        "a little",
+        "little"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "Not a single mistake_____in the test.",
+       "options": [
+        "he made",
+        "did he make",
+        "he has made",
+        "made he"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "It was difficult to guess what her _______ to the news would be.",
+       "options": [
+        "impression",
+        "comment",
+        "reaction",
+        "opinion"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "The old man ______ dead in the snow the next morning.",
+       "options": [
+        "found",
+        "was found",
+        "is found",
+        "had found"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "I like listening to English songs because it can _____ make me relaxed _____ improve my oral English.",
+       "options": [
+        "neither; nor",
+        "either; or",
+        "not only; but also",
+        "not; but"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "If you keep _______, you’ll be a very good swimmer one day.",
+       "options": [
+        "practice to swim",
+        "practicing swimming",
+        "to practice to swim",
+        "practice swimming"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "I don’t think it’ll rain，but I’ll take an umbrella ________ it does.",
+       "options": [
+        "on condition",
+        "so that",
+        "in case",
+        "as if"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "The lady treats the boy next door well as if he_____ her own son.",
+       "options": [
+        "is",
+        "was",
+        "were",
+        "would be"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "My friend Jane once found a weasel（鼬鼠）when he was very young. As she was fond of pets, she thought bring him up.\n\nOf course he had to be taught all young things have to, and this weasel knew ___21___, The good lady first began with ___22____ some milk into her hand and ___23___ him drink from it. Very soon, he would not take milk ___24___ any other way. After his dinner, he would run to a soft blanket that was ___25____ in Jane’s bedroom. He slept there ___26____ one or two hours.\n\nThis was all very well in the day, but Jane did not feel ____27___ in leaving him loose during the night. Thus, whenever she went to bed, she ___28___ the weasel up in a little cage that stood ___29____ by. If she ___30___ to wake up early, she would open the cage, and the weasel would came into her bed go to sleep again ____31____ next to her. If she was already dressed when he was let ___32___, he would jump all about her, and would never once miss ___33___ on her hands.\n\nAll his ways was pretty and gentle. He would stand ___34____ Jane’s shoulder and give little soft pats to her chin. He would run over a whole room ____35____ of people at the mere sound of her voice. He was very fond of the sun and would roll about whenever it ____36____ on him. The little weasel was ratter a thirsty animal, but he would not drink much at a ____37___. Baths were quite new to him and he could not ___38___ up his mind to them. Because of his dislike for baths, he suffered a good deal on ____39___ days. His nearest approach to bathing was a ____40____ cloth wrapped round him, and this evidently gave him great pleasure.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "anything",
+        "nothing",
+        "something"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "pulling",
+        "linking",
+        "pouring"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "letting",
+        "asking",
+        "telling"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "on",
+        "in",
+        "for"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "made",
+        "built",
+        "spread"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "for",
+        "on",
+        "beyond"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "angry",
+        "safe",
+        "risky"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "shut",
+        "hit",
+        "sent"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "short",
+        "far",
+        "close"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "remembered",
+        "resolved",
+        "happened"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "laying",
+        "lying",
+        "lay"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "up",
+        "out",
+        "down"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "sitting",
+        "sit",
+        "visiting"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "in",
+        "beside",
+        "on"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "full",
+        "proud",
+        "wide"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "dropped",
+        "shone",
+        "found"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "time",
+        "moment",
+        "minute"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "take",
+        "detect",
+        "make"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "quiet",
+        "hot",
+        "busy"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "wet",
+        "dry",
+        "flat"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "In the traditional marriage, the man worked to earn money for the family. Most men worked in an office, a factory, or some other places away from the home. Since the man earned the money, he paid the bills. The money was used for food, clothes, a house, and other family needs. The man made most of the decisions. He was the boss.\n\nIn the traditional marriage, the woman seldom worked away from the house. She stayed at home to care for the children and her husband. She cooked the meals, cleaned house, washed the clothes, and did other household work. Her job at home was very important.\n\nIn recent years, many couples continue to have a traditional relationship of this kind. The man has a job and earns the money for the family. The woman stays at home and cares for the children and the house. Many Americans are happy with this kind of marriage. But some other Americans have a different impression of marriage and family responsibilities.\n\nThere are two important differences in male and female roles now. One is that both men and women have many more choices. They may choose to marry or to stay single. They may choose to work or stay at home. Both men and women may choose roles that are comfortable for them.\n\nA second difference in male and female roles is that within marriage many decisions and responsibilities are shared. The husband and wife may choose to have children or not. If they have children, the man may take care of them some of the time, all of the time, or not at all. The woman may want to stay at home and take care of the children. Or she may want to go to work. Men and women now decide these things together in a marriage. Many married people now share these decisions and the responsibilities of their families.",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "Which of the following is NOT true in the traditional marriage?",
+       "options": [
+        "Men worked at a job to earn money for the family.",
+        "The woman made most of decisions.",
+        "The woman stayed at home to care for the children.",
+        "The man paid the bills."
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "In recent years, _________.",
+       "options": [
+        "young couples reject the traditional relationship",
+        "the woman has a job and earns the money for the family",
+        "the woman doesn’t stay at home and care for the children and the house",
+        "the role of men and women has begun to change"
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "Men and women now may choose all the following EXCEPT to _______.",
+       "options": [
+        "marry or to stay single",
+        "work or to stay at home",
+        "leave their jobs just because they have children",
+        "choose the roles they feel comfortable with"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "The following statements are all true EXCEPT ________.",
+       "options": [
+        "they may choose to have children or not",
+        "the man may take care of the children some of the time",
+        "the woman is the most important person in the house",
+        "the woman may want to go to work"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "In 2014, older Americans fell 29 million times, leading to 7 million injuries, according to a report published last week. About 2.8 million cases were treated in emergency department, and approximately 800,000 seniors went on to be hospitalized. More than 27,000 falls led to death. And the problem is getting more and more serious.\n\n“Older adult falls are increasing and, sadly, often indicate the end of independence,” said Dr. Tom Frieden. The falls are preventable, Frieden stressed. He said individuals, families and health care providers can take steps to resist the trend.\n\nDr. Wolf-Klein is a medical professor in New York. She said one concern is that seniors who have experienced a fall alone at home don’t tell anyone. When that happens, prevention efforts don’t begin and they’re at risk for additional falls that lead to broken bones and brain injuries.\n\n“Elderly patients tend not to report falls to their families, or even doctors. A fall is a very frightening thing that you keep quiet about. They think if they mention it, they are afraid that they will move to a nursing home or need assistants to help out in the house,” said Wolf-Klein.\n\nIt’s also a status issue and may make someone feel that they’re weaker than they really are, she explained. When someone does fall and hurt themselves, they’re often never the same, Wolf-Klein said. “You can develop chronic(慢性的) problems. After a fall, a percentage of the population will never return to walking around. People used to taking the subway, now they’re in a wheelchair, or they may need help going to the bathroom. They become frailer and lose independence,” she said.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "Which of the following is TRUE?",
+       "options": [
+        "In 2014, older adult falls caused 7 million injuries.",
+        "In 2016, Americans fell 29 million times.",
+        "Last year, 2.8 million Americans had emergency treatment.",
+        "Last month, more than 27,000 older Americans were hospitalized."
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "From the passage we learn that older adult falls ___.",
+       "options": [
+        "Are decreasing",
+        "Can’t be avoided",
+        "Must be treated in hospitals",
+        "Usually imply the end of independence"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "The word “frailer” in Paragraph 5 probably means ___.",
+       "options": [
+        "lonelier",
+        "weaker",
+        "smarter",
+        "better"
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "What is the main idea of this passage?",
+       "options": [
+        "Older adult fells are on the rise.",
+        "People should keep quiet about their fells.",
+        "Older adults are losing their independence.",
+        "Older adult falls cause brain injuries."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 他隔一周去看望爷爷奶奶。\n\n50. 嘲笑处于困境中的人是不礼貌的。\n\n51. 我父亲过去常常抽烟，但最近已经戒了。\n\n52. 这部电影让她想起了她的童年。\n\n53. 经理不在，这个商店由他负责。",
+   "reference": "49. He goes to see his grandparents every other week.\n\n50. It’s not polite to laugh at people in trouble.\n\n51. My father used to smoke a lot, but he has given it up recently.\n\n52. The movie reminded her of her childhood.\n\n53. The manager is out, so he is in charge of the store."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "C",
+    "2": "C",
+    "3": "D",
+    "4": "D",
+    "5": "A",
+    "6": "A",
+    "7": "D",
+    "8": "A",
+    "9": "C",
+    "10": "D",
+    "11": "D",
+    "12": "B",
+    "13": "D",
+    "14": "B",
+    "15": "C",
+    "16": "B",
+    "17": "C",
+    "18": "B",
+    "19": "C",
+    "20": "C",
+    "21": "B",
+    "22": "C",
+    "23": "A",
+    "24": "B",
+    "25": "C",
+    "26": "A",
+    "27": "B",
+    "28": "A",
+    "29": "C",
+    "30": "C",
+    "31": "B",
+    "32": "B",
+    "33": "A",
+    "34": "C",
+    "35": "A",
+    "36": "B",
+    "37": "A",
+    "38": "C",
+    "39": "B",
+    "40": "A",
+    "41": "B",
+    "42": "D",
+    "43": "C",
+    "44": "C",
+    "45": "A",
+    "46": "D",
+    "47": "B",
+    "48": "A"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-06",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 6,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic Will Robots Take over All Jobs From Human? You should base your composition on the outline given in Chinese below.\n\n1. 机器人的发展越来越快，许多工作将可以由机器人完成；\n\n2. 描述这种趋势，并探讨机器人取代完成一切工作的可能性。",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "Becoming _______ American citizen takes a lot of work.",
+       "options": [
+        "/",
+        "an",
+        "a",
+        "the"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "She was the only member of her family _____ spoke English.",
+       "options": [
+        "that",
+        "whom",
+        "what",
+        "which"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "______ he walked, he looked carefully at the ice in front of him.",
+       "options": [
+        "If",
+        "As",
+        "Since",
+        "Whether"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "At about twelve o’clock, the man decided ______ to eat his lunch.",
+       "options": [
+        "being stopped",
+        "stopping",
+        "to be stopped",
+        "to stop"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "He threw stones at the birds but could not hit _________ .",
+       "options": [
+        "him",
+        "her",
+        "it",
+        "them"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "Peter is going to a lake ______ he can fish with his friends.",
+       "options": [
+        "which",
+        "here",
+        "where",
+        "there"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "They _____ into the dormitory already.",
+       "options": [
+        "have moved",
+        "moving",
+        "move",
+        "having moved"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "Everyone is getting old, but you look ______ than ever.",
+       "options": [
+        "younger",
+        "youngest",
+        "the youngest",
+        "young"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "No matter how , it is not necessarily lifeless.",
+       "options": [
+        "a desert maybe dry",
+        "dry may a desert be",
+        "may a desert be dry",
+        "dry a desert maybe"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "They _____ have arrived at lunchtime but their flight was delayed.",
+       "options": [
+        "will",
+        "can",
+        "must",
+        "should"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "After dinner, the minister made a short _____ to the guests.",
+       "options": [
+        "delivery",
+        "speech",
+        "pronunciation",
+        "conversation"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "Jean is one of those modern girls who always ______ the latest fashions.",
+       "options": [
+        "put up with",
+        "come up with",
+        "keep up with",
+        "get along with"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "The room was so quiet that she could hear the _____ of her heart.",
+       "options": [
+        "hitting",
+        "beating",
+        "tapping",
+        "knocking"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "This watch is ______ to all the other watches in the store.",
+       "options": [
+        "superior",
+        "advantages",
+        "super",
+        "beneficial"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "The police officers in our city work hard ____ the rest of us can live a safe life.",
+       "options": [
+        "in case",
+        "as if",
+        "in order that",
+        "only if"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "The sun ______ in the east.",
+       "options": [
+        "rises",
+        "raises",
+        "increases",
+        "goes"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "When you have kids, you won’t have time to go to parties ______.",
+       "options": [
+        "further",
+        "still more",
+        "anymore",
+        "no more"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "They hid themselves ______ a tree.",
+       "options": [
+        "off",
+        "after",
+        "behind",
+        "before"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "The protests were not ______ to New York.",
+       "options": [
+        "balanced",
+        "ended",
+        "limited",
+        "attended"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "He has never recovered from the _____ of his brother’s death.",
+       "options": [
+        "aim",
+        "shock",
+        "plan",
+        "opinion"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "In the summer of 1838, John Wannamaker was born in Philadelphia. His father was a brick-maker. Whenever he was not ___21___ school, John was engaged in turning bricks which were laid in the sun to ___22___. Thus, the quality of working ____23____ was instilled (灌输) into the young man. ___24____ his own diligence, he later became the merchant prince of Philadelphia. A few years later, school was ___25___ and he worked in a store four miles away ___26___ his home. He walked eight miles every day, going to work in the morning and ___27____ back home in the evening. He ___28___ only $1.25 for the entire week’s work. Afterwards he was ___29___ as a clerk in a law office, and later he worked in a clothing store at a ___30___ of $1.50 per week. Here he seemed to find the calling ___31___ suited his taste, and he developed a pleasing disposition (性格). People ___32___ to trade with the young clerk. It was not long ___33___ he was called to responsible positions. In 1861, he already saved several hundred dollars. As he had ___34___ a reputation for honesty and ability, he was able to start in business on his own account. This firm of Wannamaker & Brown was situated ___35____ the corner of Sixth and Market streets. As the business ___36___, other stores were opened. John Wannamaker, the poor clerk—after a ___37___ of twenty years of hard work, pushed by energy, controlled a force of 6,000 employees. Not only did the firm handle clothing, but also articles that could be generally ___38___ in retail (零售) stores. The secret of his great success is his tireless diligence, and a ___39___ mastery of his business. He was one of the most successful merchants in history who were extremely good at thinking of new business ideas and ___40____ them successful.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "at",
+        "with",
+        "for",
+        "about"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "work",
+        "see",
+        "fly",
+        "dry"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "quite",
+        "hard",
+        "shortly",
+        "easily"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "Beyond",
+        "Along",
+        "By",
+        "In"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "absorbed",
+        "announced",
+        "abandoned",
+        "advanced"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "for",
+        "through",
+        "with",
+        "from"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "coming",
+        "came",
+        "leaving",
+        "left"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "captured",
+        "received",
+        "combined",
+        "returned"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "employed",
+        "consumed",
+        "followed",
+        "displayed"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "service",
+        "number",
+        "salary",
+        "course"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "where",
+        "which",
+        "when",
+        "what"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "worried",
+        "hated",
+        "permitted",
+        "liked"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "although",
+        "after",
+        "because",
+        "before"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "earned",
+        "reached",
+        "pushed",
+        "repaired"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "above",
+        "below",
+        "at",
+        "with"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "followed",
+        "divided",
+        "increased",
+        "dropped"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "justice",
+        "period",
+        "recall",
+        "misery"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "visited",
+        "caught",
+        "produced",
+        "found"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "thorough",
+        "public",
+        "normal",
+        "recent"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "put",
+        "made",
+        "putting",
+        "making"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "A little boy in South Carolina got to celebrate his birthday twice: After only one friend showed up to his birthday party, the local fire department decided to throw him another on.\n\nThe City of Beaufort Fire Department shared the story of a party the fire department held for a local boy named Cooper, who was disappointed when only one of his classmates showed up to his 6th birthday party. But after a community member gave the local fire department a call, the members were quick to come to his rescue.\n\n“We jumped on board and said we’ll do whatever we can to make sure he has a great birthday and that more than one child shows up,” Beaufort firefighter Ross Vezin says. “We made arrangements to pick him up from school along with his mom and brother, and we brought him to a bowling alley (保龄球场) along with a biker group”\n\nThe fire department was also able to bring nearly 75 other kids from school to celebrate alongside Cooper, whose mother, Nicoala Shiflet, said he has difficulty making friends because he suffers from autism(自闭症)“ They had cake and presents and got to do some bowling,” Vezin continues, adding that the party came to be known as ”Coopers Birthday 2.0”.\n\nFrom riding in a fire truck to seeing the motorcycles from the biker group and evening welcomed by so many new friends, Cooper loved his celebration. And it won't be the last time that the little boy gets to hang out with the fire department responsible for it\n\n“We’re also going to have him up next week, \" Vezin says. \" We’re going to give him a fire department T-shirt and a tour of our fire station.”",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "Who did the most to make Cooper’s second birthday party a great success?",
+       "options": [
+        "Firefighters from Beaufort Fire Department.",
+        "Men from the biker group.",
+        "Community members.",
+        "Cooper’s parents."
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "Which of the following statements is NOT TRUE according to the passage?",
+       "options": [
+        "About 75 kids showed up at Cooper's second birthday party.",
+        "Cooper’s mother and brother were at his second birthday party.",
+        "Those joining the second birthday party did some bowling.",
+        "Cooper got a T-shirt from the fire department at his second birthday party."
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "The phrase have him up in the last paragraph is closest in meaning to _____.",
+       "options": [
+        "invite him as a guest",
+        "meet him by chance",
+        "take care of him",
+        "make friends with him"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "Only one kid went to Cooper's first birthday party because______.",
+       "options": [
+        "Cooper was not good at making friends.",
+        "other kids were busy with their classes then.",
+        "Cooper liked to play with grown-ups.",
+        "Cooper didn’t invite his classmate."
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "On July 20, 1969, Neil Armstrong became the first person to walk on the moon. The spacesuit Armstrong wore on his mission has come to symbolize courage and human achievement. In 1971, the Smithsonian's National Air and Space Museum (NASM)acquired Armstrong’s suit It stood proudly on display for visitors to admire, until there were changes in the suit’s appearance.\n\n“Over time, the suit started to show signs of deterioration (变坏).” Lisa Young says. She works at NASM and her job is to preserve historical and cultural treasures. Plastics are tricky to preserve. They tend to degrade (降解)over time. Neoprene is one type of plastic in Armstrong s suit. The material can tum brittle and break into tiny Pieces. This would ruin the spacesuit, NASM, seeking ways to preserve this historical treasure, removed it from display in2006.\n\nYet history can still be saved. Sunlight, water, humidity, and dust can cause plastics to degrade, Scientists have found that storing plastics in cooler temperatures, with lower humidity levels, can slow degradation. Young says Armstrong’s suit is currently in storage at a temperature of 63 ° F and a lower relative humidity of 30%. These conditions will be maintained when Armstrong’s suit turns to a museum display case in time for this year’s 50th anniversary (周年纪念日) of the moon landing.\n\nPlastic degradation affects art, too, Artist Claes Oldenburg created False Food Selection in 1906. It consists of plastic food displayed in a wooden box. The plastic food used to look real. Now, some of it has flattened and yellowed. The artwork’s wooden box produces an acidic gas that eats away at the plastic, which speeds up the degradation process. But Young is motivated to preserve this artwork and others like it. “Plastics are a part of our history,” she says. “It’s important to preserve them so that future generations can understand the journey we’ve taken.”",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "Which of the following is the best title for the passage?",
+       "options": [
+        "Landing on the Moon",
+        "Preserving Plastics",
+        "Neil Armstrong’s Spacesuit",
+        "Application of Plastics"
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "In 2006, NASM removed Armstrong’s spacesuit from display to ______.",
+       "options": [
+        "put it on sale",
+        "return it to Armstrong",
+        "give it to another museum",
+        "look for ways to preserve it"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "In Claes Oldenburg’s False Food Selection, the wooden box the plastic degradation.",
+       "options": [
+        "slows down",
+        "leads to",
+        "accelerates",
+        "doesn’t play any role in"
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "According to the passage, which of the following statements is NOT TRUE?",
+       "options": [
+        "Sunlight, water and dust contribute to plastic degradation.",
+        "Armstrong’s spacesuit is currently on public display at NASM.",
+        "NASM acquired Armstrong’s spacesuit in1971.",
+        "Claes Oldenburg is an artist."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 这部电影值得看。\n\n50. 她迫不及待地要回家告诉家人这个好消息。\n\n51. 就气候而言，这个城市是生活的理想之地。\n\n52. 飞机马上就要起飞了。\n\n53. 我买东西的时候，一个年轻人偷走了我的钱包。",
+   "reference": "49. The film is worth seeing.\n\n50. She couldn’t wait to go home to tell the good news to her family.\n\n51. As far as the climate is concerned, the city is an ideal place to live in.\n\n52. The plane is about to take off.\n\n53. When I was shopping, a young man stole my wallet."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "B",
+    "2": "A",
+    "3": "B",
+    "4": "D",
+    "5": "D",
+    "6": "C",
+    "7": "A",
+    "8": "A",
+    "9": "D",
+    "10": "D",
+    "11": "B",
+    "12": "C",
+    "13": "B",
+    "14": "A",
+    "15": "C",
+    "16": "A",
+    "17": "C",
+    "18": "C",
+    "19": "C",
+    "20": "B",
+    "21": "A",
+    "22": "D",
+    "23": "B",
+    "24": "C",
+    "25": "C",
+    "26": "D",
+    "27": "A",
+    "28": "B",
+    "29": "A",
+    "30": "C",
+    "31": "B",
+    "32": "D",
+    "33": "D",
+    "34": "A",
+    "35": "C",
+    "36": "C",
+    "37": "B",
+    "38": "D",
+    "39": "A",
+    "40": "D",
+    "41": "A",
+    "42": "D",
+    "43": "A",
+    "44": "A",
+    "45": "B",
+    "46": "D",
+    "47": "C",
+    "48": "B"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-07",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 7,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic On Failure You should base your composition on the outline given in Chinese below.\n\n1. 失败在生活中很常见；\n\n2. 人们对待失败有各种不同的态度；\n\n3. 我对待失败什么态度。",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "The girl glanced over her shoulder and found herself ________ by a young man in black.",
+       "options": [
+        "was followed",
+        "had been followed",
+        "following",
+        "followed"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "They made a great effort to prepare the exhibition, ______ to achieve a big success.",
+       "options": [
+        "hoped",
+        "hoping",
+        "to hope",
+        "hope"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "I have been looking for this book for several weeks, and _______ I have found it.",
+       "options": [
+        "at least",
+        "in no time",
+        "at last",
+        "at present"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "Thousands of people _____ the funeral.",
+       "options": [
+        "cared",
+        "attended",
+        "devoted",
+        "appeared"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "I’m afraid you have no _____ but to come along with us.",
+       "options": [
+        "possibility",
+        "permission",
+        "choice",
+        "selection"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "The old man got into the ______ of storing money under the bed.",
+       "options": [
+        "habit",
+        "tradition",
+        "use",
+        "custom"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "She is so _______ that she cried for days when her pet cat died.",
+       "options": [
+        "sensible",
+        "sensitive",
+        "imaginative",
+        "impressive"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "____ Hong Kong is one of ____ busiest seaports in the word.",
+       "options": [
+        "The; the",
+        "/; /",
+        "The; /",
+        "/; the"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "The old man ____ dead in the snow the next morning.",
+       "options": [
+        "found",
+        "was found",
+        "was find",
+        "had found"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "Childish __ she may be, she is kind and friendly.",
+       "options": [
+        "if",
+        "although",
+        "as",
+        "however"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "_____ city to you prefer, Shanghai or London?",
+       "options": [
+        "What",
+        "Which",
+        "Who’s",
+        "whose"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "Mr. Jones enjoys ____ his children out for long walks.",
+       "options": [
+        "take",
+        "takes",
+        "to take",
+        "taking"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "He fell in love with her at first _____.",
+       "options": [
+        "scene",
+        "sight",
+        "view",
+        "look"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "I have promised to help you and I’ll ____ my word.",
+       "options": [
+        "hold",
+        "follow",
+        "stick",
+        "keep"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "If you have high blood pressure, you should ____ eating too much salty food.",
+       "options": [
+        "escape",
+        "suggest",
+        "avoid",
+        "relax"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "During the past ten years, there have been ____ changes in the country.",
+       "options": [
+        "lasting",
+        "dramatic",
+        "powerful",
+        "imaginary"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "I should like to rent a house, modern, comfortable and ____, in a quiet place.",
+       "options": [
+        "after all",
+        "all over",
+        "above all",
+        "first of all"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "We have always thought very ____ of him.",
+       "options": [
+        "highly",
+        "well",
+        "greatly",
+        "enough"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "He told his friends that he was going to Japan _____.",
+       "options": [
+        "on duty",
+        "on business",
+        "on board",
+        "on the spot"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "It’s no use _____ for a doctor. It’s too late already.",
+       "options": [
+        "to send",
+        "sending",
+        "by sending",
+        "having sent"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "The mind-success connection is strong, and many obstacles to our success are also mental. Some people rely more on facts, __21___ others rely more on feelings. There is no “right way” to be, but we all have the natural ability to “feel” our way successfully __22___ an unlighted path.\n\nI learned this ___23___ I was standing on a curb (路边) in a city in Vietnam (越南). My objective, a restaurant where my husband Tom was ___24___ for me, stood on the __25__ side of the street, I was ___26___ and could smell the food. But it seemed as if the restaurant were miles away. The street was ___27___ with motor cycles, bicycles, cars, trucks and buses. Rather than ___28___ the traffic into two lanes, the yellow lane markers apparently served only to ___29___ that you were on a paved (铺设的) road. People passed, stopped, turned around and crossed center lines.\n\nTraffic flowed both ways in the same lane, and more traffic turned onto the street from side ones. Even when the signal light turned red, traffic __30__ to flow as drivers entirely __31__ the signal, rushing to me from front, back, sides and all angles.\n\nI was ready to abandon lunch with Tom when a local gentleman __32__ my arm. In English, he kindly said, “Crossing the street is not a problem, ___33___ a dance.” With that we stepped ___34___ the curb and into the chaos (混乱). My heart ___35___ faster as we walked slowly across. ___36___ greeting us with sharp horns and angry shouts, drivers saw and adjusted to us. As long as we made no sudden ___37___, we were fine. I felt as if we were gracefully swimming ___38___ a school of fish. The traffic flowed smoothly around us, in all directions. ___39___ I knew it, we were across.\n\nLearning to dance through the chaos of traffic is just ___40___ your feelings. It’s a combination of intention, timing and trust.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "as",
+        "while",
+        "where",
+        "when"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "along",
+        "with",
+        "beside",
+        "under"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "where",
+        "what",
+        "when",
+        "which"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "waiting",
+        "looking",
+        "expecting",
+        "seeing"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "opposed",
+        "nearby",
+        "different",
+        "opposite"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "earnest",
+        "hungry",
+        "splendid",
+        "worried"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "grouped",
+        "pressed",
+        "crowded",
+        "provided"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "dividing",
+        "combining",
+        "cutting",
+        "joining"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "strengthen",
+        "conclude",
+        "indicate",
+        "express"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "responded",
+        "transformed",
+        "recovered",
+        "continued"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "respected",
+        "ignored",
+        "remembered",
+        "misunderstood"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "hit",
+        "led",
+        "took",
+        "struck"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "besides",
+        "but",
+        "rather",
+        "except"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "off",
+        "on",
+        "with",
+        "for"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "beat",
+        "moved",
+        "leapt",
+        "jumped"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "Regardless of",
+        "In spite of",
+        "For lack of",
+        "Instead of"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "recognitions",
+        "suspicions",
+        "movements",
+        "enjoyments"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "under",
+        "through",
+        "above",
+        "between"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "Although",
+        "After",
+        "Where",
+        "Before"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "following",
+        "considering",
+        "astonishing",
+        "appreciating"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "There was once a tree in South Africa so wide that it could fit 60 people inside its hollow trunk. The tree reached 62 feet into the sky. It was more than 1,100 years old. But recently, that tree and others like it have died. Scientists are wondering why.\n\nThe tree was a baobab. A baobab looks like a giant oak (橡树) turned upside down. Its branches resemble roots reaching toward the sky. It grows in Africa and is called “the Tree of Life”. Baobab trees tend to live a long time. One of the oldest stood for more than 2,400 years. Various baobabs have been used as a shop, a prison, a house, and a bus shelter.\n\nIn 2005, scientists began a survey to determine the age of more than 60 baobabs. During the process, they noticed that several of the trees had died. Their results recently published in Nature Plants, show that nine of the 13 oldest baobab trees and five out of six of the largest died in the 12-year study period.\n\nStephan Woodborne conducted the baobab study with six other scientists. They say more research is needed to know why the trees died, but they think climate change may be to blame. That’s because the trees showed no evidence of disease. Plus many were in national parks, so they would have been protected from human harm. Also, Woodborne says, the most affected baobabs are on the outer edge of their ideal habitat (栖息地). Increasing heat and shifting rainy seasons have made it harder for baobabs in these areas to thrive.\n\nSmaller and younger baobabs are dying too. “The big ones and the old ones caught attention of the media”, Woodborne says. “But it’s not just those. It’s unprecedented (空前的) that they should be dying across the age spectrum. We’ve got to do a reality check on our own footprints in terms of the way we live our lives. If we all changed what we did a little bit. It would start to make a difference.”",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "Which of the following is the best title for the passage?",
+       "options": [
+        "Die-off of Africa’s Baobabs",
+        "National Parks in Africa",
+        "African Rainy Seasons",
+        "Strange-looking Baobabs"
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "The baobab study lasted ______.",
+       "options": [
+        "6 years",
+        "9 years",
+        "12 years",
+        "13 years"
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "According to Stephan Woodborne, the baobab trees died mainly because of ______.",
+       "options": [
+        "human damage",
+        "disease",
+        "climate change",
+        "the attack of insects"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "According to the passage, which of the following statements is NOT TRUE?",
+       "options": [
+        "Further research is needed to know why the Baobabs died.",
+        "Baobab trees can live a longtime.",
+        "The researchers found that only old baobab trees died.",
+        "The baobab study Involved more than 60baobabs."
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "In what now seems like the prehistoric times of computer history, the early postwar era, there was a quite widespread concern that computers would take over the world from man one day. Already today, less than forty years later, as computers are relieving us of more and more of the routine tasks in business and in our personal lives, we are faced with a less dramatic but also less foreseen problem. People tend to be over-trusting of computers and are reluctant to challenge their authority. Indeed, they behave as if they were hardly aware that wrong buttons may be pushed, or that a computer may simply malfunction.\n\nObviously, there would be no point in investing in a computer if you had to check all its answers, but people should also rely on their own internal computers and check the machine when they have the feeling that something has gone wrong. Questioning and routine double checks must continue to be as much a part of good business as they were in pre-computer days. Maybe each computer should come with the following warning: for all the help this computer may provide, it should not be seen as a substitute for fundamental thinking and reasoning skills.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "What is the main purpose of this passage?",
+       "options": [
+        "To look back to the early days of computers.",
+        "To explain what technical problems may occur with computers.",
+        "To discourage unnecessary investment in computers.",
+        "To warn against a mentally lazy attitude towards computers."
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "According to the passage, initial concerns about computers were that they might_____.",
+       "options": [
+        "lead us into the post-war era",
+        "be quite widespread",
+        "take control",
+        "take over routine tasks"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "The passage recommends those dealing with computers to_____.",
+       "options": [
+        "be reasonably skeptical abort them",
+        "check all their answers",
+        "substitute them for basic thinking",
+        "use them for business purposes only"
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "An “internal computer” is_____.",
+       "options": [
+        "a computer uses exclusively by one company for its own problems",
+        "a person’s store of knowledge and the ability to process it",
+        "the most up-to-date in-house computer a company can buy",
+        "a computer from the post-war era which is very reliable"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 春天是游览这个城市的最佳季节。\n\n50. 我会去火车站接你。\n\n51. 他连吃饭钱都不够，更不用说娱乐的钱了。\n\n52. 我不能参加聚会，因为我要准备考试。\n\n53. 你的行为与我们的原则有冲突。",
+   "reference": "49. The best season to go round this city is in spring.\n\n50. I will pick you up at the railway station.\n\n51. He hasn’t enough money for food，let alone amusements.\n\n52. I can’t go to the party because I have to get prepared for the examination.\n\n53. What you have done is in conflict with our principles."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "D",
+    "2": "B",
+    "3": "C",
+    "4": "B",
+    "5": "C",
+    "6": "A",
+    "7": "B",
+    "8": "D",
+    "9": "B",
+    "10": "C",
+    "11": "B",
+    "12": "D",
+    "13": "B",
+    "14": "D",
+    "15": "C",
+    "16": "B",
+    "17": "C",
+    "18": "A",
+    "19": "B",
+    "20": "B",
+    "21": "B",
+    "22": "A",
+    "23": "C",
+    "24": "A",
+    "25": "D",
+    "26": "B",
+    "27": "C",
+    "28": "A",
+    "29": "C",
+    "30": "D",
+    "31": "B",
+    "32": "C",
+    "33": "B",
+    "34": "A",
+    "35": "A",
+    "36": "D",
+    "37": "C",
+    "38": "B",
+    "39": "D",
+    "40": "C",
+    "41": "A",
+    "42": "C",
+    "43": "C",
+    "44": "C",
+    "45": "D",
+    "46": "C",
+    "47": "A",
+    "48": "B"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-08",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 8,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic On Advertising You should base your composition on the outline given in Chinese below.\n\n1．有人说广告使消费者更好地了解商品性能和优越性，买到更满意的产品。\n\n2．有人说广告片面夸大商品性能和优越性，误导消费者。\n\n3．你的观点，如何解决广告的误导效应。",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "The purpose of the conference is to _________ the friendship among the Asian countries.",
+       "options": [
+        "heighten",
+        "promote",
+        "raise",
+        "increase"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "________ a few spelling mistakes, this composition is well-written.",
+       "options": [
+        "But for",
+        "in spite",
+        "Besides",
+        "Except for"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "Nobody was ______ in the office when the manager suddenly had a heart attack.",
+       "options": [
+        "available",
+        "approachable",
+        "attainable",
+        "adaptable"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "No sooner ______ at the Grand Theatre than it started to rain.",
+       "options": [
+        "would they arrive",
+        "had they arrive",
+        "did they arrive",
+        "were they to arrive"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "Each car sold in this specialized shop comes with a one-year ________.",
+       "options": [
+        "guarantee",
+        "safety",
+        "security",
+        "insurance"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "We decided to move to a quiet place, for we couldn’t _______ the noisy environment here any more.",
+       "options": [
+        "go in for",
+        "hold on to",
+        "put up with",
+        "keep pace with"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "My wife and I like to spend our weekends in the countryside, for the nights there are so ______ that not a sound could be heard.",
+       "options": [
+        "beautiful",
+        "serene",
+        "dark",
+        "fresh"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "It is urgent that the seriously wounded soldier ________ to the war hospital at once.",
+       "options": [
+        "is to be sent",
+        "was sent",
+        "must be sent",
+        "be sent"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "The student is trying his best to _______ his teacher of his honesty.",
+       "options": [
+        "prove",
+        "convince",
+        "persuade",
+        "argue"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "This is the very house ______ my grandpa lived before his death in 1980.",
+       "options": [
+        "which",
+        "that",
+        "when",
+        "where"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "Of more than three hundred people in the airplane that crashed last week, only five ________ miraculously.",
+       "options": [
+        "sustained",
+        "endured",
+        "survived",
+        "maintained"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "In the advanced course students must take performance tests at regular _______.",
+       "options": [
+        "gaps",
+        "intervals",
+        "length",
+        "distance"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "If you had taken my advice last week, you _______ in trouble now.",
+       "options": [
+        "must not be",
+        "must not have been",
+        "are not to be",
+        "would not be"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "The whole day’s hard work in the field gave him a good ______.",
+       "options": [
+        "appetite",
+        "applause",
+        "appliance",
+        "application"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "During the period of economic depression many companies had to _____ some employees.",
+       "options": [
+        "lay down",
+        "lay out",
+        "lay off",
+        "lay aside"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "The new school building, _______ by the end of 2012, can accommodate more than two thousand students.",
+       "options": [
+        "being accomplished",
+        "having been accomplished",
+        "accomplished",
+        "to be accomplished"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "She _______ tell white lies to make people feel better, to smooth things over.",
+       "options": [
+        "is prone to",
+        "is subject to",
+        "is prior to",
+        "is pretentious to"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "The two companies decided to ______ on a project concerning animal cloning.",
+       "options": [
+        "compete",
+        "convince",
+        "compromise",
+        "cooperate"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "There was no _____ in complaining about the working conditions; the manager would not listen to it any more.",
+       "options": [
+        "aim",
+        "purpose",
+        "point",
+        "meaning"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "I have no objection ________ your design for the new type of machine this time.",
+       "options": [
+        "to adopt",
+        "to adopting",
+        "to having adopted",
+        "to have adopted"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Some people think of life as a game. There are similarities between life and games: both can be played, both have rules, and both turn out winners and losers. There are differences __21__ the two, however. Games make you __22__ away from life; the more you play, the less you pay __23__ to the more important things in life.\n\nIn life, you get only one chance to play. When your life is over, the game is over. Life is not a game. Life is the __24__ thing. Life is unpredictable; you can play it right and still __25__.Life is not always fair; one wrong move or one bad choice may __26__ too many such moves or choices in life. Take a chance with your life and it could be the last chance you get. Life isn’t always fun, but it can be if you decide to make it that __27__.\n\n__28__, the advice is “Enjoy your life; take risks, but don’t engage __29__ risky behavior.” Think __30__ the things you do and the things you shouldn’t do. Don’t play with your life in the following points.\n\nDon’t play with your safety. Don’t ignore proven safety measures. Safety measures and safety equipment have one purpose: to __31__ you safe. _32__ your seat belt when you drive a car; wear a helmet when you __33__ a motorcycle. Your safety is in your __34__.\n\nDon’t play with money. You can make your money _35__ or you can throw it all away. Don’t pay with a credit card if you don't have the money to pay __36__ the bill when it comes. Save some of your money. Think twice before __37__ a purchase, no matter how __38__ it is. Skip the cup of coffee or the can of soda each day, and save the money you would have spent. In just a few years, you will have saved thousands of dollars. Save more, and you’ll have more. The habits you __39__ today will affect you financially for the rest of your life. Learn how to __40__ your money.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "beyond",
+        "besides",
+        "between",
+        "among"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "engage",
+        "turn",
+        "change",
+        "think"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "attention",
+        "resistance",
+        "importance",
+        "vacation"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "proud",
+        "short",
+        "false",
+        "real"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "lose",
+        "succeed",
+        "pass",
+        "earn"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "awake",
+        "permit",
+        "cause",
+        "arise"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "energy",
+        "trip",
+        "hope",
+        "way"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "Besides",
+        "Thus",
+        "Also",
+        "But"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "at",
+        "out",
+        "in",
+        "to"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "about",
+        "with",
+        "beside",
+        "down"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "turn",
+        "keep",
+        "gain",
+        "reach"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "Fasten",
+        "Prevent",
+        "Pretest",
+        "Resist"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "get",
+        "sit",
+        "move",
+        "ride"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "gloves",
+        "areas",
+        "hands",
+        "sights"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "intend",
+        "shorten",
+        "grasp",
+        "grow"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "at",
+        "for",
+        "with",
+        "out"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "make",
+        "take",
+        "making",
+        "taking"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "small",
+        "short",
+        "high",
+        "big"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "develop",
+        "extend",
+        "instruct",
+        "offend"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "promote",
+        "manage",
+        "consider",
+        "overlook"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "For centuries Dutch engineers have been fighting a war against water. Their main enemy is the sea. A large part of the country is below sea level. In fact, Holland is also called the “Netherlands” which means “low land.” Very tall and strong walls, called dykes, have built to keep out the sea. But in very rough weather the sea may suddenly burst through a dyke. Great damage can be caused by floods when this happens.\n\nThree large rivers are also part of the problem. These rivers are the Rhine, the Maas and the Scheldt. They flow through Holland into the North Sea. They have cut many passages across the country. At low tides, the rivers flow into the sea as usual. But at high tide, the sea can flow into the rivers! This is because the land is so low.\n\nThe battles against the water never end, but they have made Holland a bigger and bigger country. In order to prevent floods, the engineers take or reclaim land that was under water. The Dutch have been reclaiming land for seven hundred years.\n\nLand is usually reclaimed from a passage between islands. Two dykes are built across the passage, so they block the water between them. Then the engineers dig long canals and pump the water into them. At low tide, the canals empty the water into the sea.\n\nBecause the land is so low, water from the sea and rivers can rise up through the ground. For this reason, the pumps continue working even the land has been drained (that is, when the water has been pumped away). The dykes contain gates, and through these the water is pumped out. In many parts of Holland, pumps must be working all the time. If they stopped, there will be very bad floods.",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "Water is the main threat to Holland because ____.",
+       "options": [
+        "the sea is too rough",
+        "the land is lower than the sea",
+        "the high and strong dykes can not keep the floods out",
+        "the weather is too rough"
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "Holland is threatened not only by the sea, but also by ____.",
+       "options": [
+        "the floods from broken dykes",
+        "the three rivers",
+        "the sea tides",
+        "many passages the three rivers have cut across the country"
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "The Holland claim land from the sea in order to ____.",
+       "options": [
+        "prevent floods",
+        "make their country larger",
+        "make their country more beautiful",
+        "have more farmland"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "If pumps stop working there will be very bad floods because _____.",
+       "options": [
+        "the water will run back at high tide",
+        "the sea may break the dykes in rough weather",
+        "the battle against water will never end",
+        "the land is too low and water can rise up through the drained land"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "The city has always been an engine of intellectual life, from the 18th-century cafes of London, where citizens gathered to discuss chemistry and politics, to the Left Bank bars of modern Paris, where Picasso talked about modem art. Without the metropolis, we might not have had the great art of Shakespeare.\n\nAnd yet, city life isn’t easy. Now scientists have begun to examine how the city affects the brain, and the results are depressing. Just being in an urban environment, they have found, impairs (损害) our basic mental processes. After spending a few minutes on a crowded city street, the brain is less able to hold things in memory, and suffers from reduced self-control. While it’s long been recognized that city life is exhausting, this new research suggests that cities actually dull our thinking, sometimes dramatically so.\n\nOne of the main forces at work is a complete lack of nature, which is surprisingly beneficial for the brain. Studies have demonstrated, for instance, that hospital patients recover more quickly when they can see trees from their windows, and that women living in public housing are better able to focus when their apartments overlook a lawn. Even these glimpses of nature improve brain performance, it seems, because they provide a mental break from the urban life.\n\nThis research arrives just as humans cross an important milestone (里程碑). For the first time in history, the majority of people live in cities. Instead of inhabiting wide-open spaces, we’re crowded into concrete jungles, surrounded by traffic and millions of strangers. In recent years, it’s become clear that such unnatural surroundings have important implications for our mental and physical health, and can powerfully alter how we think.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "Which of the following is the main idea of this passage?",
+       "options": [
+        "The city inspires talented people.",
+        "The city hurts your brain.",
+        "The city has many pleasures and benefits.",
+        "The city seriously affects the natural balance."
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "The word “metropolis” in the first paragraph is closest in meaning to_______.",
+       "options": [
+        "citizen",
+        "nature",
+        "city",
+        "stress"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "People have just come to realize that_______.",
+       "options": [
+        "human attention is a scarce resource",
+        "city life can make people very tired",
+        "the city is an engine of intellectual life",
+        "an urban environment is damaging to the brain"
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "According to the passage, which of the following statements is TRUE?",
+       "options": [
+        "Different aspects (方面) of an urban environment, such as the crowded streets, can lead to an increase in self-control.",
+        "Small changes in urban design cannot reduce the negative side effects of city life.",
+        "For the first time in history, the earth’s population is more urban than rural.",
+        "A walk down a busy city street will improve brain performance."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 我们知道肺癌至少部分地是由于吸烟引起的。\n\n50. 很明显，他对整个事件的陈述与事实不符。\n\n51. 你应该充分利用这次出国机会好好学习。\n\n52. 只要你坚持不懈地努力，你一定会攻克这个医学难题。\n\n53. 政府正在采取各种措施来提高偏远山区人民的生活水平。",
+   "reference": "49. We know that lung cancer is at least partially caused by over-smoking.\n\n50. It’s evident that what he stated about the event is not consistent with the truth.\n\n51. You should take full advantage of this opportunity of going abroad and study hard.\n\n52. You will overcome this medical problem if you persevere.\n\n53. The government is adopting various measures to improve the living standard of people who live in the remote mountain areas."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "B",
+    "2": "D",
+    "3": "A",
+    "4": "B",
+    "5": "A",
+    "6": "C",
+    "7": "B",
+    "8": "D",
+    "9": "B",
+    "10": "D",
+    "11": "C",
+    "12": "B",
+    "13": "D",
+    "14": "A",
+    "15": "C",
+    "16": "D",
+    "17": "A",
+    "18": "A",
+    "19": "C",
+    "20": "B",
+    "21": "C",
+    "22": "B",
+    "23": "A",
+    "24": "D",
+    "25": "A",
+    "26": "C",
+    "27": "D",
+    "28": "B",
+    "29": "C",
+    "30": "A",
+    "31": "B",
+    "32": "A",
+    "33": "D",
+    "34": "C",
+    "35": "D",
+    "36": "B",
+    "37": "C",
+    "38": "A",
+    "39": "A",
+    "40": "B",
+    "41": "B",
+    "42": "B",
+    "43": "A",
+    "44": "D",
+    "45": "B",
+    "46": "C",
+    "47": "D",
+    "48": "C"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-09",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 9,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic Craze in Famous Brands. You should base your composition on the outline given in Chinese below.\n\n1. 现在很多人都热衷于追求名牌\n\n2. 我的看法",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "Get in the car. There’s enough ____ for you.",
+       "options": [
+        "room",
+        "seat",
+        "spot",
+        "area"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "His face looks ____ but I can’t remember where I met him.",
+       "options": [
+        "alike",
+        "familiar",
+        "like",
+        "similar"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "We must make ____ our minds where to go for our vacation this winter.",
+       "options": [
+        "out",
+        "up",
+        "for",
+        "in"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "China is rich in natural resources, but they are not evenly ____.",
+       "options": [
+        "dismissed",
+        "contributed",
+        "disturbed",
+        "distributed"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "Taken in time, the medicine can be quite ____.",
+       "options": [
+        "effective",
+        "affected",
+        "efficient",
+        "sufficient"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "The ____ edition of the dictionary is far better than the previous ones.",
+       "options": [
+        "late",
+        "lately",
+        "latest",
+        "lasting"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "Big waves turned ____ the boat, causing many people to fall into water.",
+       "options": [
+        "up",
+        "down",
+        "in",
+        "over"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "On reaching home, I discovered that I ____ my keys at the office.",
+       "options": [
+        "left",
+        "have left",
+        "was left",
+        "had left"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "By the time she leaves the stage next month, she ____ for sixty years.",
+       "options": [
+        "will have performed",
+        "has performed",
+        "will be performing",
+        "will perform"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "I appreciated ____ to your school to give a lecture.",
+       "options": [
+        "to be invited",
+        "to have invited",
+        "having invited",
+        "being invited"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "____, follow the directions on the bottle carefully.",
+       "options": [
+        "When taken drugs",
+        "When taking drugs",
+        "When one takes drugs",
+        "When to take drugs"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "Mr. Smith____ be in the bookstore because I saw him in his office a moment ago.",
+       "options": [
+        "must not",
+        "can’t",
+        "may not",
+        "needn't"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "The plants would have grown all right if she ____ them properly.",
+       "options": [
+        "had watered",
+        "watered",
+        "has watered",
+        "waters"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "All the evidence pointed to the conclusion ____ he was guilty.",
+       "options": [
+        "which",
+        "that",
+        "as",
+        "so"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "____ she likes the present is not clear to me.",
+       "options": [
+        "If",
+        "What",
+        "Which",
+        "Whether"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "---“Can your brother and sister understand the English teacher?” ---“No, ____ of them can.”",
+       "options": [
+        "Not either",
+        "not one",
+        "neither",
+        "no one"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "Someday in the future they are bound to ____ for the crimes they have committed today.",
+       "options": [
+        "pay",
+        "cost",
+        "catch",
+        "spend"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "A true friend is one who offers you a helping hand when you are ______.",
+       "options": [
+        "in order",
+        "in public",
+        "in time",
+        "in trouble"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "Young boys and girls stood on _____ sides of the street to welcome the president from Africa.",
+       "options": [
+        "every",
+        "each",
+        "both",
+        "all"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "Last night a big fire _____ in the suburbs of the town, causing huge losses to the area.",
+       "options": [
+        "broke down",
+        "came down",
+        "broke out",
+        "came out"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "In the summer of 1838, John Wannamaker was born in Philadelphia. His father was a brick-maker. Whenever he was not ___21___ school, John was engaged in turning bricks which were laid in the sun to___22___. Thus, the quality of working ___23___ was instilled (灌输) into the young man. ___24___ his own diligence, he later became the merchant prince of Philadelphia. A few years later, school was ___25___ and he worked in a store four miles away ___26___ his home. He walked eight miles every day, going to work in the morning and ___27___ back home in the evening. He ___28___ only $1.25 for the entire week’ work. Afterwards he was ___29___ as a clerk in a law office, and later he worked in a clothing store at a ___30___ of $1.50 per week. Here he seemed to find the calling ___31___ suited his taste, and he developed a pleasing disposition (性格). People ___32___ to trade with the young clerk. It was not long ___33___ he was called to responsible positions. In 1861, he already saved several hundred dollars. As he had ___34___ a reputation for honesty and ability, he was able to start in business on his own account. This firm of Wannamaker & Brown was situated ___35___ the corner of Sixth and Market streets. As the business ___36___, other stores were opened. John Wannamaker, the poor clerk—after a ___37___ of twenty years of hard work, pushed by energy, controlled a force of 6,000 employees. Not only did the firm handle clothing, but also articles that could be generally ___38___ in retail (零售) stores. The secret of his great success is his tireless diligence, and a ___39___ mastery of his business. He was one of the most successful merchants in history who were extremely good at thinking of new business ideas and ___40___ them successful.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "at",
+        "with",
+        "for",
+        "about"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "work",
+        "see",
+        "fly",
+        "dry"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "quite",
+        "hard",
+        "shortly",
+        "easily"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "Beyond",
+        "Along",
+        "By",
+        "In"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "absorbed",
+        "announced",
+        "abandoned",
+        "advanced"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "for",
+        "through",
+        "with",
+        "from"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "coming",
+        "came",
+        "leaving",
+        "left"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "captured",
+        "received",
+        "combined",
+        "returned"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "employed",
+        "consumed",
+        "followed",
+        "displayed"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "service",
+        "number",
+        "salary",
+        "course"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "where",
+        "which",
+        "when",
+        "what"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "worried",
+        "hated",
+        "permitted",
+        "liked"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "although",
+        "after",
+        "because",
+        "before"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "earned",
+        "reached",
+        "pushed",
+        "repaired"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "above",
+        "below",
+        "at",
+        "with"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "followed",
+        "divided",
+        "increased",
+        "dropped"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "justice",
+        "period",
+        "recall",
+        "misery"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "visited",
+        "caught",
+        "produced",
+        "found"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "thorough",
+        "public",
+        "normal",
+        "recent"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "put",
+        "made",
+        "putting",
+        "making"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "Life really should be one long journey of joy for children born with a world of wealth at their feet.\n\nInternationally famous child doctor Robert Coles is the world’s top expert on the influence of money on children. He has written a well-known book on the subject, “The Privileged Ones,” and his research shows that too much money in the family can cause as many problems as too little. “Obviously there are certain advantages to being rich,” says the 53-year-old doctor, “such as better health, education and future work prospects. But most important is the quality of family life. Money can’t buy love.”\n\nIt can buy a lot of other things, however, and that’s where the trouble starts. Rich kids have so much to choose from that they often become confused. Over-indulgence (娇养) by their parents can make them spoilt. They tend to travel more than other children, from home to home and country to country, which causes feelings of restlessness.\n\n“But privileged children do have a better sense of their positions in the world,” adds Mr. Coles, “and they are more self-assured.” The rich children inherit the property from their parents and enjoy a high income. So money will never be one of their problems. “However, they have a sense of isolation,” warns Dr. Coles, “and they could suffer from the hardship of not being able to deal with the everyday world because they will never really be given the chance. Everything they have achieved is because of an accident of birth. There can be no tremendous inner satisfaction about that.”\n\nToday’s wealthy parents perhaps realize their riches can be more of a heavy load than happiness to their children. So the first thing for them to consider is to ensure that their families are as rich in love as they are in money.",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "In the doctor’s view, ________.",
+       "options": [
+        "traveling a lot will be beneficial to children",
+        "there are advantages as well as disadvantages to being rich",
+        "rich children usually have little confidence in themselves",
+        "rich kids are often short of money because of their life of luxury"
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "Which of the following statements is TRUE according to the passage?",
+       "options": [
+        "Rich children tend to feel isolated",
+        "Rich children have earned what they have",
+        "Rich children usually lead a life of happiness",
+        "Rich children are hardly given too many material things"
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "According to the author of the passage, ________.",
+       "options": [
+        "life is really a long journey of joy for rich children",
+        "the rich children feel greatly satisfied with the property they inherit from their parents",
+        "today all the wealthy parents are sure of the problems their money can bring",
+        "it is most important for wealthy parents to make sure that their families are rich in love as well as in money"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "It seems that the author of the passage ________ what Dr. Coles says in the book “The Privileged Ones”.",
+       "options": [
+        "agrees with",
+        "is doubtful about",
+        "is opposed to",
+        "knows little about"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "There are some problem areas for international students and immigrants’ studying in the United States. Making friends is a challenge (this is also true for some American students). Many college and universities offer a variety of student clubs and organizations where both foreign-born and native American students have a greater chance of meeting people with shared interests. Information about these out-of-class activities is often posted in the student center and listed in the student newspaper. Sometimes foreign students and immigrant students find Americans to be \"cliquish(有派性的)\". Americans find some non-U.S.-born students to be cliquish as well. If people feel separated from the social aspects of American college life, they should actively seek people with shared interests. It is unlikely that students will make friends just by passing people on the campus.\n\nForeign or immigrant students may feel confused during the first few weeks at a new school because they do not understand the system and are not willing to ask questions. Many students do not take advantage of the numerous services offered on campus that assist students in developing new skills and social groups. Some colleges offer students tutorial (辅导的) support in such subjects as writing, language study, computer skills, and other basic subjects. Students who appear to be most successful in \"learning the ropes\" are those who can solve problems by taking the initiative to ask questions, locate resources, and experience new social situations.",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "In the United States, students can find friends with the same interests by ________.",
+       "options": [
+        "passing people on the campus",
+        "reading the student newspaper",
+        "joining the student clubs",
+        "visiting the student center"
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "When they first come to college, some foreign students may feel confused because ________.",
+       "options": [
+        "they are denied any help from people around",
+        "they are provided with few services",
+        "they are faced with an unfamiliar educational system",
+        "they are unwilling to adapt themselves to the new environment"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "The phrase \"learning the ropes\" (Line 6, Para. 2) is closest in meaning to ________.",
+       "options": [
+        "finding the way to develop new skills",
+        "having the skills to make conversations",
+        "learning how to answer questions",
+        "knowing how to handle problems"
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "From the passage we may conclude that foreign students ________.",
+       "options": [
+        "are unlikely to be successful in American college life",
+        "may face some problems in adjusting to American college life",
+        "are not good at developing friendship and social groups",
+        "can hardly learn well when they enter an American college"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 玛丽极想过清静的乡村生活。\n\n50. 直到昨天晚上他才改变主意。\n\n51. 同意这项建议的请举手。\n\n52. 无论多忙，你都应该抽时间看望父母。\n\n53. 每次访问他们都会发现这个城市呈现出新的面貌。",
+   "reference": "49. Mary has a longing for quiet rural life.\n\n50. He didn’t changed his mind until yesterday night.\n\n51. The people who agree on the suggestion please raise your hands.\n\n52. Whatever how busy you are，you should find time to visit your parents.\n\n53. Every time he visit the city，he find it turn to a new change."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "A",
+    "2": "B",
+    "3": "B",
+    "4": "D",
+    "5": "A",
+    "6": "C",
+    "7": "D",
+    "8": "D",
+    "9": "A",
+    "10": "D",
+    "11": "B",
+    "12": "B",
+    "13": "A",
+    "14": "B",
+    "15": "D",
+    "16": "C",
+    "17": "A",
+    "18": "D",
+    "19": "C",
+    "20": "C",
+    "21": "A",
+    "22": "D",
+    "23": "B",
+    "24": "C",
+    "25": "C",
+    "26": "D",
+    "27": "A",
+    "28": "B",
+    "29": "A",
+    "30": "C",
+    "31": "B",
+    "32": "D",
+    "33": "D",
+    "34": "A",
+    "35": "C",
+    "36": "C",
+    "37": "B",
+    "38": "D",
+    "39": "A",
+    "40": "D",
+    "41": "B",
+    "42": "A",
+    "43": "D",
+    "44": "A",
+    "45": "C",
+    "46": "C",
+    "47": "D",
+    "48": "B"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ },
+ {
+  "id": "ck-full-mock-10",
+  "meta": {
+   "level": "ck",
+   "year": 0,
+   "month": 0,
+   "set": 10,
+   "paperPages": 0
+  },
+  "writing": {
+   "directions": "Directions: You are to write in no less than 100 words on the topic Life in the Future. You should base your composition on the outline given in Chinese below.\n\n1.对未来生活，有些人持乐观态度（科技更发达，寿命更长…）\n\n2.有些人持悲观态度（污染更严重，能源更短缺…）\n\n3.我的观点",
+   "minutes": 0,
+   "minWords": 100,
+   "maxWords": 150,
+   "sample": ""
+  },
+  "listening": {
+   "questions": []
+  },
+  "reading": {
+   "cloze": {
+    "bank": [],
+    "blanks": [],
+    "passage": ""
+   },
+   "matching": {
+    "title": "",
+    "paragraphs": [],
+    "statements": []
+   },
+   "careful": [
+    {
+     "passage": "",
+     "questions": [
+      {
+       "no": 1,
+       "stem": "Becoming _____ American citizen takes a lot of work.",
+       "options": [
+        "/",
+        "an",
+        "a",
+        "the"
+       ]
+      },
+      {
+       "no": 2,
+       "stem": "She was the only member of her family _____ spoke English.",
+       "options": [
+        "that",
+        "whom",
+        "what",
+        "which"
+       ]
+      },
+      {
+       "no": 3,
+       "stem": "______ he walked, he looked carefully at the ice in front of him.",
+       "options": [
+        "If",
+        "As",
+        "Since",
+        "Whether"
+       ]
+      },
+      {
+       "no": 4,
+       "stem": "At about twelve o’clock, the man decided ______ to eat his lunch.",
+       "options": [
+        "being stopped",
+        "stopping",
+        "to be stopped",
+        "to stop"
+       ]
+      },
+      {
+       "no": 5,
+       "stem": "He threw stones at the birds but could not hit ______.",
+       "options": [
+        "him",
+        "her",
+        "it",
+        "them"
+       ]
+      },
+      {
+       "no": 6,
+       "stem": "Peter is going to a lake ______ he can fish with his friends.",
+       "options": [
+        "which",
+        "here",
+        "where",
+        "there"
+       ]
+      },
+      {
+       "no": 7,
+       "stem": "They ____ into the dormitory already.",
+       "options": [
+        "have moved",
+        "moving",
+        "move",
+        "having moved"
+       ]
+      },
+      {
+       "no": 8,
+       "stem": "Everyone is getting old, but you look _____ than ever.",
+       "options": [
+        "younger",
+        "youngest",
+        "the youngest",
+        "young"
+       ]
+      },
+      {
+       "no": 9,
+       "stem": "— Do you enjoy your present job? — ______. I just do it for a living.",
+       "options": [
+        "Of course",
+        "Not really",
+        "Not likely",
+        "Not a little"
+       ]
+      },
+      {
+       "no": 10,
+       "stem": "They _____ have arrived at lunchtime but their flight was delayed.",
+       "options": [
+        "will",
+        "can",
+        "must",
+        "should"
+       ]
+      },
+      {
+       "no": 11,
+       "stem": "After dinner the minister made a short ______ to the guests.",
+       "options": [
+        "delivery",
+        "speech",
+        "pronunciation",
+        "conversation"
+       ]
+      },
+      {
+       "no": 12,
+       "stem": "Jean is one of those modern girls who always _____ the latest fashions.",
+       "options": [
+        "put up with",
+        "come up with",
+        "keep up with",
+        "get along with"
+       ]
+      },
+      {
+       "no": 13,
+       "stem": "The room was so quiet that she could hear the _______ of her heart.",
+       "options": [
+        "hitting",
+        "beating",
+        "tapping",
+        "knocking"
+       ]
+      },
+      {
+       "no": 14,
+       "stem": "This watch is ______ to all the other watches in the store.",
+       "options": [
+        "superior",
+        "advantages",
+        "super",
+        "beneficial"
+       ]
+      },
+      {
+       "no": 15,
+       "stem": "If you _______ smoke, please go outside.",
+       "options": [
+        "can",
+        "should",
+        "must",
+        "may"
+       ]
+      },
+      {
+       "no": 16,
+       "stem": "The sun _______ in the east.",
+       "options": [
+        "rises",
+        "raises",
+        "increases",
+        "goes"
+       ]
+      },
+      {
+       "no": 17,
+       "stem": "When you have kids, you won’t have time to go to parties _______.",
+       "options": [
+        "further",
+        "still more",
+        "anymore",
+        "no more"
+       ]
+      },
+      {
+       "no": 18,
+       "stem": "They hid themselves ________ a tree.",
+       "options": [
+        "off",
+        "after",
+        "behind",
+        "before"
+       ]
+      },
+      {
+       "no": 19,
+       "stem": "The protests were not ______ to New York.",
+       "options": [
+        "balanced",
+        "ended",
+        "limited",
+        "attended"
+       ]
+      },
+      {
+       "no": 20,
+       "stem": "He has never recovered from the _______ of his brother’s death.",
+       "options": [
+        "aim",
+        "shock",
+        "plan",
+        "opinion"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "In an old town lived a merchant. He earned huge profits by fair means and foul (恶劣的). With more profits flowing in, he became more and more ___21___ . He complained when his wife wanted money to___22___ the home. He criticized her when she prepared___23___ dishes or bought expensive clothes.\n\n“Money doesn’t grow on trees.” he___24___ his children when they asked for money to buy books and new dresses. When his sisters, brothers and cousins came to ask for ___25___, he drove them away.\n\n___26___ he grew richer, he became more miserly (吝啬的). He ___27___ the cook, the maid and the gardener. “No. who will pay them? All of us must share the work and thus avoid ___28___ of money.” he told his wife and children.\n\n“What will you do with all this money?” they asked.\n\nBut he drove them away, ___29___, “I will do ___30___ I like with my money. I earn it. I will save it. I will become the richest man in the town. Wait and see.”\n\nIt ___31___ him many years to become the richest man in town. But none had a good word to say about him. The people laughed at him, “Money Bag.” They named him “King Miser.”\n\nThe merchant became worried day by day ___32___his bad name. How could he get a good name? He finally went to an elder and ___33___ advice.\n\n“Shall I open a charitable (慈善的)hospital? ___34____ a school for the children of the poor? Open a chain of poor homes?” he asked.\n\n“Not a bad idea. In fact, I would normally have recommended such kind of charity. But it will cost a lot of money,” the elder ___35___ out.\n\n“I am ready to spend some money to win name and ___36___,” the merchant replied.\n\n“How can you even think of helping strangers? Should you not attend to the ___37___ of your near and dear ones first? Can’t you see your wife and children going around ___38___ poor clothes? How hungry they look? Do they have even enough food every day? Listen. Do your ___39___ to your family, first. Help your brothers and sisters and other members of the family who are poor. Opening hospitals for the poor or schools for the children of the poor must come ___40___. Charity begins at home.” saying this, the wise man sent the merchant away.",
+     "questions": [
+      {
+       "no": 21,
+       "stem": "",
+       "options": [
+        "honest",
+        "greedy",
+        "upset",
+        "generous"
+       ]
+      },
+      {
+       "no": 22,
+       "stem": "",
+       "options": [
+        "run",
+        "move",
+        "sell",
+        "visit"
+       ]
+      },
+      {
+       "no": 23,
+       "stem": "",
+       "options": [
+        "friendly",
+        "slender",
+        "costly",
+        "effective"
+       ]
+      },
+      {
+       "no": 24,
+       "stem": "",
+       "options": [
+        "scolded",
+        "praised",
+        "shouted",
+        "worried"
+       ]
+      },
+      {
+       "no": 25,
+       "stem": "",
+       "options": [
+        "scheme",
+        "belief",
+        "advice",
+        "help"
+       ]
+      },
+      {
+       "no": 26,
+       "stem": "",
+       "options": [
+        "No matter how",
+        "As",
+        "As long as",
+        "Where"
+       ]
+      },
+      {
+       "no": 27,
+       "stem": "",
+       "options": [
+        "invited",
+        "employed",
+        "promoted",
+        "dismissed"
+       ]
+      },
+      {
+       "no": 28,
+       "stem": "",
+       "options": [
+        "exchange",
+        "income",
+        "waste",
+        "increase"
+       ]
+      },
+      {
+       "no": 29,
+       "stem": "",
+       "options": [
+        "screaming",
+        "explaining",
+        "approving",
+        "weeping"
+       ]
+      },
+      {
+       "no": 30,
+       "stem": "",
+       "options": [
+        "why",
+        "where",
+        "what",
+        "which"
+       ]
+      },
+      {
+       "no": 31,
+       "stem": "",
+       "options": [
+        "drew",
+        "spent",
+        "paid",
+        "took"
+       ]
+      },
+      {
+       "no": 32,
+       "stem": "",
+       "options": [
+        "above",
+        "about",
+        "beside",
+        "within"
+       ]
+      },
+      {
+       "no": 33,
+       "stem": "",
+       "options": [
+        "taught",
+        "consumed",
+        "sought",
+        "searched"
+       ]
+      },
+      {
+       "no": 34,
+       "stem": "",
+       "options": [
+        "Instruct",
+        "Establish",
+        "Proceed",
+        "Perform"
+       ]
+      },
+      {
+       "no": 35,
+       "stem": "",
+       "options": [
+        "pointed",
+        "cleaned",
+        "picked",
+        "stepped"
+       ]
+      },
+      {
+       "no": 36,
+       "stem": "",
+       "options": [
+        "price",
+        "salary",
+        "cost",
+        "fame"
+       ]
+      },
+      {
+       "no": 37,
+       "stem": "",
+       "options": [
+        "sights",
+        "trusts",
+        "needs",
+        "pays"
+       ]
+      },
+      {
+       "no": 38,
+       "stem": "",
+       "options": [
+        "at",
+        "in",
+        "for",
+        "on"
+       ]
+      },
+      {
+       "no": 39,
+       "stem": "",
+       "options": [
+        "origin",
+        "shame",
+        "belief",
+        "duty"
+       ]
+      },
+      {
+       "no": 40,
+       "stem": "",
+       "options": [
+        "later",
+        "first",
+        "now",
+        "before"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "The interview is an important event in the job-hunting process, because the 20 or 30 minutes you spend with the interviewer may determine whether or not you get the particular job you want. Therefore, it is important to remember that our objective during the interview may differ from the objective of the potential employer. You want to make yourself stand out as a whole person who has personal strengths, is well qualified, and should be considered the right person for the job. It is encouraging to know that the interviewer’s task is not to embarrass you or to trip you up, but to hire the right person for the job.\n\nRemember, job hunting is very competitive. Anything you can do to enhance your interview techniques will be to your advantage. The following suggestions may help you land the most important job.\n\nYour goal in this interview is to make sure your good points get across. The interviewer won’t know them unless you point them out, so try to do this in a factual and sincere manner.\n\nDo not make slighting（轻蔑的）references to former employers or professors. If you have been fired from a job and the interviewer asks about it, be frank in your answer.\n\nShow the interviewer that you are interested in the company by asking relevant questions. Ask about responsibilities, working conditions, promotion opportunities and fringe benefits（附加福利）of the job you are interviewing for.\n\nIf at some point you decide the interview is not going well, do not let your discouragement show. You have nothing to lose by continuing a show of confidence, and you may have much to gain. It may be real, or it may be a test to see how you react to adverse conditions.\n\nSome interviewers may bring up salary early in the interview. At this time, you may indicate that you are more interested in a job where you can prove yourself than a specific salary. This politely passes the question back to the interviewer. If the interviewer continues to press, give him a range or suggest the going rate for a particular job. If possible, you should negotiate for salary after you have been offered a job and when you are ready to complete the paperwork.",
+     "questions": [
+      {
+       "no": 41,
+       "stem": "To get the job you want, during the interview you should _____.",
+       "options": [
+        "avoid the interviewer’s questions that are designed to trip you up",
+        "remember that you are the best qualified candidate",
+        "make yourself stand out as the right person for the job",
+        "keep in mind that it determines whether or not you get the particular job you want"
+       ]
+      },
+      {
+       "no": 42,
+       "stem": "If you did not get along with your former employer, you_____.",
+       "options": [
+        "should tell the interviewer frankly",
+        "should not speak ill of him",
+        "should refer to him in a casual manner",
+        "should never mention it"
+       ]
+      },
+      {
+       "no": 43,
+       "stem": "When you find the interview is not going well you should_____.",
+       "options": [
+        "keep up your confidence",
+        "bring it to an end as soon as possible",
+        "tell your interviewer how you react to adverse conditions",
+        "tell yourself you have much to gain and nothing to lose"
+       ]
+      },
+      {
+       "no": 44,
+       "stem": "The best time to discuss your salary is_____.",
+       "options": [
+        "when you have been offered the job",
+        "at the end of the interview",
+        "after you have completed the paperwork",
+        "when the interview brings this matter up"
+       ]
+      }
+     ]
+    },
+    {
+     "passage": "When the United States Congress created Yellowstone National Park in 1872, the goal was to set aside a place where Americans could enjoy the beauty of nature for years to come. Now, 142 years later, there are hundreds of national parks across the country, and technology is changing the way people experience them. Should park visitors be able to use cell phones, or should their use be restricted?\n\n“Connectivity presents a real challenge to all of us.” Al Nash says. He is a public affairs officer at Yellowstone National Park. He says cell phone service at Yellowstone is available in parts of the park with stores and campgrounds. This makes it easy for visitors to share photos of their trip on social networking sites and to stay in touch with friends and family members. If a park visitor is hurt or in danger, cell phones make it easier to get help. Some say the ability to download applications that provide information about plants and animals in the park can enrich a visitor’s experience.\n\nOthers say cell phones disturb people’s enjoyment of our national parks. In their view, cell phone towers are an eyesore, and they’d rather hear the sound of birds than the ring of an incoming call. Can you imagine looking out a peaceful lake or field of grass only to be disturbed by a person shouting into their phone, “Can you hear me now?”\n\nNash says Yellowstone tries to strike a balance. “Ultimately, our job is to let visitors understand and enjoy nature better while protecting what people find special about Yellowstone, and one of those things that’s special is the ability to get away from the hustle and bustle (喧嚣) of one’s daily life.”",
+     "questions": [
+      {
+       "no": 45,
+       "stem": "Which of the following is the best title for the passage?",
+       "options": [
+        "Which U.S. National Park Has the Most Visitors?",
+        "Should National Parks Allow the Use of Cell Phones?",
+        "What Did Yellowstone Do to Enrich Park Visitors’ Experience?",
+        "Can Technology Transform the Way People Experience Nature?"
+       ]
+      },
+      {
+       "no": 46,
+       "stem": "National parks were established _______.",
+       "options": [
+        "to show respect to former presidents",
+        "to raise public awareness about climate change",
+        "to preserve areas of natural beauty",
+        "to create job opportunities"
+       ]
+      },
+      {
+       "no": 47,
+       "stem": "According to the passage, which of the following statements about the cell phone service at Yellowstone is TRUE?",
+       "options": [
+        "It is limited to certain areas in the park.",
+        "It is available everywhere in the park.",
+        "It is not available in the park.",
+        "It is available to visitors at a fee."
+       ]
+      },
+      {
+       "no": 48,
+       "stem": "The word “eyesore “in the third paragraph probably means _______.",
+       "options": [
+        "something unpleasant to look at",
+        "something harmful to health",
+        "beautiful scene",
+        "serious threat"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "translation": {
+   "chinese": "49. 这个演员很会模仿其他人。\n\n50. 一些幸运的人美貌与智慧兼具。\n\n51. 你不必花很长时间就能习惯我们做事的方法。\n\n52. 那条新闻是《中国日报》的独家新闻。\n\n53. 自行车的减少和私家车的增加可能会带来很多新问题。",
+   "reference": "49. This actor is very capable of imitating other people.\n\n50. Some lucky people are endowed with both wisdom and beauty.\n\n51. It will not take you very long to be accustomed to the way we do it.\n\n52. That piece of news is exclusive to China Daily.\n\n53. The decrease in the number of bicycles and the increase in private cars might give rise to many new problems."
+  },
+  "answers": {
+   "listening": {},
+   "cloze": {},
+   "matching": {},
+   "careful": {
+    "1": "B",
+    "2": "A",
+    "3": "B",
+    "4": "D",
+    "5": "D",
+    "6": "C",
+    "7": "A",
+    "8": "A",
+    "9": "B",
+    "10": "D",
+    "11": "B",
+    "12": "C",
+    "13": "B",
+    "14": "A",
+    "15": "C",
+    "16": "A",
+    "17": "C",
+    "18": "C",
+    "19": "C",
+    "20": "B",
+    "21": "B",
+    "22": "A",
+    "23": "C",
+    "24": "A",
+    "25": "D",
+    "26": "B",
+    "27": "D",
+    "28": "C",
+    "29": "B",
+    "30": "C",
+    "31": "D",
+    "32": "B",
+    "33": "C",
+    "34": "B",
+    "35": "A",
+    "36": "D",
+    "37": "C",
+    "38": "B",
+    "39": "D",
+    "40": "A",
+    "41": "C",
+    "42": "B",
+    "43": "A",
+    "44": "A",
+    "45": "B",
+    "46": "C",
+    "47": "A",
+    "48": "A"
+   }
+  },
+  "answerGaps": {
+   "listening": [],
+   "cloze": [],
+   "matching": [],
+   "careful": []
+  },
+  "audio": ""
+ }
+]

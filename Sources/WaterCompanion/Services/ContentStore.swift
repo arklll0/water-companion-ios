@@ -141,7 +141,10 @@ final class ContentStore {
         // fullSetDone 存的是 FullPaper.id，顺序不影响存档。
         let cetFull = decodeArray(FullPaper.self, file: "papers_full", issues: &issues)
         let kyFull = decodeArray(FullPaper.self, file: "ky_full", issues: &issues)
-        fullPapers = cetFull + kyFull
+        // 成考：10 套学士学位英语模拟题（2.10.4 新增）。顺序不影响存档 ——
+        // fullSetDone 存的是 FullPaper.id，不是下标。
+        let ckFull = decodeArray(FullPaper.self, file: "ck_full", issues: &issues)
+        fullPapers = cetFull + kyFull + ckFull
 
         if let list: CkWordList = decodeObject(CkWordList.self, file: "ck_words", issues: &issues) {
             ckWordList = list
