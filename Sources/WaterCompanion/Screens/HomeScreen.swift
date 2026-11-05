@@ -5,14 +5,14 @@ import SwiftUI
 // ════════════════════════════════════════════════════════════════════
 //
 //  信息层级是两级的：
-//  1. **一个主进度** —— 圆环。它是页面上唯一的大数字。
+//  1. **一个主进度**：圆环。它是页面上唯一的大数字。
 //  2. 两个次要指标压成一行小字（第 N/90 天 · 2/4 已完成），归到一处。
 //
-//  上一版把「天数 / 百分比 / 已完成数」平铺在 Hero 里，还配了一条线性进度条 ——
+//  上一版把「天数 / 百分比 / 已完成数」平铺在 Hero 里，还配了一条线性进度条，
 //  四个东西说的其实是同一件事，眼睛不知道先看哪个，读完还是不知道「我现在该干嘛」。
 //
 //  下面是倒计时横幅（浅色底、无边框，视觉重量低于任务卡），再下面是任务列表。
-//  「今天该做什么」必须比「还有多少天」重 —— 后者只是背景信息。
+//  「今天该做什么」必须比「还有多少天」重，后者只是背景信息。
 
 // MARK: - 数据
 
@@ -27,7 +27,7 @@ private struct HomeTask: Identifiable {
 
     /// 与网站 js/app.js 的 TASKS 一致
     /// （「记 10 个易错点」指向错题本，与它的说明文字相符）。
-    /// 图标全部用 SF Symbols，且用 `.fill` 变体 —— 任务卡是实心内容面，
+    /// 图标全部用 SF Symbols，且用 `.fill` 变体：任务卡是实心内容面，
     /// 线性图标压上去会显得飘。
     static let all: [HomeTask] = [
         HomeTask(id: "words", name: "背单词", detail: "2 分钟起，背完就能打卡", icon: "book.fill", target: "words"),
@@ -50,7 +50,7 @@ struct HomeScreen: View {
         "今天不用学完所有东西，只要比昨天多记住一个词。",
         "状态不好也没关系，先翻开一页，剩下的交给惯性。",
         "你不是在背单词，你是在给三个月后的自己攒底气。",
-        "专注力不强不是缺点 —— 把任务拆小才是解法。",
+        "专注力不强不是缺点，把任务拆小才是解法。",
         "连续做小事的人，最后会赢过一直在等状态的人。"
     ]
 
@@ -59,6 +59,11 @@ struct HomeScreen: View {
     // MARK: 派生状态
 
     private var progress: Progress { store.progress }
+
+    /// 存档里的级别。没选过或存的是非法值时按四级兜底，
+    /// 只影响文案里的考试名，不改变任务与进度的判定。
+    private var level: CetLevel { CetLevel.fromKey(progress.level) ?? .cet4 }
+
     private var today: String { Srs.today() }
     private var log: DayLog { progress.dayLog(today) }
     private var dayNumber: Int { DailyPlan.dayNumber(startDate: progress.startDate) }
@@ -103,6 +108,12 @@ struct HomeScreen: View {
 
             FormPage {
                 hero
+
+                // 完成横幅紧跟在进度环后面：环已经满格，横幅解释「满格意味着什么」。
+                if doneCount == tasks.count && !tasks.isEmpty {
+                    completionBanner
+                }
+
                 countdown
 
                 VStack(spacing: Space.itemGap) {
@@ -112,9 +123,6 @@ struct HomeScreen: View {
                     }
                     if !postponedNames.isEmpty {
                         postponedRow
-                    }
-                    if !tasks.isEmpty && doneCount == tasks.count {
-                        completionBanner
                     }
                 }
 
@@ -199,7 +207,7 @@ struct HomeScreen: View {
                     .fixedSize(horizontal: false, vertical: true)
             } else {
                 HStack(alignment: .firstTextBaseline, spacing: Space.xs) {
-                    Text("距离四级还有")
+                    Text("距离\(level.examLabel)还有")
                         .appCaption()
                     Text("\(left)")
                         .font(Typography.dataLarge)
@@ -302,7 +310,7 @@ struct HomeScreen: View {
     }
 
     /// 状态徽标：直接用系统符号。
-    /// 完成 = `checkmark.circle.fill`，未完成 = `circle` —— 两者字宽相同，
+    /// 完成 = `checkmark.circle.fill`，未完成 = `circle`：两者字宽相同，
     /// 所以上下几张卡的文字左边缘永远对齐（换成两个尺寸不同的图标就会错位）。
     private func stateBadge(done: Bool) -> some View {
         Image(systemName: done ? "checkmark.circle.fill" : "circle")
@@ -328,21 +336,27 @@ struct HomeScreen: View {
     }
 
     private var completionBanner: some View {
-        AppCard(background: Theme.Colors.doneCard, showsBorder: false) {
+        AppCard(background: Theme.Colors.banner, showsBorder: false) {
             HStack(alignment: .center, spacing: Space.md) {
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 24, weight: .regular))
-                    .foregroundStyle(Theme.Colors.primary)
-                    .symbolEffect(.bounce, value: doneCount)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("今天完成了")
-                        .font(Typography.titleSmall)
-                        .foregroundStyle(Theme.Colors.doneText)
-                    Text("你刚刚做到了很多人坚持不到的事。明天见。")
-                        .appCaption(Theme.Colors.doneText.opacity(0.85))
+                VStack(alignment: .leading, spacing: Space.xs) {
+                    Text("今天的四件事都做完了")
+                        .font(Typography.captionEmph)
+                        .foregroundStyle(Theme.Colors.textPrimary)
+                    Text("明天再来，别一次学太狠。")
+                        .font(Typography.micro)
+                        .foregroundStyle(Theme.Colors.textSecondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
-                Spacer(minLength: 0)
+
+                Spacer(minLength: Space.xs)
+
+                // 推迟的任务不在 tasks 里，所以「全做完」也可能是「三件做完 + 一件推到明天」。
+                // 有今天的推迟项时才给撤销入口，否则这行按钮对用户没有任何作用。
+                if !store.postponedTodayIds.isEmpty {
+                    QuietButton("撤销推迟") {
+                        store.resumePostponedToday()
+                    }
+                }
             }
         }
         .transition(.move(edge: .top).combined(with: .opacity))
@@ -363,7 +377,7 @@ struct HomeScreen: View {
 
     // MARK: - 完成判定
 
-    /// 完成判定与 Android 版逐字一致 —— 两边对「今天算不算做完」的答案必须相同，
+    /// 完成判定与 Android 版逐字一致：两边对「今天算不算做完」的答案必须相同，
     /// 否则用户换了设备会看到进度倒退。
     private func isDone(_ id: String) -> Bool {
         switch id {

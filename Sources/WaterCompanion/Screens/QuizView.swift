@@ -6,12 +6,12 @@ import UIKit
 // ════════════════════════════════════════════════════════════════════
 //
 //  阅读、真题、模考三处用的是同一种小题：原文段落 + 题干 + 四个选项 + 一句解析。
-//  三处都自己写一遍的话，最麻烦的不是重复，而是**不一致** ——
+//  三处都自己写一遍的话，最麻烦的不是重复，而是**不一致**，
 //  「点一下锁定」「选错标红」「解析什么时候出现」这三条只要有一样在不同页面里
 //  表现不同，用户就会觉得这 App 有点飘。
 //
 //  所以这里的规则写死，调用方只负责给数据：
-//    ① 点一个选项就锁定，不能改答案（选项本身不再响应点击，但**不置灰** ——
+//    ① 点一个选项就锁定，不能改答案（选项本身不再响应点击，但**不置灰**，
 //       置灰会把刚标好的绿色一起压暗，反而看不清对了没有）；
 //    ② 锁定后：正确选项标品牌绿，选了错的再把它标红，解析卡在下方展开；
 //    ③ 每次点选给一次轻触反馈。答题是高频动作，重震动会烦人。
@@ -29,13 +29,13 @@ struct QuizView: View {
     let options: [String]
     /// 正确选项的下标
     let correctIndex: Int
-    /// 解析。空串表示这道题没有解析 —— 那就只标对错，不弹空卡片。
+    /// 解析。空串表示这道题没有解析，那就只标对错，不弹空卡片。
     let explanation: String
     /// 原文段落。阅读题、部分真题有；没有就传空数组。
     var passage: [String] = []
     /// 逐段朗读回调。传 nil 表示这个场景不需要朗读（比如模考中）。
     var readAloud: ((String) -> Void)?
-    /// 作答回调，参数是用户选中的下标。答错时的错题登记交给调用方 ——
+    /// 作答回调，参数是用户选中的下标。答错时的错题登记交给调用方，
     /// 只有调用方知道这道题的来源（哪篇阅读 / 哪套卷子 / 第几题）。
     let onAnswer: (Int) -> Void
 
@@ -126,7 +126,10 @@ struct QuizView: View {
 
     private func optionRow(_ index: Int, _ text: String) -> some View {
         let isCorrect = answered && index == correctIndex
-        let isWrong = answered && index == chosen && index != correctIndex
+        // correctIndex < 0 表示这次不给答案（整套真题交卷前）。
+        // 不加这个前置条件的话，-1 和任何被选中的下标都不相等，
+        // 用户点一下就会看到红叉，等于当场把「选错了」告诉他。
+        let isWrong = answered && correctIndex >= 0 && index == chosen && index != correctIndex
 
         return Button {
             choose(index)
@@ -232,7 +235,7 @@ struct QuizView: View {
         onAnswer(index)
     }
 
-    /// 轻触反馈。每次点选一次 —— 答题是高频动作，重震会让人不想再点。
+    /// 轻触反馈。每次点选一次，答题是高频动作，重震会让人不想再点。
     private static func haptic() {
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.prepare()

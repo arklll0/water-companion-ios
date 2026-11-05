@@ -7,29 +7,28 @@ import UIKit
 //
 //  这一页只做两件事：**去别处**（统计 / 错题 / 翻译）和**改设置**。
 //
-//  ## 为什么不用系统的 `List`
+//  ## 为什么用 `List` + `Section`
 //
-//  之前用的是 `List` + `.insetGrouped`。它在真机上出了两个问题：
-//    ① 行内容（日期控件、分段控件）比行宽还宽，右边缘被裁在屏幕外
-//       —— 分组列表的行内边距由系统算，行里再塞自定义宽度就很容易顶出去；
-//    ② 整页观感与其它页（今日 / 单词 / 听力 / 练习）不一致：
-//       那几页都是 `AppCard` 卡片 + 16pt 页面边距。
-//
-//  所以这一页改成和全 App 同一套：`ScrollView` + `AppCard` +
-//  `SectionHeader`，左右边距一律 `Space.pageEdge`，宽度完全由我们自己管，
-//  不会再出现「贴到屏幕右边」这种问题。
+//  它本质上就是一张「分组设置表」，而这正是系统 `Form` / 分组 `List` 的形状：
+//  行高、分组间距、圆角、选中高亮、动态字号、VoiceOver 的「按钮 / 开关」语义，
+//  系统全都替你处理好了。自己拿卡片拼一版只会得到「一个长得像设置页但不好用」的页面。
 //
 //  ## 为什么全部即时保存
 //
 //  没有「保存」按钮：iOS 的设置页从来不这么干。改了就落盘（每个 setter 内部
-//  都会立刻写 `progress.json`），退出重进还是这个值 —— 用户不需要记得「我改过没保存」。
+//  都会立刻写 `progress.json`），退出重进还是这个值，用户不需要记得「我改过没保存」。
 //  唯一需要二次确认的是**重置**，因为那是不可撤销的。
+//
+//  ## 进度迁移为什么放在设置里
+//
+//  它是一次性的、低频的、需要用户做决定的动作。放在首页会变成噪音，
+//  藏在「我的 → 学习进度迁移」里，换设备时找得到，平时不打扰。
 
 struct MeScreen: View {
 
     @Environment(ProgressStore.self) private var store
 
-    /// 迁移输入框的内容。默认空 —— 不预填导出结果，
+    /// 迁移输入框的内容。默认空，不预填导出结果，
     /// 因为「打开这一页就看到一屏 JSON」会让人以为出了什么事。
     @State private var transferText = ""
 
@@ -51,6 +50,19 @@ struct MeScreen: View {
         )
     }
 
+    /// 级别没选过时显示四级，但这只是「新档还没写值」时的展示兜底；
+    /// 真正的首次选择由 RootView 的选级覆盖层负责，正常情况下走不到这里。
+    private var levelBinding: Binding<CetLevel> {
+        Binding(
+            get: { CetLevel.fromKey(store.progress.level) ?? .cet4 },
+            set: { store.setLevel($0.rawValue) }
+        )
+    }
+
+    private var currentLevel: CetLevel {
+        CetLevel.fromKey(store.progress.level) ?? .cet4
+    }
+
     private var minutesBinding: Binding<Int> {
         Binding(
             get: { MeScreen.minutes.contains(progress.dailyMinutes) ? progress.dailyMinutes : 30 },
@@ -66,7 +78,7 @@ struct MeScreen: View {
     }
 
     /// 考试日期是「可为空」的，而 `DatePicker` 必须有值。
-    /// 没设置时先显示「三个月后」，用户一动就落盘 —— 比强行要求先点「设置」再选日期少一步。
+    /// 没设置时先显示「三个月后」，用户一动就落盘，比强行要求先点「设置」再选日期少一步。
     private var examDateBinding: Binding<Date> {
         Binding(
             get: {
@@ -82,19 +94,7 @@ struct MeScreen: View {
     var body: some View {
         ZStack {
             AppBackground()
-
-            ScrollView {
-                VStack(spacing: Space.section) {
-                    featureSection
-                    appearanceSection
-                    studySection
-                    transferSection
-                    dangerSection
-                }
-                .padding(.horizontal, Space.pageEdge)
-                .padding(.top, Space.md)
-                .padding(.bottom, Space.xxl)
-            }
+            list
         }
         .navigationTitle("我的")
         .navigationBarTitleDisplayMode(.large)
@@ -119,84 +119,121 @@ struct MeScreen: View {
         }
     }
 
+    private var list: some View {
+        List {
+            featureSection
+            levelSection
+            appearanceSection
+            studySection
+            transferSection
+            dangerSection
+        }
+        .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+    }
+
     // MARK: - 功能入口
 
     private var featureSection: some View {
-        VStack(alignment: .leading, spacing: Space.itemGap) {
-            SectionHeader("全部功能", subtitle: "统计 / 错题 / 翻译")
-
-            AppCard(padding: Space.sm) {
-                VStack(spacing: 0) {
-                    routeRow("进度统计", icon: "chart.bar.xaxis", tint: Theme.Colors.primary, route: .stats)
-                    rowDivider
-                    routeRow("错题集", icon: "exclamationmark.triangle.fill", tint: Theme.Colors.error, route: .wrong)
-                    rowDivider
-                    routeRow("翻译工具", icon: "character.bubble.fill", tint: Theme.Colors.primary, route: .translate)
+        Section {
+            NavigationLink(value: AppRoute.stats) {
+                Label {
+                    Text("进度统计")
+                } icon: {
+                    Image(systemName: "chart.bar.xaxis")
+                        .foregroundStyle(Theme.Colors.primary)
                 }
             }
 
-            Text("统计看的是「这一段有没有进步」，不是分数排行。")
-                .appCaption()
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.horizontal, Space.xs)
-        }
-    }
-
-    /// 一行入口：图标 + 标题 + 右侧箭头。整行可点，热区撑满。
-    private func routeRow(_ title: String, icon: String, tint: Color, route: AppRoute) -> some View {
-        NavigationLink(value: route) {
-            HStack(spacing: Space.md) {
-                Image(systemName: icon)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundStyle(tint)
-                    .frame(width: 24, alignment: .leading)
-
-                Text(title)
-                    .font(Typography.body)
-                    .foregroundStyle(Theme.Colors.textPrimary)
-
-                Spacer(minLength: 0)
-
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(Theme.Colors.idle)
+            NavigationLink(value: AppRoute.wrong) {
+                Label {
+                    Text("错题集")
+                } icon: {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundStyle(Theme.Colors.error)
+                }
             }
-            .padding(.horizontal, Space.md)
-            .frame(minHeight: Touch.min)
-            .contentShape(Rectangle())
+
+            NavigationLink(value: AppRoute.translate) {
+                Label {
+                    Text("翻译工具")
+                } icon: {
+                    Image(systemName: "character.bubble.fill")
+                        .foregroundStyle(Theme.Colors.primary)
+                }
+            }
+
+            NavigationLink(value: AppRoute.lecture) {
+                Label {
+                    Text("语法讲义")
+                } icon: {
+                    Image(systemName: "text.book.closed")
+                        .foregroundStyle(Theme.Colors.primary)
+                }
+            }
+        } header: {
+            VStack(alignment: .leading, spacing: Space.xs) {
+                Text("全部功能")
+                // 一次把四个入口点名，用户不展开也知道这一区有什么。
+                Text("统计 / 错题 / 翻译 / 讲义")
+                    .font(Typography.micro)
+                    .foregroundStyle(Theme.Colors.textSecondary)
+            }
+        } footer: {
+            Text("统计看的是「这一段有没有进步」，不是分数排行。")
         }
-        .buttonStyle(.plain)
     }
 
-    private var rowDivider: some View {
-        Divider()
-            .padding(.leading, Space.xxl)
+    // MARK: - 备考级别
+
+    /// 放在外观之前，顺序与 Android 版一致：级别 → 外观 → 学习设置 → 迁移 → 危险区。
+    /// 级别是影响素材池的「大开关」，排在主题这种纯展示项前面，用户更容易先看到。
+    private var levelSection: some View {
+        Section {
+            VStack(alignment: .leading, spacing: Space.sm) {
+                Picker("备考级别", selection: levelBinding) {
+                    ForEach(CetLevel.allCases) { level in
+                        Text(level.label).tag(level)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+
+                // 五档的差别不是「难度」，而是「素材从哪来」，光看标题看不出来。
+                // 把 note 直接摆在控件下面，省掉一次「选了之后才发现词表没变」的疑惑。
+                Text(currentLevel.note)
+                    .font(Typography.micro)
+                    .foregroundStyle(Theme.Colors.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .padding(.vertical, Space.xs)
+        } header: {
+            Text("备考级别")
+        }
     }
 
     // MARK: - 外观
 
     private var appearanceSection: some View {
-        VStack(alignment: .leading, spacing: Space.itemGap) {
-            SectionHeader("外观", subtitle: "跟系统还是自己定")
+        Section {
+            VStack(alignment: .leading, spacing: Space.sm) {
+                Text("主题")
+                    .font(Typography.caption)
+                    .foregroundStyle(Theme.Colors.textSecondary)
 
-            AppCard {
-                VStack(alignment: .leading, spacing: Space.sm) {
-                    fieldLabel("主题")
-
-                    Picker("主题", selection: themeBinding) {
-                        ForEach(Theme.Mode.allCases) { mode in
-                            Text(mode.label).tag(mode)
-                        }
+                Picker("主题", selection: themeBinding) {
+                    ForEach(Theme.Mode.allCases) { mode in
+                        Text(mode.label).tag(mode)
                     }
-                    .pickerStyle(.segmented)
-                    .labelsHidden()
-
-                    Text(themeFooter)
-                        .appCaption()
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.top, Space.xs)
                 }
+                .pickerStyle(.segmented)
+                .labelsHidden()
             }
+            .padding(.vertical, Space.xs)
+        } header: {
+            Text("外观")
+        } footer: {
+            Text(themeFooter)
         }
     }
 
@@ -214,80 +251,63 @@ struct MeScreen: View {
     // MARK: - 学习设置
 
     private var studySection: some View {
-        VStack(alignment: .leading, spacing: Space.itemGap) {
-            SectionHeader("学习设置", subtitle: "改一处，全 App 生效")
+        Section {
+            DatePicker(
+                "考试日期",
+                selection: examDateBinding,
+                displayedComponents: .date
+            )
+            .datePickerStyle(.compact)
+            .environment(\.locale, Locale(identifier: "zh_CN"))
 
-            AppCard {
-                VStack(alignment: .leading, spacing: Space.lg) {
-                    // 日期单独一行：标签在上一行、控件占满整行，
-                    // 不再让「考试日期」四个字和日期胶囊挤在同一行里抢宽度。
-                    VStack(alignment: .leading, spacing: Space.sm) {
-                        fieldLabel("考试日期")
-
-                        HStack(spacing: Space.sm) {
-                            DatePicker(
-                                "考试日期",
-                                selection: examDateBinding,
-                                displayedComponents: .date
-                            )
-                            .datePickerStyle(.compact)
-                            .labelsHidden()
-                            .environment(\.locale, Locale(identifier: "zh_CN"))
-
-                            Spacer(minLength: 0)
-
-                            if progress.examDate != nil {
-                                Button {
-                                    store.setExamDate(nil)
-                                } label: {
-                                    Text("清除")
-                                        .font(Typography.caption)
-                                        .foregroundStyle(Theme.Colors.textSecondary)
-                                        .padding(.horizontal, Space.sm)
-                                        .frame(height: Touch.min)
-                                        .contentShape(Rectangle())
-                                }
-                                .buttonStyle(.plain)
-                            }
-                        }
-                    }
-
-                    VStack(alignment: .leading, spacing: Space.sm) {
-                        fieldLabel("每天学多久")
-
-                        Picker("每天学多久", selection: minutesBinding) {
-                            Text("15 分钟").tag(15)
-                            Text("30 分钟").tag(30)
-                            Text("60 分钟").tag(60)
-                        }
-                        .pickerStyle(.segmented)
-                        .labelsHidden()
-                    }
-
-                    VStack(alignment: .leading, spacing: Space.sm) {
-                        fieldLabel("每天背多少词")
-
-                        Picker("每天背多少词", selection: wordsBinding) {
-                            Text("10 词").tag(10)
-                            Text("20 词").tag(20)
-                            Text("30 词").tag(30)
-                        }
-                        .pickerStyle(.segmented)
-                        .labelsHidden()
-                    }
-
-                    // 一行同时说清两件事：离考试还有多久、词量会连带改什么。
-                    Text("\(examFooter)\n每天的单词量也会决定听力和阅读的份量，改一处即可。")
-                        .appCaption()
-                        .fixedSize(horizontal: false, vertical: true)
+            if progress.examDate != nil {
+                Button("清除考试日期") {
+                    store.setExamDate(nil)
                 }
+                .font(Typography.caption)
+                .foregroundStyle(Theme.Colors.textSecondary)
             }
+
+            VStack(alignment: .leading, spacing: Space.sm) {
+                Text("每天学多久")
+                    .font(Typography.caption)
+                    .foregroundStyle(Theme.Colors.textSecondary)
+
+                Picker("每天学多久", selection: minutesBinding) {
+                    Text("15 分钟").tag(15)
+                    Text("30 分钟").tag(30)
+                    Text("60 分钟").tag(60)
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+            }
+            .padding(.vertical, Space.xs)
+
+            VStack(alignment: .leading, spacing: Space.sm) {
+                Text("每天背多少词")
+                    .font(Typography.caption)
+                    .foregroundStyle(Theme.Colors.textSecondary)
+
+                Picker("每天背多少词", selection: wordsBinding) {
+                    Text("10 词").tag(10)
+                    Text("20 词").tag(20)
+                    Text("30 词").tag(30)
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+            }
+            .padding(.vertical, Space.xs)
+        } header: {
+            Text("学习设置")
+        } footer: {
+            // 一行同时说清两件事：离考试还有多久、词量会连带改什么。
+            Text("\(examFooter)\n每天的单词量也会决定听力和阅读的份量，改一处即可。")
         }
     }
 
     private var examFooter: String {
         guard let raw = progress.examDate, Srs.date(raw) != nil else {
-            return "还没设置考试日期 —— 上面显示的是默认的 90 天后，点开选一个日期就会保存。"
+            return "还没设置考试日期。选一个，首页就会开始倒计时。"
         }
         let left = Srs.daysBetween(Srs.today(), raw)
         if left < 0 { return "考试日期已经过了，改一个未来的日期吧。" }
@@ -298,96 +318,71 @@ struct MeScreen: View {
     // MARK: - 进度迁移
 
     private var transferSection: some View {
-        VStack(alignment: .leading, spacing: Space.itemGap) {
-            SectionHeader("学习进度迁移", subtitle: "换设备时用")
+        Section {
+            ZStack(alignment: .topLeading) {
+                TextEditor(text: $transferText)
+                    .font(.system(size: 11, design: .monospaced))
+                    .frame(height: 120)
+                    .scrollContentBackground(.hidden)
+                    .padding(Space.sm)
+                    .background(
+                        Theme.Colors.surfaceMuted,
+                        in: RoundedRectangle(cornerRadius: Radius.field, style: .continuous)
+                    )
 
-            AppCard {
-                VStack(alignment: .leading, spacing: Space.md) {
-                    ZStack(alignment: .topLeading) {
-                        TextEditor(text: $transferText)
-                            .font(.system(size: 11, design: .monospaced))
-                            .frame(height: 120)
-                            .scrollContentBackground(.hidden)
-                            .padding(Space.sm)
-                            .background(
-                                Theme.Colors.surfaceMuted,
-                                in: RoundedRectangle(cornerRadius: Radius.field, style: .continuous)
-                            )
-
-                        if transferText.isEmpty {
-                            Text("在此粘贴进度 JSON，或点下面的「导出」后在此查看…")
-                                .font(Typography.micro)
-                                .foregroundStyle(Theme.Colors.textSecondary)
-                                .padding(.horizontal, Space.lg)
-                                .padding(.vertical, Space.md)
-                                .allowsHitTesting(false)
-                        }
-                    }
-
-                    HStack(spacing: Space.sm) {
-                        SecondaryButton("导出", icon: "square.and.arrow.up") {
-                            exportProgress()
-                        }
-                        PrimaryButton("导入", icon: "square.and.arrow.down") {
-                            importProgress()
-                        }
-                    }
-
-                    Text("在旧设备点「导出」并复制，再到新设备粘贴后点「导入」。数据与网站结构一致（cet4_90d_v1），网站导出的进度可以直接导入。")
-                        .appCaption()
-                        .fixedSize(horizontal: false, vertical: true)
+                if transferText.isEmpty {
+                    Text("在此粘贴进度 JSON，或点下面的「导出」后在此查看…")
+                        .font(Typography.micro)
+                        .foregroundStyle(Theme.Colors.textSecondary)
+                        .padding(.horizontal, Space.lg)
+                        .padding(.vertical, Space.md)
+                        .allowsHitTesting(false)
                 }
             }
+
+            HStack(spacing: Space.sm) {
+                Button {
+                    exportProgress()
+                } label: {
+                    Label("导出", systemImage: "square.and.arrow.up")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+
+                Button {
+                    importProgress()
+                } label: {
+                    Label("导入", systemImage: "square.and.arrow.down")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+            }
+            .padding(.vertical, Space.xs)
+        } header: {
+            Text("学习进度迁移")
+        } footer: {
+            Text("换设备时用：在旧设备点「导出」并复制，再到新设备粘贴后点「导入」。数据与网站结构一致（cet4_90d_v1），网站导出的进度可以直接导入。")
         }
     }
 
     // MARK: - 危险区
 
     private var dangerSection: some View {
-        VStack(alignment: .leading, spacing: Space.itemGap) {
-            SectionHeader("危险区", subtitle: "不可撤销")
-
-            Button {
+        Section {
+            Button("重置学习进度", role: .destructive) {
                 showResetConfirm = true
-            } label: {
-                Text("重置学习进度")
-                    .font(Typography.captionEmph)
-                    .foregroundStyle(Theme.Colors.error)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: Touch.min)
-                    .background(Theme.Colors.error.opacity(0.12), in: Capsule())
-                    .contentShape(Capsule())
             }
-            .buttonStyle(.plain)
-
-            Text("会清空单词进度、已读已听记录、模考成绩与错题本。")
-                .appCaption()
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(.horizontal, Space.xs)
-
-            Text(appVersionText)
-                .font(Typography.micro)
-                .foregroundStyle(Theme.Colors.textSecondary)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.top, Space.sm)
+        } header: {
+            Text("危险区")
+        } footer: {
+            VStack(alignment: .leading, spacing: Space.sm) {
+                Text("会清空单词进度、已读已听记录、模考成绩与错题本，不可撤销。")
+                Text(versionText)
+                    .padding(.top, Space.sm)
+            }
         }
-    }
-
-    // MARK: - 小工具
-
-    /// 版本号直接从 bundle 读 —— 手写在这里迟早会和 project.yml 走岔。
-    private var appVersionText: String {
-        let info = Bundle.main.infoDictionary
-        let version = info?["CFBundleShortVersionString"] as? String ?? "1.0.0"
-        let build = info?["CFBundleVersion"] as? String ?? "1"
-        return "水伴英语 \(version) (\(build)) · iOS 版"
-    }
-
-    /// 字段名。比正文小一档、比说明深一点，用来给下面那排控件当标题。
-    private func fieldLabel(_ text: String) -> some View {
-        Text(text)
-            .font(Typography.caption)
-            .foregroundStyle(Theme.Colors.textSecondary)
     }
 
     // MARK: - 动作
@@ -426,6 +421,16 @@ struct MeScreen: View {
 
     // MARK: - 常量
 
+    /// 版本号从 bundle 读，不在代码里写死：
+    /// 发版只改工程配置（project.yml 的 CFBundleShortVersionString / CFBundleVersion），
+    /// 这一行会自动跟上，不会出现「设置页写 1.0.0、实际上架 1.2.0」。
+    private var versionText: String {
+        let info = Bundle.main.infoDictionary
+        let short = info?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+        let build = info?["CFBundleVersion"] as? String ?? "1"
+        return "水伴英语 \(short) (\(build)) · iOS 版"
+    }
+
     private static let minutes: [Int] = [15, 30, 60]
     private static let wordOptions: [Int] = [10, 20, 30]
 
@@ -435,7 +440,7 @@ struct MeScreen: View {
     }
 
     /// 与 `Srs` 内部完全相同的格式规则。`Srs` 的 formatter 是 private，
-    /// 这里必须自己建一个 —— 但规则（POSIX 区域、公历、本地时区、yyyy-MM-dd）一模一样，
+    /// 这里必须自己建一个，但规则（POSIX 区域、公历、本地时区、yyyy-MM-dd）一模一样，
     /// 否则写进去的日期 `Srs.date(_:)` 就解析不出来了。
     private static let dateFormatter: DateFormatter = {
         let f = DateFormatter()

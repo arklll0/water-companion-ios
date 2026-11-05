@@ -1,39 +1,6 @@
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon?
-
-# Xcode
+# 构建产物与系统垃圾，不要进仓库
 build/
+*.xcarchive
 DerivedData/
-*.xcuserdata/
-xcuserdata/
-*.xcworkspace/xcuserdata/
-*.xcodeproj/xcuserdata/
-*.xcodeproj/project.xcworkspace/xcuserdata/
-*.moved-aside
-*.hmap
+.DS_Store
 *.ipa
-*.app
-*.dSYM.zip
-*.dSYM
-
-# XcodeGen (generated)
-*.xcodeproj/
-!.gitkeep
-
-# Swift Package Manager
-.swiftpm/
-.build/
-Package.resolved
-
-# CocoaPods
-Pods/
-*.podspec.json
-
-# Others
-*.log
-*.orig
-*.rej
-*~

@@ -125,7 +125,7 @@ final class ProgressStore {
     /// 评一个单词，并把今天的学习量 +1。
     ///
     /// 两件事合成一次写：分开写就是两个「读 - 改 - 写」回合，
-    /// 一旦中间有别的写入，后一次会覆盖前一次 —— 表现为「词记了、今日进度没动」。
+    /// 一旦中间有别的写入，后一次会覆盖前一次，表现为「词记了、今日进度没动」。
     func recordWordRating(word: String, rating: Int) {
         let today = Srs.today()
         update { p in
@@ -231,7 +231,7 @@ final class ProgressStore {
 
     /// 把某个今日任务推到 `toDate` 那天再出现。
     ///
-    /// 顺手剪掉已经过期的条目（`value < today`）—— 否则 `postponed` 会随使用时间
+    /// 顺手剪掉已经过期的条目（`value < today`），否则 `postponed` 会随使用时间
     /// 无限增长。剪枝用字符串比较：yyyy-MM-dd 定长且高位在前，字典序 == 时间序。
     func postponeTask(id: String, to toDate: String) {
         let today = Srs.today()
@@ -289,6 +289,24 @@ final class ProgressStore {
         let value = Theme.Mode.fromKey(theme).rawValue
         update { p in
             p.theme = value
+        }
+    }
+
+    /// 记录备考级别（cet4 / cet6 / ky / ck / all）。
+    /// 只存 key 字符串，不在这里校验：解析交给 `CetLevel.fromKey`，
+    /// 非法值会得到 nil，界面重新弹选级页，行为比「静默落回四级」可预期。
+    func setLevel(_ key: String) {
+        update { p in
+            p.level = key
+        }
+    }
+
+    /// 标记整套真题已交卷。按 id 去重，重复交卷不会把同一套记两次。
+    func markFullSetDone(_ id: String) {
+        update { p in
+            if !p.fullSetDone.contains(id) {
+                p.fullSetDone.append(id)
+            }
         }
     }
 

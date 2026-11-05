@@ -4,16 +4,19 @@ import Foundation
 //  内容 DTO
 // ════════════════════════════════════════════════════════════════════
 //
-//  字段名与 Android 版 `data/model/Content.kt` **一字不差** ——
-//  JSON 里的键就是这些短名（w/p/t/m/e/ec），改名会让解码全部失败。
+//  字段名与 Android 版 `data/model/Content.kt` **一字不差**，
+//  JSON 里的键就是这些短名（w/p/t/m/e/ec/lv），改名会让解码全部失败。
 //
 //  每个类型都写了 `init(from:)`：JSON 里缺键时用默认值补上，而不是抛错。
-//  这不是洁癖 —— 内容文件是外部生成的，少一个 `sentence` 之类的可选字段
+//  这不是洁癖，内容文件是外部生成的，少一个 `sentence` 之类的可选字段
 //  不应该让整页白屏。
 
 // MARK: - 词汇
 
-/// 词汇：w=单词 p=音标 t=词性 m=释义 e=英文例句 ec=例句中文
+/// 词汇：w=单词 p=音标 t=词性 m=释义 e=英文例句 ec=例句中文 lv=分级标签
+///
+/// `lv` 是逗号分隔的多个标签（`both,ky`），判断时**必须拆开逐段比**，
+/// 拿整串去比会让四级池静悄悄漏掉上千个词。解析规则在 `LevelContent`。
 struct Word: Codable, Identifiable, Hashable {
 
     var w: String = ""
@@ -22,6 +25,7 @@ struct Word: Codable, Identifiable, Hashable {
     var m: String = ""
     var e: String = ""
     var ec: String = ""
+    var lv: String = ""
 
     var id: String { w }
 
@@ -31,7 +35,8 @@ struct Word: Codable, Identifiable, Hashable {
         t: String = "",
         m: String = "",
         e: String = "",
-        ec: String = ""
+        ec: String = "",
+        lv: String = ""
     ) {
         self.w = w
         self.p = p
@@ -39,10 +44,11 @@ struct Word: Codable, Identifiable, Hashable {
         self.m = m
         self.e = e
         self.ec = ec
+        self.lv = lv
     }
 
     enum CodingKeys: String, CodingKey {
-        case w, p, t, m, e, ec
+        case w, p, t, m, e, ec, lv
     }
 
     init(from decoder: Decoder) throws {
@@ -53,6 +59,7 @@ struct Word: Codable, Identifiable, Hashable {
         m = try c.decodeIfPresent(String.self, forKey: .m) ?? ""
         e = try c.decodeIfPresent(String.self, forKey: .e) ?? ""
         ec = try c.decodeIfPresent(String.self, forKey: .ec) ?? ""
+        lv = try c.decodeIfPresent(String.self, forKey: .lv) ?? ""
     }
 }
 
@@ -63,10 +70,13 @@ struct ListenItem: Codable, Identifiable, Hashable {
 
     var en: String = ""
     var cn: String = ""
+    /// 分级标签。只有 exam4 / exam6 两组带值（cet4 / cet6），前三档是空串
+    /// （= 未打标签，所有级别都收）。
+    var lv: String = ""
 
     /// 稳定 id：由 ContentStore 在加载时按「档-序号」写入（basic-0 / dialog-3 / passage-17）。
     ///
-    /// 规则与 Android 的 `AssetsDataSource.loadAllListening()` 完全一致 ——
+    /// 规则与 Android 的 `AssetsDataSource.loadAllListening()` 完全一致，
     /// 存档里的 `listenDone` 存的正是这批 key，两边必须逐字相同，
     /// 否则从 Android 导入的进度在听力页会一条都认不出来。
     /// 不参与 JSON 编解码（内容文件里没有这个字段）。
@@ -75,38 +85,53 @@ struct ListenItem: Codable, Identifiable, Hashable {
     /// 兜底用英文原文（只有素材加载失败、stableId 没写进去时才会走到）
     var id: String { stableId.isEmpty ? en : stableId }
 
-    init(en: String = "", cn: String = "", stableId: String = "") {
+    init(en: String = "", cn: String = "", stableId: String = "", lv: String = "") {
         self.en = en
         self.cn = cn
         self.stableId = stableId
+        self.lv = lv
     }
 
     enum CodingKeys: String, CodingKey {
-        case en, cn
+        case en, cn, lv
     }
 
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         en = try c.decodeIfPresent(String.self, forKey: .en) ?? ""
         cn = try c.decodeIfPresent(String.self, forKey: .cn) ?? ""
+        lv = try c.decodeIfPresent(String.self, forKey: .lv) ?? ""
     }
 }
 
-/// listening.json 的外层结构：三档难度
+/// listening.json 的外层结构：五档（三档难度 + 两组真题原文）。
+///
+/// exam4 / exam6 是 2.6.10 追加的，老文件里没有这两个键，
+/// 手写的 `init(from:)` 会把它们补成空数组而不是抛 keyNotFound。
 struct ListeningPack: Codable {
 
     var basic: [ListenItem] = []
     var dialog: [ListenItem] = []
     var passage: [ListenItem] = []
+    var exam4: [ListenItem] = []
+    var exam6: [ListenItem] = []
 
-    init(basic: [ListenItem] = [], dialog: [ListenItem] = [], passage: [ListenItem] = []) {
+    init(
+        basic: [ListenItem] = [],
+        dialog: [ListenItem] = [],
+        passage: [ListenItem] = [],
+        exam4: [ListenItem] = [],
+        exam6: [ListenItem] = []
+    ) {
         self.basic = basic
         self.dialog = dialog
         self.passage = passage
+        self.exam4 = exam4
+        self.exam6 = exam6
     }
 
     enum CodingKeys: String, CodingKey {
-        case basic, dialog, passage
+        case basic, dialog, passage, exam4, exam6
     }
 
     init(from decoder: Decoder) throws {
@@ -114,6 +139,8 @@ struct ListeningPack: Codable {
         basic = try c.decodeIfPresent([ListenItem].self, forKey: .basic) ?? []
         dialog = try c.decodeIfPresent([ListenItem].self, forKey: .dialog) ?? []
         passage = try c.decodeIfPresent([ListenItem].self, forKey: .passage) ?? []
+        exam4 = try c.decodeIfPresent([ListenItem].self, forKey: .exam4) ?? []
+        exam6 = try c.decodeIfPresent([ListenItem].self, forKey: .exam6) ?? []
     }
 }
 
@@ -124,6 +151,9 @@ struct Reading: Codable, Identifiable, Hashable {
 
     var tag: String = ""
     var level: String = ""
+    /// 分级标签（cet4 / cet6）。与 `level`（easy/medium/hard 难度）不是一回事：
+    /// 难度管课程坡度，`lv` 管这套素材属于哪个考试。
+    var lv: String = ""
     var minutes: Int = 0
     var p: [String] = []
     var q: String = ""
@@ -136,6 +166,7 @@ struct Reading: Codable, Identifiable, Hashable {
     init(
         tag: String = "",
         level: String = "",
+        lv: String = "",
         minutes: Int = 0,
         p: [String] = [],
         q: String = "",
@@ -145,6 +176,7 @@ struct Reading: Codable, Identifiable, Hashable {
     ) {
         self.tag = tag
         self.level = level
+        self.lv = lv
         self.minutes = minutes
         self.p = p
         self.q = q
@@ -154,13 +186,14 @@ struct Reading: Codable, Identifiable, Hashable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case tag, level, minutes, p, q, o, a, ex
+        case tag, level, lv, minutes, p, q, o, a, ex
     }
 
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         tag = try c.decodeIfPresent(String.self, forKey: .tag) ?? ""
         level = try c.decodeIfPresent(String.self, forKey: .level) ?? ""
+        lv = try c.decodeIfPresent(String.self, forKey: .lv) ?? ""
         minutes = try c.decodeIfPresent(Int.self, forKey: .minutes) ?? 0
         p = try c.decodeIfPresent([String].self, forKey: .p) ?? []
         q = try c.decodeIfPresent(String.self, forKey: .q) ?? ""
@@ -207,6 +240,9 @@ struct Family: Codable, Identifiable, Hashable {
     var cn: String = ""
     var members: [FamilyMember] = []
     var sentence: String = ""
+    /// 分级标签。词族目前全部是 both，字段留着是为了和 Android 的素材键对齐；
+    /// 老素材没有这个键时按未打标签处理（所有级别都收）。
+    var lv: String = ""
 
     var id: String { anchor }
 
@@ -215,17 +251,19 @@ struct Family: Codable, Identifiable, Hashable {
         action: String = "",
         cn: String = "",
         members: [FamilyMember] = [],
-        sentence: String = ""
+        sentence: String = "",
+        lv: String = ""
     ) {
         self.anchor = anchor
         self.action = action
         self.cn = cn
         self.members = members
         self.sentence = sentence
+        self.lv = lv
     }
 
     enum CodingKeys: String, CodingKey {
-        case anchor, action, cn, members, sentence
+        case anchor, action, cn, members, sentence, lv
     }
 
     init(from decoder: Decoder) throws {
@@ -235,6 +273,7 @@ struct Family: Codable, Identifiable, Hashable {
         cn = try c.decodeIfPresent(String.self, forKey: .cn) ?? ""
         members = try c.decodeIfPresent([FamilyMember].self, forKey: .members) ?? []
         sentence = try c.decodeIfPresent(String.self, forKey: .sentence) ?? ""
+        lv = try c.decodeIfPresent(String.self, forKey: .lv) ?? ""
     }
 }
 
@@ -290,16 +329,19 @@ struct Paper: Codable, Identifiable, Hashable {
     var title: String = ""
     var year: String = ""
     var items: [PaperItem] = []
+    /// 分级标签：cet4 / cet6 / ck。成考卷排在下标 16-18，靠这个字段区分。
+    var lv: String = ""
 
-    init(id: String = "", title: String = "", year: String = "", items: [PaperItem] = []) {
+    init(id: String = "", title: String = "", year: String = "", items: [PaperItem] = [], lv: String = "") {
         self.id = id
         self.title = title
         self.year = year
         self.items = items
+        self.lv = lv
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, title, year, items
+        case id, title, year, items, lv
     }
 
     init(from decoder: Decoder) throws {
@@ -308,10 +350,11 @@ struct Paper: Codable, Identifiable, Hashable {
         title = try c.decodeIfPresent(String.self, forKey: .title) ?? ""
         year = try c.decodeIfPresent(String.self, forKey: .year) ?? ""
         items = try c.decodeIfPresent([PaperItem].self, forKey: .items) ?? []
+        lv = try c.decodeIfPresent(String.self, forKey: .lv) ?? ""
     }
 }
 
-/// 扁平化之后的一道小题 —— 每日练习要从「所有卷子的所有小题」里按天取一道，
+/// 扁平化之后的一道小题，每日练习要从「所有卷子的所有小题」里按天取一道，
 /// 所以必须记住它属于哪套卷子的第几题（错题集的 ref 与 paperDone 的 key 都靠它）。
 struct PaperItemRef: Identifiable, Hashable {
 
@@ -364,17 +407,20 @@ struct TransPractice: Codable, Identifiable, Hashable {
     var cn: String = ""
     var ref: String = ""
     var tips: [String] = []
+    /// 分级标签（目前全部是 both）
+    var lv: String = ""
 
     var id: String { cn }
 
-    init(cn: String = "", ref: String = "", tips: [String] = []) {
+    init(cn: String = "", ref: String = "", tips: [String] = [], lv: String = "") {
         self.cn = cn
         self.ref = ref
         self.tips = tips
+        self.lv = lv
     }
 
     enum CodingKeys: String, CodingKey {
-        case cn, ref, tips
+        case cn, ref, tips, lv
     }
 
     init(from decoder: Decoder) throws {
@@ -382,6 +428,7 @@ struct TransPractice: Codable, Identifiable, Hashable {
         cn = try c.decodeIfPresent(String.self, forKey: .cn) ?? ""
         ref = try c.decodeIfPresent(String.self, forKey: .ref) ?? ""
         tips = try c.decodeIfPresent([String].self, forKey: .tips) ?? []
+        lv = try c.decodeIfPresent(String.self, forKey: .lv) ?? ""
     }
 }
 
@@ -390,21 +437,25 @@ struct Phrase: Codable, Identifiable, Hashable {
 
     var en: String = ""
     var cn: String = ""
+    /// 分级标签（目前全部是 both）
+    var lv: String = ""
 
     var id: String { en }
 
-    init(en: String = "", cn: String = "") {
+    init(en: String = "", cn: String = "", lv: String = "") {
         self.en = en
         self.cn = cn
+        self.lv = lv
     }
 
     enum CodingKeys: String, CodingKey {
-        case en, cn
+        case en, cn, lv
     }
 
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         en = try c.decodeIfPresent(String.self, forKey: .en) ?? ""
         cn = try c.decodeIfPresent(String.self, forKey: .cn) ?? ""
+        lv = try c.decodeIfPresent(String.self, forKey: .lv) ?? ""
     }
 }

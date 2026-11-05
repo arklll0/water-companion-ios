@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 // ════════════════════════════════════════════════════════════════════
 //  单词页
@@ -10,7 +11,7 @@ import SwiftUI
 //  ⚠️「每天学多少」**必须落盘**到 `progress.dailyWords`，不能用本地 @State。
 //  听力和练习的每日量都跟着它走（DailyPlan.listenCount / readCount / paperCount
 //  都以它做输入）。用本地状态的话，一重启就复位，而且和 DailyPlan 读到的值是
-//  两份互不相干的数据 —— 表现就是「单词页选了 30 词，听力页还按 20 词算出的 6 句给」。
+//  两份互不相干的数据。表现就是「单词页选了 30 词，听力页还按 20 词算出的 6 句给」。
 //
 //  版式：列表态用系统 `List` + `.insetGrouped`（分组圆角、原生分隔线、原生行高），
 //  只有翻卡会话与结算卡这两块「设计过的内容面」才自己排版。
@@ -51,12 +52,23 @@ struct WordsScreen: View {
     private var progress: Progress { store.progress }
     private var batch: Int { max(progress.dailyWords, 1) }
 
+    /// 存档里的级别。没选过或存的是非法值时按四级兜底：
+    /// 这里兜底不会掩盖「没选过」，设置页那边仍然会要求用户选一次。
+    private var level: CetLevel { CetLevel.fromKey(progress.level) ?? .cet4 }
+
+    /// 当前级别的词池。补新词、新词计数、「全部接触一遍」都只认这一个池子；
+    /// 卡片上的词仍走 `content.wordOrPlaceholder`（全量索引），
+    /// 否则同一个词在不同级别下会查到两份不同的释义。
+    private var pool: [Word] {
+        LevelContent.words(content.words, ck: content.ckWordList, level: level)
+    }
+
     private var dueWords: [String] { Srs.dueWords(progress.wordProgress) }
     private var masteredCount: Int { Srs.mastered(progress.wordProgress) }
     private var todayLearned: Int { store.todayLog.words }
 
     private var newWords: [Word] {
-        content.words.filter { progress.wordProgress[$0.w] == nil }
+        pool.filter { progress.wordProgress[$0.w] == nil }
     }
 
     /// 「正在翻卡」= 队列里还有词且还没走到头
@@ -67,7 +79,7 @@ struct WordsScreen: View {
     /// 分段控件的选择。
     ///
     /// get 里做了兜底：存档可能是网站导出的任意值（比如 15），
-    /// 不在 10/20/30 里时按 20 显示 —— 否则 Picker 找不到匹配 tag，
+    /// 不在 10/20/30 里时按 20 显示。否则 Picker 找不到匹配 tag，
     /// 会当场打印运行时告警并显示成「一个都没选中」。
     private var batchSelection: Binding<Int> {
         Binding(
@@ -83,6 +95,12 @@ struct WordsScreen: View {
         }
         .navigationTitle("单词")
         .navigationBarTitleDisplayMode(.large)
+        // 三个音效播放器在这里建好并 prepareToPlay：
+        // 第一次点评分时再建，会先卡一下再响，听感上像是点漏了。
+        // 用 onAppear 而不是 task：warmUp 是同步的，不需要额外的异步上下文。
+        .onAppear {
+            JudgeSfx.warmUp()
+        }
     }
 
     /// 三态：列表 / 翻卡 / 结算。
@@ -116,7 +134,7 @@ struct WordsScreen: View {
                     VStack(alignment: .leading, spacing: Space.sm) {
                         Text("按你的节奏设置一次学多少。")
                             .appCaption()
-                        // 三选一用系统的分段控件 —— 自己画三个胶囊要额外处理
+                        // 三选一用系统的分段控件：自己画三个胶囊要额外处理
                         // 选中态、无障碍与动态字号，系统控件这些都自带。
                         Picker("每天背多少", selection: batchSelection) {
                             Text("10 词").tag(10)
@@ -263,10 +281,10 @@ struct WordsScreen: View {
 
                 HStack(spacing: Space.sm) {
                     SoundChip("单词", enabled: hasWordAudio) {
-                        audio.togglePlay(text: meta.w)
+                        audio.play(text: meta.w)
                     }
                     SoundChip("例句", enabled: !meta.e.isEmpty) {
-                        audio.togglePlay(text: meta.e)
+                        audio.play(text: meta.e)
                     }
                 }
                 .padding(.top, Space.xs)
@@ -304,6 +322,14 @@ struct WordsScreen: View {
                                 .foregroundStyle(Theme.Colors.textSecondary)
                                 .multilineTextAlignment(.center)
                                 .fixedSize(horizontal: false, vertical: true)
+                        }
+
+                        // 详细资料接在例句 / 例句翻译下方、评分按钮（卡片外）上方。
+                        // 整张卡片长在外层 FormPage 的 ScrollView 里，所以这里
+                        // 不加内层滚动、不设固定高度：内容多高卡片就多高，文字不会被裁。
+                        if let detail = content.wordDetail(word: queue[index].word) {
+                            WordDetailSection(detail: detail)
+                                .padding(.top, Space.lg)
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -418,9 +444,15 @@ struct WordsScreen: View {
         guard index < queue.count else { return }
         let item = queue[index]
 
+        // 顺序与 Android 一致：先音效、再震动、最后写库。
+        // 反馈必须先于状态变更，否则卡片已经翻到下一张，声音才跟上来，
+        // 听感上会像是「给下一张打的分」。
+        JudgeSfx.judge(rating)
+        WordsScreen.haptic()
+
         store.recordWordRating(word: item.word, rating: rating)
 
-        // 忘了：当天还要再见一次 —— 插回队尾，所以队列会变长
+        // 忘了：当天还要再见一次，插回队尾，所以队列会变长
         if rating == 1 {
             queue.append(SessionWord(word: item.word, isNew: false))
         }
@@ -432,5 +464,13 @@ struct WordsScreen: View {
         if index >= queue.count {
             finished = true
         }
+    }
+
+    /// 轻触反馈，与答题区同一档。
+    /// 四个评分键是连着点的，重震会让人不想继续点。
+    private static func haptic() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare()
+        generator.impactOccurred()
     }
 }

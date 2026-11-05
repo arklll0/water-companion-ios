@@ -1,24 +1,25 @@
 import SwiftUI
 
 // ════════════════════════════════════════════════════════════════════
-//  练习页：阅读 / 真题 / 模考
+//  练习页：阅读 / 真题 / 整套 / 模考
 // ════════════════════════════════════════════════════════════════════
 //
-//  三块共用同一个答题区（`QuizView`），差别只在「今天做哪一份」怎么来：
+//  四块共用同一个答题区（`QuizView`），差别只在「今天做哪一份」怎么来：
 //    · 阅读：`DailyPlan` 按「第几天 + 当天单词量」切出一篇
 //    · 真题：同样按天切，但切的是「拍平后的题目流」里的一道
+//    · 整套：交给 `FullSetScreen`，按考试顺序做完整一套，交卷才判分
 //    · 模考：整套随机抽，见 `ExamScreen`
 //
 //  ## 为什么「今天这一份」是主视图，全部素材是折叠区
 //
-//  一屏摊开 90 篇阅读 / 若干套卷子，用户得先做一次「选哪个」的决策 ——
+//  一屏摊开 90 篇阅读 / 若干套卷子，用户得先做一次「选哪个」的决策，
 //  而这一步最容易让人关掉 App。把「今天该做的那一份」直接摆出来，
 //  决策成本就降到零；想自己挑的时候再展开，给的是同一个入口，不冲突。
 //
 //  ## 答题即完成
 //
 //  答错也算完成：错题已经单独进了错题集，再让今天的卡片停在「未完成」
-//  只会让人不想再打开它。但**答对也要记** —— 正确率的分母全靠 attempts，
+//  只会让人不想再打开它。但**答对也要记**，正确率的分母全靠 attempts，
 //  只记错题的话「做了 20 道错 3 道」和「做了 5 道错 3 道」长得一模一样。
 //
 //  ## 编号必须与存档一致
@@ -26,6 +27,13 @@ import SwiftUI
 //  `readDone` 存的是**全局下标**（`readings` 数组里的位置），
 //  `paperDone` 存的是 `PaperItemRef.id`（"卷序号-题序号"）。
 //  这两套编号是网站导出的老存档也在用的，不能改成「今天这几篇里的第几篇」。
+//
+//  ## 级别过滤
+//
+//  阅读 / 真题 / 整套三个池子都按 `CetLevel` 收窄，一律用 `LevelContent`
+//  返回的原始下标。过滤只决定「取哪些」，编号本身一个都不动：
+//  一旦重排或重新编号，老存档里的已读、已做会整体对到别的文章和题目上，
+//  而且不会报错，只会让人觉得进度乱了。
 
 struct PracticeScreen: View {
 
@@ -33,10 +41,11 @@ struct PracticeScreen: View {
     @Environment(ContentStore.self) private var content
     @Environment(AudioPlayer.self) private var audio
 
-    /// 三个板块
+    /// 四个板块。顺序与 Android 版一致：阅读 / 真题 / 整套 / 模考。
     private enum Board: String, CaseIterable, Identifiable {
         case reading
         case paper
+        case fullset
         case exam
 
         var id: String { rawValue }
@@ -45,6 +54,7 @@ struct PracticeScreen: View {
             switch self {
             case .reading: return "阅读"
             case .paper: return "真题"
+            case .fullset: return "整套"
             case .exam: return "模考"
             }
         }
@@ -68,7 +78,7 @@ struct PracticeScreen: View {
     @State private var paperRoute: PaperRoute?
     @State private var showAllPapers = false
 
-    /// 模考是否正在进行（交给 `ExamScreen` 同步）。进行中要把板块切换器藏起来 ——
+    /// 模考是否正在进行（交给 `ExamScreen` 同步）。进行中要把板块切换器藏起来，
     /// 计时考试最怕手滑点到别处。
     @State private var examRunning = false
 
@@ -80,6 +90,13 @@ struct PracticeScreen: View {
 
     private var progress: Progress { store.progress }
     private var dayNumber: Int { DailyPlan.dayNumber(startDate: progress.startDate) }
+
+    /// 四个板块共用同一句取法，口径必须一致：
+    /// 一处用 `?? .cet4`、另一处直接读 `progress.level`，会出现「阅读按四级筛、
+    /// 真题按全部筛」这种同一页里两个池子的情况。
+    private var level: CetLevel {
+        CetLevel.fromKey(store.progress.level) ?? .cet4
+    }
 
     /// 正在做题 / 考试时收起板块切换器
     private var showsBoardPicker: Bool {
@@ -124,8 +141,38 @@ struct PracticeScreen: View {
             }
         case .paper:
             paperDetailOrList
+        case .fullset:
+            fullSet
         case .exam:
             ExamScreen(isSessionActive: $examRunning)
+        }
+    }
+
+    // MARK: - 整套真题
+
+    /// 整套真题按级别过滤。`FullSetScreen` 自己管列表 / 做卷 / 结算三段状态，
+    /// 这里只负责给数据并把交卷结果落盘。
+    private var fullSetPapers: [FullPaper] {
+        content.fullPapers.filter { level.accepts($0.meta.level) }
+    }
+
+    private var fullSet: some View {
+        FullSetScreen(
+            papers: fullSetPapers,
+            doneIds: progress.fullSetDone
+        ) { result in
+            // 日期格式与 `ExamScreen` 同一套：`Srs.today()` 就是 yyyy-MM-dd 字符串。
+            store.addExam(
+                ExamRecord(
+                    date: Srs.today(),
+                    correct: result.correct,
+                    total: result.total,
+                    acc: result.acc,
+                    score: result.score
+                )
+            )
+            store.markFullSetDone(result.paperId)
+            store.bump("exam")
         }
     }
 
@@ -133,10 +180,16 @@ struct PracticeScreen: View {
     //  MARK: - 阅读
     // ════════════════════════════════════════════════════════════════
 
+    /// 当前级别可见的阅读下标。值是**原始下标**，`readDone` 存的也是原始下标，
+    /// 所以过滤只能筛不能重排编号，否则老用户的「已读」会漂到别的文章上。
+    private var readingOrder: [Int] {
+        LevelContent.readingOrder(content.readings, level: level)
+    }
+
     /// 今天该读哪几篇（全局下标）
     private var todayReadings: [Int] {
         DailyPlan.slice(
-            content.readingOrder,
+            readingOrder,
             DailyPlan.dayIndex(startDate: progress.startDate),
             DailyPlan.readCount(progress.dailyWords)
         )
@@ -255,7 +308,7 @@ struct PracticeScreen: View {
             SecondaryButton(
                 showAllReadings
                     ? "收起全部素材"
-                    : "展开全部素材（\(content.readings.count) 篇）",
+                    : "展开全部素材（\(readingOrder.count) 篇）",
                 icon: showAllReadings ? "chevron.up" : "chevron.down"
             ) {
                 withAnimation(.snappy) { showAllReadings.toggle() }
@@ -270,10 +323,12 @@ struct PracticeScreen: View {
 
             if showAllReadings {
                 VStack(spacing: Space.itemGap) {
-                    SectionHeader("全部素材", subtitle: "按难度排序", trailing: "共 \(content.readings.count) 篇")
+                    SectionHeader("全部素材", subtitle: "按难度排序", trailing: "共 \(readingOrder.count) 篇")
 
-                    ForEach(content.readings.indices, id: \.self) { index in
-                        readingCard(index, leading: "第 \(index + 1) 篇")
+                    // 用过滤后的顺序枚举：序号取「在这一档里的第几篇」，
+                    // 直接拿原始下标 +1 会在筛掉几篇之后出现 1、3、7 这种空洞。
+                    ForEach(readingOrder.indices, id: \.self) { position in
+                        readingCard(readingOrder[position], leading: "第 \(position + 1) 篇")
                     }
                 }
                 .padding(.top, Space.xs)
@@ -307,7 +362,7 @@ struct PracticeScreen: View {
                     correctIndex: reading.a,
                     explanation: reading.ex,
                     passage: reading.p,
-                    readAloud: { text in _ = audio.togglePlay(text: text) }
+                    readAloud: { text in _ = audio.play(text: text) }
                 ) { chosen in
                     answered = true
                     recordReadingAnswer(index, chosen)
@@ -376,9 +431,21 @@ struct PracticeScreen: View {
     //  MARK: - 真题
     // ════════════════════════════════════════════════════════════════
 
+    /// 当前级别可见的卷子下标。**保留原始下标**：`paperDone` 的 key 是
+    /// 「原始卷下标-题序号」，重新编号会让老用户的已做记录对到别的题上。
+    private var visiblePaperIndices: [Int] {
+        LevelContent.paperIndices(content.papers, level: level)
+    }
+
+    /// 当前级别可见的题目流。只按 `paperIndex` 筛，不重排、不重新编号。
+    private var visiblePaperRefs: [PaperItemRef] {
+        let allowed = Set(visiblePaperIndices)
+        return content.paperItemRefs.filter { allowed.contains($0.paperIndex) }
+    }
+
     private var todayPapers: [PaperItemRef] {
         DailyPlan.slice(
-            content.paperItemRefs,
+            visiblePaperRefs,
             DailyPlan.dayIndex(startDate: progress.startDate),
             DailyPlan.paperCount(progress.dailyWords)
         )
@@ -512,7 +579,7 @@ struct PracticeScreen: View {
             SecondaryButton(
                 showAllPapers
                     ? "收起全部套卷"
-                    : "展开全部套卷（\(content.papers.count) 套）",
+                    : "展开全部套卷（\(visiblePaperIndices.count) 套）",
                 icon: showAllPapers ? "chevron.up" : "chevron.down"
             ) {
                 withAnimation(.snappy) { showAllPapers.toggle() }
@@ -527,9 +594,9 @@ struct PracticeScreen: View {
 
             if showAllPapers {
                 VStack(spacing: Space.itemGap) {
-                    SectionHeader("全部套卷", subtitle: "从头做一整套", trailing: "共 \(content.papers.count) 套")
+                    SectionHeader("全部套卷", subtitle: "从头做一整套", trailing: "共 \(visiblePaperIndices.count) 套")
 
-                    ForEach(content.papers.indices, id: \.self) { paperIndex in
+                    ForEach(visiblePaperIndices, id: \.self) { paperIndex in
                         paperCard(paperIndex)
                     }
                 }
@@ -590,7 +657,7 @@ struct PracticeScreen: View {
                     correctIndex: ref.item.a,
                     explanation: ref.item.ex,
                     passage: ref.item.passage,
-                    readAloud: { text in _ = audio.togglePlay(text: text) }
+                    readAloud: { text in _ = audio.play(text: text) }
                 ) { chosen in
                     answered = true
                     recordPaperAnswer(ref, chosen)
@@ -628,7 +695,7 @@ struct PracticeScreen: View {
                     correctIndex: item.a,
                     explanation: item.ex,
                     passage: item.passage,
-                    readAloud: { text in _ = audio.togglePlay(text: text) }
+                    readAloud: { text in _ = audio.play(text: text) }
                 ) { chosen in
                     answered = true
                     recordPaperAnswer(

@@ -14,7 +14,7 @@ import Foundation
 //  - 真正会弄坏存档的是「改已有字段的类型或语义」，那种改动一律不做。
 //
 //  所以下面每个类型都手写了 `init(from:)`。Swift 的合成解码器**不会**用属性
-//  默认值去补缺失的键 —— 缺一个键就抛错，整份进度会退化成空档。这一点必须
+//  默认值去补缺失的键，缺一个键就抛错，整份进度会退化成空档。这一点必须
 //  自己实现，不能依赖 `decodeIfPresent` 之外的任何魔法。
 
 // MARK: - 单个词 / 词族成员的学习状态
@@ -52,7 +52,7 @@ struct WordProgress: Codable, Hashable {
 // MARK: - 一次作答
 
 /// 一次作答记录。`wrongBook` 只收答错的题，没有分母就算不出正确率，
-/// 所以「答对的也要记」—— 这张表是能力分析的数据源。
+/// 所以「答对的也要记」，这张表是能力分析的数据源。
 struct Attempt: Codable, Hashable {
 
     /// yyyy-MM-dd
@@ -220,7 +220,7 @@ struct DayLog: Codable, Hashable {
 /// 可以直接导入（未知键会被忽略）。
 struct Progress: Codable, Hashable {
 
-    /// 开始日期（yyyy-MM-dd）。null 表示还没开始 —— 首次启动时写入今天。
+    /// 开始日期（yyyy-MM-dd）。null 表示还没开始，首次启动时写入今天。
     var startDate: String? = nil
     /// 考试日期（yyyy-MM-dd）。null 表示还没设置。
     var examDate: String? = nil
@@ -247,13 +247,19 @@ struct Progress: Codable, Hashable {
     /// value = 它应该**重新出现**的日期（yyyy-MM-dd）。
     ///
     /// 存目标日期而不是布尔值：布尔值需要第二天由某个定时逻辑去清掉，而 App 是
-    /// 被动启动的；存日期则完全靠「日期比较」推导 —— 到了那天 `value != today`，
+    /// 被动启动的；存日期则完全靠「日期比较」推导，到了那天 `value != today`，
     /// 任务自动回到列表，**过期条目天然失效**，不需要任何清理任务。
     var postponed: [String: String] = [:]
     /// 已做过的「每日练习」小题 id（形如 "3-4"）
     var paperDone: [String] = []
     /// 每一次作答（对的和错的都记）
     var attempts: [Attempt] = []
+    /// 备考级别（cet4 / cet6 / ky / ck / all）。
+    /// nil 表示还没选过，界面据此弹首次启动的选级页；不能默认成四级，
+    /// 否则老用户升级后永远看不到选择页，直接被塞进四级池。
+    var level: String? = nil
+    /// 整套真题已交卷的 `FullPaper.id`。存 id 而不是下标：真题库往后追加时下标会变。
+    var fullSetDone: [String] = []
 
     init(
         startDate: String? = nil,
@@ -273,7 +279,9 @@ struct Progress: Codable, Hashable {
         theme: String = "auto",
         postponed: [String: String] = [:],
         paperDone: [String] = [],
-        attempts: [Attempt] = []
+        attempts: [Attempt] = [],
+        level: String? = nil,
+        fullSetDone: [String] = []
     ) {
         self.startDate = startDate
         self.examDate = examDate
@@ -293,6 +301,8 @@ struct Progress: Codable, Hashable {
         self.postponed = postponed
         self.paperDone = paperDone
         self.attempts = attempts
+        self.level = level
+        self.fullSetDone = fullSetDone
     }
 
     enum CodingKeys: String, CodingKey {
@@ -302,6 +312,7 @@ struct Progress: Codable, Hashable {
         case examHistory, wrongBook, log
         case streak, lastActive, todayTaskDone, theme
         case postponed, paperDone, attempts
+        case level, fullSetDone
     }
 
     init(from decoder: Decoder) throws {
@@ -324,9 +335,11 @@ struct Progress: Codable, Hashable {
         postponed = try c.decodeIfPresent([String: String].self, forKey: .postponed) ?? [:]
         paperDone = try c.decodeIfPresent([String].self, forKey: .paperDone) ?? []
         attempts = try c.decodeIfPresent([Attempt].self, forKey: .attempts) ?? []
+        level = try c.decodeIfPresent(String.self, forKey: .level)
+        fullSetDone = try c.decodeIfPresent([String].self, forKey: .fullSetDone) ?? []
     }
 
-    /// 某一天的学习量（没有记录就是全 0，不是 nil —— 调用方不必到处判空）
+    /// 某一天的学习量（没有记录就是全 0，不是 nil，调用方不必到处判空）
     func dayLog(_ date: String) -> DayLog {
         log[date] ?? DayLog()
     }

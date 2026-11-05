@@ -7,7 +7,7 @@ import SwiftUI
 //
 //  主视图是「今天该听的这几句」：条数由当天单词量决定（见 `DailyPlan`），
 //  第 1 天和第 90 天听到的内容不同。全部素材退到页面底部一个折叠区，
-//  只在「想自己挑一段精听」时展开 —— 一上来就摊开五百多句，人只会关掉它。
+//  只在「想自己挑一段精听」时展开。一上来就摊开五百多句，人只会关掉它。
 //
 //  ## 播放器为什么自己维护一份 `queue`
 //
@@ -18,7 +18,7 @@ import SwiftUI
 //
 //  ## 「完成」的语义
 //
-//  切到某一句就算听过 —— 不等它播完。听力是「过一遍、磨耳朵」，
+//  切到某一句就算听过，不等它播完。听力是「过一遍、磨耳朵」，
 //  等一句播完再记，用户听到一半切走就白听了；而等他真的想精听某一句时，
 //  他会自己拖回去。判据落在 `listenDone` 的 id 上（`ListenItem.en`），
 //  与今天/全部这两份列表无关，所以两边的高亮是同步的。
@@ -31,29 +31,11 @@ struct ListenScreen: View {
     @Environment(ContentStore.self) private var content
     @Environment(AudioPlayer.self) private var audio
 
-    /// 难度分档（全部素材区用）
-    private enum Level: String, CaseIterable, Identifiable {
-        case basic
-        case dialog
-        case passage
-
-        var id: String { rawValue }
-
-        var title: String {
-            switch self {
-            case .basic: return "入门短句"
-            case .dialog: return "短对话"
-            case .passage: return "短篇"
-            }
-        }
-    }
-
-    /// 播放器支持的倍速。四档足够 —— 再细的档位在听感上分不出来。
+    /// 播放器支持的倍速。四档足够，再细的档位在听感上分不出来。
     private static let speeds: [Double] = [0.7, 0.85, 1.0, 1.25]
 
     @State private var showChinese = false
     @State private var showAll = false
-    @State private var level: Level = .basic
     @State private var sliderValue: Double = 0
     @State private var isDragging = false
 
@@ -69,10 +51,20 @@ struct ListenScreen: View {
     private var progress: Progress { store.progress }
     private var dayNumber: Int { DailyPlan.dayNumber(startDate: progress.startDate) }
 
+    /// 存档里的级别。没选过或存的是非法值时按四级兜底。
+    private var cetLevel: CetLevel { CetLevel.fromKey(progress.level) ?? .cet4 }
+
+    /// 当前级别的听力池。basic / dialog / passage 三组没有 lv 标签，
+    /// 对所有级别可见；exam4 / exam6 分别带 cet4 / cet6。
+    /// 四级池因此会比「全部素材」少掉六级原文那一组，这是 Android 的现状。
+    private var allPool: [ListenItem] {
+        LevelContent.listening(content.allListening, level: cetLevel)
+    }
+
     /// 今天该听哪几句：纯函数推导，同一天里多次打开结果一致
     private var todayItems: [ListenItem] {
         DailyPlan.slice(
-            content.allListening,
+            allPool,
             DailyPlan.dayIndex(startDate: progress.startDate),
             DailyPlan.listenCount(progress.dailyWords)
         )
@@ -88,11 +80,14 @@ struct ListenScreen: View {
         todayItems.isEmpty ? 0 : Double(doneInToday) / Double(todayItems.count)
     }
 
-    private var shownAll: [ListenItem] {
-        switch level {
-        case .basic: return content.listeningBasic
-        case .dialog: return content.listeningDialog
-        case .passage: return content.listeningPassage
+    /// 五个分组里通过当前级别过滤的那些。
+    /// 空组直接丢掉（否则六级用户会看到一条标题下面空无一物），
+    /// 组内条数也跟着过滤结果走。
+    private var visibleGroups: [ListenGroup] {
+        content.listeningGroups.compactMap { group in
+            let items = LevelContent.listening(group.items, level: cetLevel)
+            guard !items.isEmpty else { return nil }
+            return ListenGroup(key: group.key, title: group.title, items: items)
         }
     }
 
@@ -130,6 +125,10 @@ struct ListenScreen: View {
         .navigationBarTitleDisplayMode(.large)
         .onChange(of: audio.nowPlayingId) { _, newValue in
             markHeard(newValue)
+        }
+        .onDisappear {
+            // 离开页面还留着系统 TTS 在念，用户会以为是别的地方在说话。
+            SpeechFallback.shared.stop()
         }
     }
 
@@ -228,10 +227,6 @@ struct ListenScreen: View {
                 .padding(.top, Space.xs)
 
                 speedPicker
-
-                // 「连续播放」开关已移除：听力现在**放完一句就停**，
-                // 下一句由用户自己点（见 AudioPlayer 的 pollOnce）。
-                // 留一个开关在这里只会和「一句一句听」的行为互相打架。
 
                 if let notice {
                     Text(notice)
@@ -396,7 +391,7 @@ struct ListenScreen: View {
     private var allSection: some View {
         VStack(spacing: Space.itemGap) {
             SecondaryButton(
-                showAll ? "收起全部素材" : "展开全部素材（\(content.allListening.count) 句）",
+                showAll ? "收起全部素材" : "展开全部素材（\(allPool.count) 句）",
                 icon: showAll ? "chevron.up" : "chevron.down"
             ) {
                 withAnimation(.snappy) { showAll.toggle() }
@@ -410,23 +405,40 @@ struct ListenScreen: View {
             }
 
             if showAll {
-                Picker("难度", selection: $level) {
-                    ForEach(Level.allCases) { item in
-                        Text(item.title).tag(item)
+                if visibleGroups.isEmpty {
+                    ContentUnavailableView(
+                        "这个级别暂时没有听力素材",
+                        systemImage: "ear",
+                        description: Text("去设置里换个级别，或者先听今天推荐的几句。")
+                    )
+                } else {
+                    LazyVStack(alignment: .leading, spacing: Space.itemGap) {
+                        ForEach(visibleGroups) { group in
+                            groupBlock(group)
+                        }
                     }
+                    .padding(.top, Space.xs)
                 }
-                .pickerStyle(.segmented)
-                .labelsHidden()
-                .padding(.top, Space.xs)
-
-                LazyVStack(spacing: Space.itemGap) {
-                    ForEach(shownAll) { item in
-                        sentenceRow(item, leading: level.title, list: shownAll, listTitle: level.title)
-                    }
-                }
-                .padding(.top, Space.xs)
             }
         }
+    }
+
+    /// 一档素材：小标题 + 该组过滤后的句子。
+    /// 列表和标题都取自同一份 `group.items`，否则「第 N 句」会按另一份列表算。
+    private func groupBlock(_ group: ListenGroup) -> some View {
+        VStack(alignment: .leading, spacing: Space.itemGap) {
+            SectionHeader(group.title, trailing: "\(group.items.count) 句")
+
+            ForEach(group.items) { item in
+                sentenceRow(
+                    item,
+                    leading: "第 \(position(of: item, in: group.items)) 句",
+                    list: group.items,
+                    listTitle: group.title
+                )
+            }
+        }
+        .padding(.top, Space.xs)
     }
 
     // MARK: - 句子行
@@ -439,8 +451,6 @@ struct ListenScreen: View {
     ) -> some View {
         let isCurrent = item.id == audio.nowPlayingId
         let isDone = doneIds.contains(item.id)
-        // 正在响的就是这一条 —— 按钮显示成「暂停」，暗示再点一下会停。
-        let isPlayingThis = isCurrent && audio.isPlaying
 
         return AppCard(
             padding: Space.lg,
@@ -478,12 +488,12 @@ struct ListenScreen: View {
 
                 HStack(spacing: Space.sm) {
                     Button {
-                        tapSentence(item, list: list, title: listTitle)
+                        play(list, title: listTitle, index: list.firstIndex { $0.id == item.id } ?? 0)
                     } label: {
                         HStack(spacing: Space.xs) {
-                            Image(systemName: isPlayingThis ? "pause.fill" : "play.fill")
+                            Image(systemName: "play.fill")
                                 .font(.system(size: 11, weight: .semibold))
-                            Text(isPlayingThis ? "暂停" : "播放这一句")
+                            Text("播放这一句")
                                 .font(Typography.micro)
                         }
                         .foregroundStyle(Theme.Colors.primary)
@@ -505,6 +515,11 @@ struct ListenScreen: View {
         (todayItems.firstIndex { $0.id == item.id } ?? 0) + 1
     }
 
+    /// 这一句在给定列表里的序号（1 起）。
+    private func position(of item: ListenItem, in items: [ListenItem]) -> Int {
+        (items.firstIndex { $0.id == item.id } ?? 0) + 1
+    }
+
     // MARK: - 播放指令
 
     /// 播一份列表里的第 `index` 条。
@@ -513,21 +528,27 @@ struct ListenScreen: View {
     /// 顺序反了就会出现「点的是第 300 句，卡片显示 300 / 6」。
     private func play(_ list: [ListenItem], title: String, index: Int) {
         guard !list.isEmpty else { return }
+        let target = min(max(index, 0), list.count - 1)
         let items = list.map { AudioPlayer.Item(id: $0.id, text: $0.en) }
         queue = list
         queueTitle = title
-        let ok = audio.playQueue(items, startAt: min(max(index, 0), list.count - 1))
-        notice = ok ? nil : "这条暂无离线音频，换一条试试"
-    }
 
-    /// 句子行上的「播放这一句」：**同一条再点就是暂停 / 继续**，换一条才切过去从头播。
-    /// 播完之后再点是重播这一条（`AudioPlayer.toggle()` 里处理）。
-    private func tapSentence(_ item: ListenItem, list: [ListenItem], title: String) {
-        if audio.nowPlayingId == item.id {
-            audio.toggle()
-            return
+        // 换一条先把上一句的兜底朗读掐掉，否则网络 TTS 会和新音频叠在一起。
+        SpeechFallback.shared.stop()
+        // Android 2.10.0 起放完一句就停，不再自动接下一句。
+        // 显式关掉，别留下「开关删了、状态还开着」这种看不见的行为。
+        audio.continuous = false
+        notice = nil
+
+        let ok = audio.playQueue(items, startAt: target)
+        guard !ok else { return }
+
+        // 离线包没有这一条时，先走网络 TTS，再退系统 TTS。
+        // 接在 ok == false 这同一个出口，不另开并行路径：
+        // 切条与离开页面只需要在一处 stop，不会漏掉另一条路上的合成器。
+        SpeechFallback.shared.play(text: list[target].en) { played in
+            notice = played ? nil : "这条暂时放不出来，换一条试试"
         }
-        play(list, title: title, index: list.firstIndex { $0.id == item.id } ?? 0)
     }
 
     private func step(_ delta: Int) {
@@ -560,7 +581,7 @@ struct ListenScreen: View {
         }
     }
 
-    /// 切到某一句就算听过。已经记过的就不再记 —— 反复点同一条不该刷高今天的量。
+    /// 切到某一句就算听过。已经记过的就不再记，反复点同一条不该刷高今天的量。
     private func markHeard(_ id: String?) {
         guard let id, !id.isEmpty else { return }
         if doneIds.contains(id) { return }
@@ -584,7 +605,7 @@ struct ListenScreen: View {
         return best
     }
 
-    /// 倍速标签。用固定的几个字面值而不是 `String(format: "%.2f")` ——
+    /// 倍速标签。用固定的几个字面值而不是 `String(format: "%.2f")`：
     /// 后者会把 0.7 显示成「0.70×」，多出来的那个 0 纯属噪音。
     private static func speedLabel(_ value: Double) -> String {
         if value == 0.7 { return "0.7×" }
