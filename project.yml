@@ -34,8 +34,12 @@ targets:
         buildPhase: resources
       # App 图标：Assets.xcassets 里只有 AppIcon.appiconset，
       # 界面上的图标一律走 SF Symbols，没有图片图标。
+      # ★ 这里**不能**写 type: group。XcodeGen 2.46 起会把 group 里的 .xcassets 拆成
+      #   逐个文件加进 Copy Bundle Resources，于是 Assets.xcassets/Contents.json 和
+      #   AppIcon.appiconset/Contents.json 都被拍到 app 根目录，构建报
+      #   Multiple commands produce .../WaterCompanion.app/Contents.json。
+      #   不写 type 时 XcodeGen 按扩展名识别成 folder.assetcatalog，交给 actool 编译。
       - path: Resources/Assets.xcassets
-        type: group
         buildPhase: resources
       # 音频：folder reference（蓝色文件夹），整个 Audio/ 原样拷进 bundle，
       # 运行期路径是 Audio/<file>.m4a。
