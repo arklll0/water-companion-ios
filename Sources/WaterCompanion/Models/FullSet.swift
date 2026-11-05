@@ -96,6 +96,8 @@ struct FullPaper: Decodable, Identifiable {
             switch level {
             case "cet4": return "四级"
             case "cet6": return "六级"
+            case "ky": return "考研"
+            case "ck": return "成考"
             default: return level
             }
         }

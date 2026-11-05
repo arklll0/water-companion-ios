@@ -137,7 +137,11 @@ final class ContentStore {
             lectures = lectureFile
         }
 
-        fullPapers = decodeArray(FullPaper.self, file: "papers_full", issues: &issues)
+        // 整套：四级/六级 30 套在前，考研 15 套追加在后。
+        // fullSetDone 存的是 FullPaper.id，顺序不影响存档。
+        let cetFull = decodeArray(FullPaper.self, file: "papers_full", issues: &issues)
+        let kyFull = decodeArray(FullPaper.self, file: "ky_full", issues: &issues)
+        fullPapers = cetFull + kyFull
 
         if let list: CkWordList = decodeObject(CkWordList.self, file: "ck_words", issues: &issues) {
             ckWordList = list

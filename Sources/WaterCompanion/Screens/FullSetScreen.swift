@@ -130,7 +130,7 @@ struct FullSetScreen: View {
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
 
-                    Text("\(paper.meta.levelLabel) · 听力 \(paper.listening.questions.count) 题")
+                    Text(paperSubtitle(paper))
                         .appCaption()
                 }
 
@@ -146,9 +146,40 @@ struct FullSetScreen: View {
         }
     }
 
+    /// 卡片副标题：考研卷没有听力，写「听力 0 题」像是数据丢了；缺题也如实标出来。
+    private func paperSubtitle(_ paper: FullPaper) -> String {
+        var parts = [paper.meta.levelLabel]
+        let listen = paper.listening.questions.count
+        if listen > 0 {
+            parts.append("听力 \(listen) 题")
+        }
+        let read = paper.reading.cloze.blanks.count
+            + paper.reading.matching.statements.count
+            + paper.reading.careful.reduce(0) { $0 + $1.questions.count }
+        parts.append("阅读 \(read) 题")
+        let gap = paper.answerGaps.careful.count
+        if gap > 0 {
+            parts.append("收录 \(45 - gap)/45 题")
+        }
+        return parts.joined(separator: " · ")
+    }
+
     // ════════════════════════════════════════════════════════════════
     //  MARK: - 做卷态
     // ════════════════════════════════════════════════════════════════
+
+    /// 这套卷实际有内容的段：0 写作 / 1 听力 / 2 阅读 / 3 翻译。
+    /// 考研卷没有听力，分区控件不能给它留一个点进去空白的页签。
+    private func visibleSections(_ paper: FullPaper) -> [Int] {
+        var out: [Int] = []
+        if !paper.writing.directions.isEmpty { out.append(0) }
+        if !paper.listening.questions.isEmpty { out.append(1) }
+        if !paper.reading.cloze.blanks.isEmpty
+            || !paper.reading.matching.paragraphs.isEmpty
+            || !paper.reading.careful.isEmpty { out.append(2) }
+        if !paper.translation.chinese.isEmpty { out.append(3) }
+        return out.isEmpty ? [0] : out
+    }
 
     private func paperPage(_ paper: FullPaper) -> some View {
         VStack(spacing: 0) {
@@ -164,8 +195,9 @@ struct FullSetScreen: View {
             }
             .padding(.horizontal, Space.pageEdge)
 
+            // 考研卷没有听力：留一个点进去空白的「听力」页签只会让人以为数据丢了。
             Picker("部分", selection: $section) {
-                ForEach(Self.sectionTitles.indices, id: \.self) { index in
+                ForEach(visibleSections(paper), id: \.self) { index in
                     Text(Self.sectionTitles[index]).tag(index)
                 }
             }
@@ -210,7 +242,10 @@ struct FullSetScreen: View {
         VStack(alignment: .leading, spacing: Space.lg) {
             SectionHeader(
                 "写作",
-                subtitle: "\(paper.writing.minutes) 分钟 / \(paper.writing.minWords)-\(paper.writing.maxWords) 词"
+                // 考研英语二是一篇 100 词、一篇 150 词，压成一个区间会误导
+                subtitle: paper.meta.level == "ky"
+                    ? "建议 Part A 约 100 词 · Part B 约 150 词"
+                    : "\(paper.writing.minutes) 分钟 / \(paper.writing.minWords)-\(paper.writing.maxWords) 词"
             )
 
             AppCard {
@@ -290,20 +325,26 @@ struct FullSetScreen: View {
 
     private func readingSection(_ paper: FullPaper) -> some View {
         VStack(alignment: .leading, spacing: Space.lg) {
-            Picker("阅读部分", selection: $readingTab) {
-                ForEach(Self.readingTitles.indices, id: \.self) { index in
-                    Text(Self.readingTitles[index]).tag(index)
-                }
-            }
-            .pickerStyle(.segmented)
-            .labelsHidden()
-
-            if readingTab == 0 {
-                clozeSection(paper)
-            } else if readingTab == 1 {
-                matchingSection(paper)
-            } else {
+            // 考研卷的阅读只有 careful 一段（完形 1-20、Part A 21-40、Part B 41-45
+            // 都被映射进 careful），没有选词填空 / 段落匹配，不给它三个页签。
+            if paper.meta.level == "ky" {
                 carefulSection(paper)
+            } else {
+                Picker("阅读部分", selection: $readingTab) {
+                    ForEach(Self.readingTitles.indices, id: \.self) { index in
+                        Text(Self.readingTitles[index]).tag(index)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+
+                if readingTab == 0 {
+                    clozeSection(paper)
+                } else if readingTab == 1 {
+                    matchingSection(paper)
+                } else {
+                    carefulSection(paper)
+                }
             }
         }
     }
@@ -461,10 +502,23 @@ struct FullSetScreen: View {
 
     // MARK: 仔细阅读
 
+    /// 考研卷的组标题：完形（1-20）、Part A（21-40）、Part B（41-45）共用 careful。
+    private func carefulGroupTitle(_ firstNo: Int) -> String {
+        if firstNo <= 20 { return "完形填空" }
+        if firstNo >= 41 { return "Part B 新题型" }
+        return "第 \((firstNo - 21) / 5 + 1) 篇"
+    }
+
     private func carefulSection(_ paper: FullPaper) -> some View {
         VStack(alignment: .leading, spacing: Space.lg) {
             ForEach(paper.reading.careful) { group in
                 VStack(alignment: .leading, spacing: Space.lg) {
+                    // 一律标「第 N 篇」会把完形叫成第 1 篇、Part B 叫成第 6 篇。
+                    if paper.meta.level == "ky", let firstNo = group.questions.first?.no {
+                        Text(carefulGroupTitle(firstNo))
+                            .font(Typography.captionEmph)
+                            .foregroundStyle(Theme.Colors.primary)
+                    }
                     if !group.passage.isEmpty {
                         AppCard {
                             ReadingParagraphs(group.passage)
@@ -493,7 +547,11 @@ struct FullSetScreen: View {
 
     private func translationSection(_ paper: FullPaper) -> some View {
         VStack(alignment: .leading, spacing: Space.lg) {
-            SectionHeader("翻译", subtitle: "把下面这段中文译成英文")
+            SectionHeader(
+                "翻译",
+                // 四六级是汉译英，考研英语二是英译汉
+                subtitle: paper.meta.level == "ky" ? "把下面这段英文译成中文" : "把下面这段中文译成英文"
+            )
 
             AppCard {
                 // 中文原文走组件的中文分支：不切 320、不插 U+2002。

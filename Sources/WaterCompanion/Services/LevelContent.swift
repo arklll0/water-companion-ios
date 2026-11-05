@@ -127,6 +127,20 @@ enum LevelContent {
         return all.indices.filter { i in level.accepts(all[i].lv) }
     }
 
+    /// 整套真题：考研只出考研卷（`ky_full.json`，15 套）。
+    ///
+    /// 不能走 `accepts`：`.ky` 的口径同时接受 cet4，会把 15 套四级整套一起列出来，
+    /// 考研用户点进去做的还是四级卷。只有 ky 素材整份丢失才退回通用规则。
+    static func fullSetIndices(_ all: [FullPaper], level: CetLevel) -> [Int] {
+        if level == .ky {
+            let kyOnly = all.indices.filter { i in all[i].meta.level == "ky" }
+            if !kyOnly.isEmpty {
+                return kyOnly
+            }
+        }
+        return all.indices.filter { i in level.accepts(all[i].meta.level) }
+    }
+
     /// 常考翻译词组。目前全部标 both，过滤只是让接口与其余几个池子保持一致。
     static func phrases(_ all: [Phrase], level: CetLevel) -> [Phrase] {
         all.filter { level.accepts($0.lv) }
