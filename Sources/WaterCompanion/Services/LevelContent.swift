@@ -93,7 +93,7 @@ enum LevelContent {
                 return ckOnly
             }
         }
-        return all.indices.filter { level.accepts(all[i].lv) }
+        return all.indices.filter { i in level.accepts(all[i].lv) }
     }
 
     /// 常考翻译词组。目前全部标 both，过滤只是让接口与其余几个池子保持一致。
