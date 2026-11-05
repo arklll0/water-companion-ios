@@ -327,7 +327,7 @@ struct WordsScreen: View {
                         // 详细资料接在例句 / 例句翻译下方、评分按钮（卡片外）上方。
                         // 整张卡片长在外层 FormPage 的 ScrollView 里，所以这里
                         // 不加内层滚动、不设固定高度：内容多高卡片就多高，文字不会被裁。
-                        if let detail = content.wordDetail(word: queue[index].word) {
+                        if let detail = content.wordDetail(queue[index].word) {
                             WordDetailSection(detail: detail)
                                 .padding(.top, Space.lg)
                         }
