@@ -335,6 +335,23 @@ struct MeScreen: View {
                 .foregroundStyle(Theme.Colors.textSecondary)
             }
 
+            Toggle(
+                isOn: Binding(
+                    get: { progress.soundEffects },
+                    set: { store.setSoundEffects($0) }
+                )
+            ) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("背单词提示音")
+                        .font(Typography.body)
+                        .foregroundStyle(Theme.Colors.textPrimary)
+                    Text("认识敲一下，忘了敲两下")
+                        .font(Typography.micro)
+                        .foregroundStyle(Theme.Colors.textSecondary)
+                }
+            }
+            .tint(Theme.Colors.primary)
+
             VStack(alignment: .leading, spacing: Space.sm) {
                 Text("每天学多久")
                     .font(Typography.caption)

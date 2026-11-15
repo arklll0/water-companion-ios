@@ -315,6 +315,13 @@ final class ProgressStore {
         }
     }
 
+    /// 背单词提示音开关
+    func setSoundEffects(_ on: Bool) {
+        update { p in
+            p.soundEffects = on
+        }
+    }
+
     /// 记录备考级别（cet4 / cet6 / ky / ck / all）。
     /// 只存 key 字符串，不在这里校验：解析交给 `CetLevel.fromKey`，
     /// 非法值会得到 nil，界面重新弹选级页，行为比「静默落回四级」可预期。

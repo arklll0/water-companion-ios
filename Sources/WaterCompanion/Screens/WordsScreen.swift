@@ -458,7 +458,10 @@ struct WordsScreen: View {
         // 顺序与 Android 一致：先音效、再震动、最后写库。
         // 反馈必须先于状态变更，否则卡片已经翻到下一张，声音才跟上来，
         // 听感上会像是「给下一张打的分」。
-        JudgeSfx.judge(rating)
+        // 提示音在「我的 → 背单词提示音」里能关；关掉只是不敲木鱼，评分照常。
+        if store.progress.soundEffects {
+            JudgeSfx.judge(rating)
+        }
         WordsScreen.haptic()
 
         store.recordWordRating(word: item.word, rating: rating)

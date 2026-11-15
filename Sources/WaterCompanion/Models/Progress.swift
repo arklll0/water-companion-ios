@@ -286,6 +286,10 @@ struct Progress: Codable, Hashable {
     /// 默认 false —— 与 Android 版一致。老存档没有这个键，解码时补 false，
     /// 也就是升级上来的用户看到的还是原来那套绿，不会突然变蓝。
     var companion: Bool = false
+    /// 背单词提示音开关。默认开 —— 与 Android 版一致，老存档补 true。
+    ///
+    /// 关掉只是不敲木鱼，不影响评分本身，也不影响听力/发音的音频。
+    var soundEffects: Bool = true
 
     init(
         startDate: String? = nil,
@@ -310,7 +314,8 @@ struct Progress: Codable, Hashable {
         fullSetDone: [String] = [],
         listenRating: [String: Int] = [:],
         listenDue: [String: String] = [:],
-        companion: Bool = false
+        companion: Bool = false,
+        soundEffects: Bool = true
     ) {
         self.startDate = startDate
         self.examDate = examDate
@@ -335,6 +340,7 @@ struct Progress: Codable, Hashable {
         self.listenRating = listenRating
         self.listenDue = listenDue
         self.companion = companion
+        self.soundEffects = soundEffects
     }
 
     enum CodingKeys: String, CodingKey {
@@ -347,6 +353,7 @@ struct Progress: Codable, Hashable {
         case level, fullSetDone
         case listenRating, listenDue
         case companion
+        case soundEffects
     }
 
     init(from decoder: Decoder) throws {
@@ -374,6 +381,7 @@ struct Progress: Codable, Hashable {
         listenRating = try c.decodeIfPresent([String: Int].self, forKey: .listenRating) ?? [:]
         listenDue = try c.decodeIfPresent([String: String].self, forKey: .listenDue) ?? [:]
         companion = try c.decodeIfPresent(Bool.self, forKey: .companion) ?? false
+        soundEffects = try c.decodeIfPresent(Bool.self, forKey: .soundEffects) ?? true
     }
 
     /// 某一天的学习量（没有记录就是全 0，不是 nil，调用方不必到处判空）
