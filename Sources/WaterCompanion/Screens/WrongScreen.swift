@@ -31,7 +31,10 @@ import SwiftUI
 struct WrongScreen: View {
 
     @Environment(ProgressStore.self) private var store
-    @Environment(ContentStore.self) private var content
+    // ★ 不能叫 `content`：本页本来就有一个 `private var content: some View`
+    //   （body 的内容视图），同名会报 invalid redeclaration，
+    //   紧接着 `toolbar(content:)` 也会变成 ambiguous use。
+    @Environment(ContentStore.self) private var contentStore
     @Environment(AudioPlayer.self) private var audio
 
     /// 点「重做」后由 RootView 负责切到练习页（这一页不该知道外面有几个页签）
@@ -55,7 +58,7 @@ struct WrongScreen: View {
         let due = store.progress.listenDue
 
         var byId: [String: ListenItem] = [:]
-        for item in content.allListening { byId[item.id] = item }
+        for item in contentStore.allListening { byId[item.id] = item }
 
         return ratings
             .filter { $0.value <= 2 }
