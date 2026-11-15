@@ -107,6 +107,8 @@ struct HomeScreen: View {
             AppBackground()
 
             FormPage {
+                greetingRow
+
                 hero
 
                 // 完成横幅紧跟在进度环后面：环已经满格，横幅解释「满格意味着什么」。
@@ -137,6 +139,53 @@ struct HomeScreen: View {
             if newValue > oldValue {
                 quoteIndex = (quoteIndex + 1) % HomeScreen.quotes.count
             }
+        }
+    }
+
+    // MARK: - 问候（看板娘）
+
+    /// 按时间给一句问候。不喊「加油」，那是页面底部激励语的活，重复了就成了噪音。
+    private var greeting: String {
+        switch Calendar.current.component(.hour, from: Date()) {
+        case 5..<11: return "早上好"
+        case 11..<14: return "中午好"
+        case 14..<18: return "下午好"
+        case 18..<23: return "晚上好"
+        default: return "夜深了"
+        }
+    }
+
+    /// 情绪必须跟着真实进度走，不能随机：同一屏里她说的话和她的表情得是同一件事。
+    private var greetingEmotion: MascotEmotion {
+        if tasks.isEmpty { return .sleepy }
+        if doneCount == tasks.count { return .happy }
+        return doneCount == 0 ? .encourage : .focus
+    }
+
+    /// 与 `heroTitle` / `heroSubtitle` 错开分工：那两行讲「今天还剩多少」，这行讲「第几天」。
+    private var greetingDetail: String {
+        if tasks.isEmpty { return "今天都推掉了，明天记得先做它们" }
+        if doneCount == tasks.count { return "今天全做完了，去休息" }
+        if doneCount > 0 { return "还剩 \(tasks.count - doneCount) 件，接着来" }
+        return "第 \(dayNumber) 天，先做 2 分钟也算开始"
+    }
+
+    /// 页头，不是内容面：刻意不套 `AppCard`。再叠一张卡会和下面的 hero 卡抢层级，
+    /// 还要额外吃掉 32pt 高度，把第一张任务卡挤出首屏。
+    private var greetingRow: some View {
+        HStack(spacing: Space.md) {
+            MascotAvatar(greetingEmotion, size: 56)
+
+            VStack(alignment: .leading, spacing: Space.xs) {
+                Text(greeting)
+                    .font(Typography.titleSmall)
+                    .foregroundStyle(Theme.Colors.textPrimary)
+                Text(greetingDetail)
+                    .appCaption()
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Spacer(minLength: 0)
         }
     }
 

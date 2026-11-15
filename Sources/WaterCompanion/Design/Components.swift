@@ -274,6 +274,10 @@ struct FormPage<Content: View>: View {
 //  刻意**不**提供自定义空态组件：空态一律用系统的 `ContentUnavailableView`
 //  （iOS 17）。它的图标尺寸、标题字重、说明间距都是系统调好的，
 //  自己再画一个只会比系统更像「另一个 App」。
+//
+//  ★ 唯一的例外是 `MascotEmptyState`（见 `Design/Mascot.swift`）：
+//    系统的图标位只放得下一个 SF Symbol，塞不进看板娘的立绘。
+//    需要「形象 + 解释 + 出口」三件套的地方才用它，其余空态继续走系统组件。
 
 // MARK: - 分隔线
 //

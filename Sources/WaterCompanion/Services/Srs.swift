@@ -130,4 +130,37 @@ enum Srs {
     static func rateFamily(_ entry: WordProgress, _ rating: Int) -> WordProgress {
         rate(entry, rating)
     }
+
+    // MARK: - 听力句子
+    //
+    //  与单词的 SRS 是两套东西：句子的「掌握程度」只能靠自评，没有对错可判，
+    //  所以不套 5 阶段间隔表，只按三档给一个固定的复训间隔。
+
+    /// 听力三档 → 下次复训间隔（天）。
+    ///
+    /// 没听懂的明天就来，模糊的隔三天，听懂了的隔十天再兜一遍。
+    /// 这三档不是为了精确排期，是为了让「都听不懂还往下滑」变成一个要动手的选择：
+    /// 只要不动手，句子就一直留在到期表里，第二天还会出现在列表前面。
+    static func listenGap(_ rating: Int) -> Int {
+        switch rating {
+        case 1: return 1
+        case 2: return 3
+        default: return 10
+        }
+    }
+
+    /// 到期该复训的句子 id，先到期的排前面。
+    ///
+    /// 日期是 yyyy-MM-dd，字典序即时间序，可以直接比字符串。
+    /// ★ 这里刻意不用 `dayIndex`：它对 90 取模，第 91 天会退回第 1 天，
+    /// 拿它算到期日会让复训在第 90 天附近突然全部「消失」。
+    static func dueListen(_ due: [String: String], today: String = Srs.today()) -> [String] {
+        due
+            .filter { !$0.value.isEmpty && $0.value <= today }
+            .sorted { lhs, rhs in
+                if lhs.value == rhs.value { return lhs.key < rhs.key }
+                return lhs.value < rhs.value
+            }
+            .map(\.key)
+    }
 }

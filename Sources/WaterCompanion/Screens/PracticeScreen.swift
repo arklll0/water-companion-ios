@@ -153,7 +153,11 @@ struct PracticeScreen: View {
     /// 整套真题按级别过滤。`FullSetScreen` 自己管列表 / 做卷 / 结算三段状态，
     /// 这里只负责给数据并把交卷结果落盘。
     private var fullSetPapers: [FullPaper] {
-        content.fullPapers.filter { level.accepts($0.meta.level) }
+        // 不能直接走 `level.accepts`：`.ky` / `.ck` 的口径都同时接受 cet4，
+        // 照 accepts 走，考研用户会看到「四级 15 套 + 考研 15 套」共 30 套，
+        // 点进去做的还是四级卷。分流规则集中在 `LevelContent.fullSetIndices`。
+        LevelContent.fullSetIndices(content.fullPapers, level: level)
+            .map { content.fullPapers[$0] }
     }
 
     private var fullSet: some View {
@@ -168,7 +172,8 @@ struct PracticeScreen: View {
                     correct: result.correct,
                     total: result.total,
                     acc: result.acc,
-                    score: result.score
+                    score: result.score,
+                    scoreMax: result.scoreMax
                 )
             )
             store.markFullSetDone(result.paperId)

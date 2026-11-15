@@ -170,6 +170,19 @@ final class ProgressStore {
         }
     }
 
+    /// 听力句子的三档自评：1 没听懂 / 2 模糊 / 3 听懂。
+    ///
+    /// 1 和 2 都算错题（错题集直接按这个 map 筛），并按档位排下次复训。
+    /// 评 3 不删记录，只把到期日推远 —— 万一以后想回看「哪句当初没听懂」，痕迹还在。
+    func rateListen(id: String, rating: Int) {
+        guard !id.isEmpty else { return }
+        let due = Srs.addDays(Srs.today(), Srs.listenGap(rating))
+        update { p in
+            p.listenRating[id] = rating
+            p.listenDue[id] = due
+        }
+    }
+
     /// 标记「每日练习」的某道小题做过了（key = PaperItemRef.id，如 "3-4"）
     func markPaperDone(id: String) {
         update { p in

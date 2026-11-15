@@ -13,6 +13,9 @@ struct FullSetResult {
     let total: Int
     let acc: Int
     let score: Int
+    /// 这份卷子的满分。四六级 710，考研英语二 / 成考学位英语 100。
+    /// 不带上它，结算页就会把 62 分印成「710 分制」，看起来像考砸了。
+    let scoreMax: Int
 }
 
 // MARK: - 整套真题
@@ -94,7 +97,17 @@ struct FullSetScreen: View {
     @ViewBuilder
     private var paperList: some View {
         if papers.isEmpty {
-            ContentUnavailableView("这一档还没有整套真题", systemImage: "doc.text")
+            // 这里换成自建空态：系统 ContentUnavailableView 的图标位只放得下一个 SF Symbol，
+            // 塞不进立绘。她趴着打盹，正好对上「这一档什么都没有」。
+            // `.frame(maxWidth:maxHeight:)` 不能省：这个分支在 `ZStack { AppBackground(); content }`
+            // 里，不给满宽满高就不会居中。
+            MascotEmptyState(
+                pose: .sleep,
+                emotion: .sleepy,
+                title: "这一档还没有整套真题",
+                message: "先做单篇听力和阅读，攒够手感再来整套。"
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             ScrollView {
                 VStack(spacing: Space.itemGap) {
@@ -157,10 +170,13 @@ struct FullSetScreen: View {
         let read = paper.reading.cloze.blanks.count
             + paper.reading.matching.statements.count
             + paper.reading.careful.reduce(0) { $0 + $1.questions.count }
-        // 成考的「阅读」区里装着词汇语法 + 完形 + 阅读三段，
-        // 笼统写「阅读 48 题」会把词汇题算成阅读题
-        parts.append(paper.meta.level == "ck" ? "共 \(read) 题" : "阅读 \(read) 题")
-        let gap = paper.answerGaps.listening.count + paper.answerGaps.cloze.count
+        // 成考 / 考研的「阅读」区里都不只有阅读：成考装词汇语法 + 完形 + 阅读三段，
+        // 考研装完形 + 阅读 + Part B。笼统写「阅读 48 题」会把别的题型算成阅读题。
+        let mixedReading = paper.meta.level == "ck" || paper.meta.level == "ky"
+        parts.append(mixedReading ? "共 \(read) 题" : "阅读 \(read) 题")
+        // 缺口只数**阅读区**的：`read` 里没有听力，却把 `answerGaps.listening` 也减掉，
+        // 结果是 3 套六级卷显示成「收录 -2/30 题」（分母漏算听力、减数包含听力）。
+        let gap = paper.answerGaps.cloze.count
             + paper.answerGaps.matching.count + paper.answerGaps.careful.count
         if gap > 0 {
             parts.append("收录 \(read - gap)/\(read) 题")
@@ -212,9 +228,15 @@ struct FullSetScreen: View {
 
             // 录音放在顶部常驻：听力途中切到阅读看题时，按钮还在原地，
             // 不用滚回听力页再点。
-            audioButton(paper)
-                .padding(.horizontal, Space.pageEdge)
-                .padding(.bottom, Space.sm)
+            // 考研 / 成考卷压根没有听力段（`visibleSections` 不给 1），
+            // 在写作页顶上挂一个永远失败的播放按钮是纯噪音。
+            // `audio` 为空 = 这套卷没有录音；有文件名但找不到文件时仍要显示按钮，
+            // 那种情况下「录音没打进包」是实话实说的有用信息。
+            if !paper.audio.isEmpty {
+                audioButton(paper)
+                    .padding(.horizontal, Space.pageEdge)
+                    .padding(.bottom, Space.sm)
+            }
 
             ScrollView {
                 VStack(alignment: .leading, spacing: Space.lg) {
@@ -387,7 +409,10 @@ struct FullSetScreen: View {
                         alignment: .leading,
                         spacing: Space.xs
                     ) {
-                        ForEach(cloze.bank.indices, id: \.self) { index in
+                        // 词库里可能混着空词（PDF 抽取时丢的词），空词不渲染，
+                        // 但字母仍按**下标**取：`chosen` 存的就是 bank 下标，判分时再用
+                        // `Self.letter(index)` 换成字母，索引一重排字母就和答案键对不上了。
+                        ForEach(clozeWordIndices(cloze.bank), id: \.self) { index in
                             Text("\(Self.letter(index)). \(cloze.bank[index])")
                                 .font(Typography.micro)
                                 .foregroundStyle(Theme.Colors.textSecondary)
@@ -417,7 +442,9 @@ struct FullSetScreen: View {
                 HStack(spacing: Space.sm) {
                     wordMenu(
                         label: bankLabel(bank, chosen[blank.no]),
-                        titles: bank.indices.map { "\(Self.letter($0)). \(bank[$0])" }
+                        options: clozeWordIndices(bank).map {
+                            (index: $0, title: "\(Self.letter($0)). \(bank[$0])")
+                        }
                     ) { index in
                         chosen[blank.no] = index
                     }
@@ -499,7 +526,7 @@ struct FullSetScreen: View {
                 HStack(spacing: Space.sm) {
                     wordMenu(
                         label: letterLabel(chosen[number], letters: letters),
-                        titles: letters
+                        options: letters.indices.map { (index: $0, title: letters[$0]) }
                     ) { index in
                         chosen[number] = index
                     }
@@ -611,13 +638,13 @@ struct FullSetScreen: View {
     /// 十五个分段在手机上每段只有两三个字符宽，根本点不中。
     private func wordMenu(
         label: String,
-        titles: [String],
+        options: [(index: Int, title: String)],
         onPick: @escaping (Int) -> Void
     ) -> some View {
         Menu {
-            ForEach(titles.indices, id: \.self) { index in
-                Button(titles[index]) {
-                    onPick(index)
+            ForEach(options, id: \.index) { option in
+                Button(option.title) {
+                    onPick(option.index)
                 }
             }
         } label: {
@@ -632,6 +659,13 @@ struct FullSetScreen: View {
             .padding(.horizontal, Space.md)
             .frame(minHeight: Touch.min)
             .background(Theme.Colors.primarySoft, in: Capsule())
+        }
+    }
+
+    /// 词库里能真正展示的选项下标（跳过空词）。
+    private func clozeWordIndices(_ bank: [String]) -> [Int] {
+        bank.indices.filter {
+            !bank[$0].trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         }
     }
 
@@ -659,14 +693,27 @@ struct FullSetScreen: View {
         }
     }
 
+    /// 卷面满分：四六级 710，考研英语二 / 成考学位英语都是 100。
+    /// 这三级走的是同一套「整套真题」界面，靠 `meta.level` 区分。
+    private static func scoreMax(for paper: FullPaper) -> Int {
+        let hundred = paper.meta.level == "ky" || paper.meta.level == "ck"
+        return hundred ? 100 : 710
+    }
+
     private func submit() {
         guard let paper = selected else { return }
         let tally = grade(paper)
         let accuracy = tally.total == 0 ? 0 : tally.correct * 100 / tally.total
-        // 710 分制：正确率折算成 70% 的区间，再加 248 的基数。
-        // 全对刚好 710，全错是 248（四六级成绩单的下限）。
-        let raw = Double(710 * tally.correct) / Double(max(tally.total, 1)) * 0.7
-        let score = min(710, Int(raw.rounded()) + 248)
+
+        // 折算一律按「已判分题目的正确率」，不做难度加权 —— 加权要真实卷面的分值分布，
+        // 我们没有，硬编一个系数只会让它看起来比实际更准。
+        // 710 制保留老口径：正确率折成 70% 的区间再加 248 基数，全对 710、全错 248
+        // （248 是四六级成绩单的下限）。100 制没有这个下限，直接从 0 起算。
+        let scoreMax = Self.scoreMax(for: paper)
+        let ratio = Double(tally.correct) / Double(max(tally.total, 1))
+        let score: Int = scoreMax == 100
+            ? Int((100 * ratio).rounded())
+            : min(710, Int((Double(710) * ratio * 0.7 + 248).rounded()))
 
         let finished = FullSetResult(
             paperId: paper.id,
@@ -674,7 +721,8 @@ struct FullSetScreen: View {
             correct: tally.correct,
             total: tally.total,
             acc: accuracy,
-            score: score
+            score: score,
+            scoreMax: scoreMax
         )
         result = finished
         onFinish(finished)
@@ -688,7 +736,7 @@ struct FullSetScreen: View {
                         .font(Typography.dataLarge)
                         .monospacedDigit()
                         .foregroundStyle(Theme.Colors.primary)
-                    Text("710 分制估分")
+                    Text("\(finished.scoreMax) 分制估分")
                         .appCaption()
 
                     HStack(spacing: Space.sm) {

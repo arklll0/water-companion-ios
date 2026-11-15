@@ -121,6 +121,7 @@ struct MeScreen: View {
 
     private var list: some View {
         List {
+            mascotSection
             featureSection
             levelSection
             appearanceSection
@@ -130,6 +131,37 @@ struct MeScreen: View {
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
+    }
+
+    // MARK: - 角色卡
+
+    /// 这一页本来是纯设置表，最上面一格让她露个面。
+    /// 只用现成字段（开始日期、碰过的词数），不为了这张图新增任何存档字段。
+    private var mascotSection: some View {
+        Section {
+            HStack(spacing: Space.md) {
+                MascotStage(.stand, figureHeight: 116, disc: 124)
+
+                VStack(alignment: .leading, spacing: Space.xs) {
+                    Text("汐汐")
+                        .font(Typography.titleSmall)
+                        .foregroundStyle(Theme.Colors.textPrimary)
+
+                    Text("陪你第 \(dayNumber) 天")
+                        .appCaption()
+
+                    Text("已经碰过 \(progress.wordProgress.count) 个词")
+                        .appCaption()
+                }
+
+                Spacer(minLength: 0)
+            }
+            .listRowBackground(Theme.Colors.surface)
+        }
+    }
+
+    private var dayNumber: Int {
+        DailyPlan.dayNumber(startDate: progress.startDate)
     }
 
     // MARK: - 功能入口

@@ -32,6 +32,8 @@ struct LectureScreen: View {
 
     private var catalog: some View {
         List {
+            introRow
+
             ForEach(lectures.chapters) { chapter in
                 Section {
                     ForEach(chapter.lessons) { lesson in
@@ -50,6 +52,35 @@ struct LectureScreen: View {
         .listStyle(.insetGrouped)
         // 不隐藏的话，List 会盖一层系统底色，AppBackground 就被埋掉了。
         .scrollContentBackground(.hidden)
+    }
+
+    // MARK: - 目录顶上那张「她在讲课」
+
+    /// 讲义是唯一一处「有人在教」的场景，所以讲台这张图只挂在这里。
+    /// 不套卡片：目录本身就是一张分组表，顶上再压一张白卡片会多出一层边界。
+    private var introRow: some View {
+        HStack(spacing: Space.md) {
+            MascotStage(.teach, figureHeight: 112, disc: 120)
+
+            VStack(alignment: .leading, spacing: Space.xs) {
+                Text("一章一个语法点")
+                    .font(Typography.titleSmall)
+                    .foregroundStyle(Theme.Colors.textPrimary)
+
+                Text("\(lectures.chapters.count) 章 \(lessonCount) 篇，翻到哪读到哪，不用从头开始。")
+                    .appCaption()
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .listRowBackground(Color.clear)
+        .listRowSeparator(.hidden)
+    }
+
+    /// 篇数算出来，不写死：以后增删篇目不用回来改文案。
+    private var lessonCount: Int {
+        lectures.chapters.reduce(0) { $0 + $1.lessons.count }
     }
 
     private func row(chapter: LectureChapter, lesson: LectureLesson) -> some View {

@@ -95,6 +95,14 @@ enum Theme {
         static let ringTrack = Color(light: 0xCFE5DE, dark: 0x223028)
         /// 横幅 / 提示条底色
         static let banner = Color(light: 0xE8F2EF, dark: 0x16332A)
+        /// 看板娘的底盘（头像圆、空态圆）。
+        /// ★ 这是全 App 唯一一个「不属品牌绿」的容器色：角色本身是蓝的（#2E5BD8），
+        ///   必须有自己的一块底，蓝色才不会渗进页面的墨绿色板。
+        /// ★ 深色模式**不能给近黑**：她的轮廓线是深海军蓝（#1B2A4A），
+        ///   落在 #181B1F 的卡片上会整片糊掉，只剩一团白头发。
+        ///   两档都保持浅色 —— 立绘本来就是画在白底上的，浅底才是不改画的观感；
+        ///   深色下的浅圆看起来像一张「贴纸」，这是有意的取舍，不是漏改。
+        static let mascotHalo = Color(light: 0xCFE5DE, dark: 0xB4C7BE)
         /// 错误色
         static let error = Color(light: 0xA3312A, dark: 0xE8837B)
         /// 功能性描边（空心圈、未选中控件）

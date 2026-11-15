@@ -164,10 +164,11 @@ struct WordsScreen: View {
 
             Section {
                 if newWords.isEmpty {
-                    ContentUnavailableView(
-                        "词库已全部接触一遍",
-                        systemImage: "checkmark.circle",
-                        description: Text("接下来主要是复习")
+                    // 列表里塞立绘太重，这里用头像版：抬头能看见她，又不撑破分组行。
+                    MascotEmptyState(
+                        emotion: .happy,
+                        title: "词库已全部接触一遍",
+                        message: "接下来主要是复习，把见过的词收干净。"
                     )
                 } else {
                     ForEach(Array(newWords.prefix(8))) { word in
@@ -247,10 +248,18 @@ struct WordsScreen: View {
             if flipped {
                 ratingGrid
             } else {
-                Text("先自己想一下意思，再翻开对答案。")
-                    .appCaption()
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
+                // 她坐在这儿陪你翻卡。只在「还没翻」时出现：翻开后视线该落在评分按钮上，
+                // 多一张脸只会分心。
+                HStack(spacing: Space.sm) {
+                    MascotAvatar(.think, size: 40)
+
+                    Text("先自己想一下意思，再翻开对答案。")
+                        .appCaption()
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Spacer(minLength: 0)
+                }
+                .padding(.horizontal, Space.xs)
             }
         }
     }
@@ -378,10 +387,12 @@ struct WordsScreen: View {
     private var finishPanel: some View {
         AppCard {
             VStack(spacing: Space.sm) {
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 36, weight: .regular))
-                    .foregroundStyle(Theme.Colors.primary)
-                    .symbolEffect(.bounce, value: finished)
+                // 原来这里是一个系统对勾。换成她举手欢呼：一组背完是今天唯一值得庆祝的时刻，
+                // 一个勾号承受不了这个情绪。立绘沿用空态那块底盘（深色模式下深蓝轮廓
+                // 直接贴卡片会糊掉）。欢呼这张是窄高构图，人比底盘高，头肩会冒出圆外。
+                MascotStage(.cheer, figureHeight: 168, disc: 150)
+                    .padding(.top, Space.xs)
+
                 Text("这一组完成了")
                     .font(Typography.title)
                     .foregroundStyle(Theme.Colors.textPrimary)

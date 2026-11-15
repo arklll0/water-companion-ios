@@ -387,7 +387,14 @@ struct ExamScreen: View {
                 Text("\(record.score)")
                     .font(Typography.captionEmph)
                     .monospacedDigit()
-                    .foregroundStyle(record.score >= 425 ? Theme.Colors.primary : Theme.Colors.textPrimary)
+                    // 过线着色按各自主流标准：四六级 425/710，成考学位英语 60/100。
+                    // 考研没有「及格线」这个概念（国家线约 45 分，且单科各有线），
+                    // 100 制统一按 60 着色，只作视觉参照，界面上不写成结论。
+                    .foregroundStyle(
+                        record.score >= (record.scoreMax >= 700 ? 425 : 60)
+                            ? Theme.Colors.primary
+                            : Theme.Colors.textPrimary
+                    )
                     .frame(minWidth: 44, alignment: .trailing)
             }
             .padding(.horizontal, Space.lg)

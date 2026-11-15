@@ -157,19 +157,31 @@ struct ExamRecord: Codable, Hashable, Identifiable {
     var total: Int = 0
     var acc: Int = 0
     var score: Int = 0
+    /// 这条成绩的满分。四六级 710，考研 / 成考学位英语 100。
+    /// 老存档里没有这个字段，一律按 710 兜底 —— 那时候 App 里只有四级模考，
+    /// 历史里不可能出现别的口径。
+    var scoreMax: Int = 710
 
     var id: String { "\(date)|\(score)|\(correct)" }
 
-    init(date: String = "", correct: Int = 0, total: Int = 0, acc: Int = 0, score: Int = 0) {
+    init(
+        date: String = "",
+        correct: Int = 0,
+        total: Int = 0,
+        acc: Int = 0,
+        score: Int = 0,
+        scoreMax: Int = 710
+    ) {
         self.date = date
         self.correct = correct
         self.total = total
         self.acc = acc
         self.score = score
+        self.scoreMax = scoreMax
     }
 
     enum CodingKeys: String, CodingKey {
-        case date, correct, total, acc, score
+        case date, correct, total, acc, score, scoreMax
     }
 
     init(from decoder: Decoder) throws {
@@ -179,6 +191,8 @@ struct ExamRecord: Codable, Hashable, Identifiable {
         total = try c.decodeIfPresent(Int.self, forKey: .total) ?? 0
         acc = try c.decodeIfPresent(Int.self, forKey: .acc) ?? 0
         score = try c.decodeIfPresent(Int.self, forKey: .score) ?? 0
+        // 老存档没有这个键：兜底 710，不能让整条记录 decode 失败（一条坏记录会带走整个 Progress）
+        scoreMax = try c.decodeIfPresent(Int.self, forKey: .scoreMax) ?? 710
     }
 }
 
@@ -260,6 +274,13 @@ struct Progress: Codable, Hashable {
     var level: String? = nil
     /// 整套真题已交卷的 `FullPaper.id`。存 id 而不是下标：真题库往后追加时下标会变。
     var fullSetDone: [String] = []
+    /// 听力句子的三档自评：1 没听懂 / 2 模糊 / 3 听懂。key = `ListenItem.id`
+    ///
+    /// 1 和 2 都进错题集；评 3 **不删记录**，只把到期日推远 —— 想回看
+    /// 「哪句当初没听懂」时痕迹还在。键名与 Android `Progress.listenRating` 一致。
+    var listenRating: [String: Int] = [:]
+    /// 听力句子的下次复训日（yyyy-MM-dd）。key = `ListenItem.id`
+    var listenDue: [String: String] = [:]
 
     init(
         startDate: String? = nil,
@@ -281,7 +302,9 @@ struct Progress: Codable, Hashable {
         paperDone: [String] = [],
         attempts: [Attempt] = [],
         level: String? = nil,
-        fullSetDone: [String] = []
+        fullSetDone: [String] = [],
+        listenRating: [String: Int] = [:],
+        listenDue: [String: String] = [:]
     ) {
         self.startDate = startDate
         self.examDate = examDate
@@ -303,6 +326,8 @@ struct Progress: Codable, Hashable {
         self.attempts = attempts
         self.level = level
         self.fullSetDone = fullSetDone
+        self.listenRating = listenRating
+        self.listenDue = listenDue
     }
 
     enum CodingKeys: String, CodingKey {
@@ -313,6 +338,7 @@ struct Progress: Codable, Hashable {
         case streak, lastActive, todayTaskDone, theme
         case postponed, paperDone, attempts
         case level, fullSetDone
+        case listenRating, listenDue
     }
 
     init(from decoder: Decoder) throws {
@@ -337,6 +363,8 @@ struct Progress: Codable, Hashable {
         attempts = try c.decodeIfPresent([Attempt].self, forKey: .attempts) ?? []
         level = try c.decodeIfPresent(String.self, forKey: .level)
         fullSetDone = try c.decodeIfPresent([String].self, forKey: .fullSetDone) ?? []
+        listenRating = try c.decodeIfPresent([String: Int].self, forKey: .listenRating) ?? [:]
+        listenDue = try c.decodeIfPresent([String: String].self, forKey: .listenDue) ?? [:]
     }
 
     /// 某一天的学习量（没有记录就是全 0，不是 nil，调用方不必到处判空）

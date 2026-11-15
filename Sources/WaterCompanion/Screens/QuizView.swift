@@ -67,6 +67,10 @@ struct QuizView: View {
                 passageCard
             }
             questionCard
+            if answered {
+                feedbackRow
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
             if answered && !explanation.isEmpty {
                 explanationCard
                     .transition(.move(edge: .top).combined(with: .opacity))
@@ -185,6 +189,59 @@ struct QuizView: View {
         return Theme.Colors.textPrimary
     }
 
+    // MARK: - 反馈（看板娘）
+    //
+    //  这一行补的是一个真实的洞：整套真题交卷前 `correctIndex` 传 -1、`explanation` 传空串，
+    //  选项行既不标绿也不标红，用户点完只剩一次震动，等于「点了没反应」。
+    //  所以这里必须分三种情况说话，不能一律「答对了 / 答错了」。
+
+    /// correctIndex < 0 = 这套卷子交卷前不揭晓答案，只能说「记下了」，不能判对错。
+    private var revealed: Bool { correctIndex >= 0 }
+
+    private var isRight: Bool { answered && revealed && chosen == correctIndex }
+
+    private var feedbackEmotion: MascotEmotion {
+        if !revealed { return .think }
+        return isRight ? .happy : .encourage
+    }
+
+    private var feedbackTitle: String {
+        if !revealed { return "已记下" }
+        return isRight ? "答对了" : "这题错了"
+    }
+
+    /// 答对不给第二行：对的题不需要解释，多一行字反而像在夸自己。
+    private var feedbackDetail: String? {
+        if !revealed { return "交卷后一起对答案" }
+        return isRight ? nil : "看下解析，错的地方才是分数"
+    }
+
+    private var feedbackTint: Color {
+        if !revealed { return Theme.Colors.textSecondary }
+        return isRight ? Theme.Colors.primary : Theme.Colors.error
+    }
+
+    private var feedbackRow: some View {
+        HStack(spacing: Space.sm) {
+            MascotAvatar(feedbackEmotion, size: 44)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text(feedbackTitle)
+                    .font(Typography.captionEmph)
+                    .foregroundStyle(feedbackTint)
+                if let feedbackDetail {
+                    Text(feedbackDetail)
+                        .font(Typography.micro)
+                        .foregroundStyle(Theme.Colors.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+
+            Spacer(minLength: 0)
+        }
+        .padding(.horizontal, Space.xs)
+    }
+
     // MARK: - 解析
 
     private var explanationCard: some View {
@@ -198,9 +255,14 @@ struct QuizView: View {
                         .font(Typography.captionEmph)
                         .foregroundStyle(Theme.Colors.primary)
                     Spacer(minLength: 0)
-                    Text(chosen == correctIndex ? "答对了" : "正确答案 \(Self.letter(correctIndex))")
-                        .font(Typography.micro)
-                        .foregroundStyle(Theme.Colors.textSecondary)
+                    // 「答对了」已经由上面的反馈行承担，这里只留客观答案。
+                    // `revealed` 守卫不能省：`Self.letter(-1)` 会返回字符串 "0"，
+                    // 万一有人给整套真题传了非空解析，就会出现「正确答案 0」。
+                    if revealed {
+                        Text("正确答案 \(Self.letter(correctIndex))")
+                            .font(Typography.micro)
+                            .foregroundStyle(Theme.Colors.textSecondary)
+                    }
                 }
                 ReadingPassage(text: explanation)
             }
