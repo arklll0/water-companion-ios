@@ -281,6 +281,11 @@ struct Progress: Codable, Hashable {
     var listenRating: [String: Int] = [:]
     /// 听力句子的下次复训日（yyyy-MM-dd）。key = `ListenItem.id`
     var listenDue: [String: String] = [:]
+    /// 「汐汐伴学」开关：关着是默认墨绿配色，打开换蓝配色并让汐汐出现在更多页面。
+    ///
+    /// 默认 false —— 与 Android 版一致。老存档没有这个键，解码时补 false，
+    /// 也就是升级上来的用户看到的还是原来那套绿，不会突然变蓝。
+    var companion: Bool = false
 
     init(
         startDate: String? = nil,
@@ -304,7 +309,8 @@ struct Progress: Codable, Hashable {
         level: String? = nil,
         fullSetDone: [String] = [],
         listenRating: [String: Int] = [:],
-        listenDue: [String: String] = [:]
+        listenDue: [String: String] = [:],
+        companion: Bool = false
     ) {
         self.startDate = startDate
         self.examDate = examDate
@@ -328,6 +334,7 @@ struct Progress: Codable, Hashable {
         self.fullSetDone = fullSetDone
         self.listenRating = listenRating
         self.listenDue = listenDue
+        self.companion = companion
     }
 
     enum CodingKeys: String, CodingKey {
@@ -339,6 +346,7 @@ struct Progress: Codable, Hashable {
         case postponed, paperDone, attempts
         case level, fullSetDone
         case listenRating, listenDue
+        case companion
     }
 
     init(from decoder: Decoder) throws {
@@ -365,6 +373,7 @@ struct Progress: Codable, Hashable {
         fullSetDone = try c.decodeIfPresent([String].self, forKey: .fullSetDone) ?? []
         listenRating = try c.decodeIfPresent([String: Int].self, forKey: .listenRating) ?? [:]
         listenDue = try c.decodeIfPresent([String: String].self, forKey: .listenDue) ?? [:]
+        companion = try c.decodeIfPresent(Bool.self, forKey: .companion) ?? false
     }
 
     /// 某一天的学习量（没有记录就是全 0，不是 nil，调用方不必到处判空）

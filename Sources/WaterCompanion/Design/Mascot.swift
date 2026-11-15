@@ -29,7 +29,7 @@ import SwiftUI
 
 // MARK: - 素材表
 
-/// 8 个表情。`rawValue` 必须与 `Assets.xcassets/mascot_emotion_<rawValue>.imageset` 逐字一致。
+/// 10 个表情。`rawValue` 必须与 `Assets.xcassets/mascot_emotion_<rawValue>.imageset` 逐字一致。
 enum MascotEmotion: String, CaseIterable, Identifiable {
     /// 笑开了眼：答对、全部完成
     case happy
@@ -47,13 +47,17 @@ enum MascotEmotion: String, CaseIterable, Identifiable {
     case shy
     /// 打哈欠：空态、今天已经做完
     case sleepy
+    /// 眉眼放软：听力自评「没听懂」—— 要给台阶，不能像在评判
+    case kind
+    /// 眼睛弯起来：听力自评「听懂了」—— 一起高兴
+    case joy
 
     var id: String { rawValue }
 
     fileprivate var assetName: String { "mascot_emotion_\(rawValue)" }
 }
 
-/// 4 个全身姿态。`rawValue` 规则同上。
+/// 13 个全身姿态。`rawValue` 规则同上。
 enum MascotPose: String, CaseIterable {
     /// 招手 + 抱书：第一次见面
     case wave
@@ -69,6 +73,18 @@ enum MascotPose: String, CaseIterable {
     case teach
     /// 正面站姿，手背在身后：我的页角色卡
     case stand
+    /// 闭眼戴耳机：听力「盲听」那一格，正好是这一格要的状态
+    case headphone
+    /// 正常比例版招手：比 Q 版高一截，用在需要「人味」的整块空态里
+    case normalWave = "normal_wave"
+    /// 托腮发呆：没有任务可做的空隙
+    case idle
+    /// 抱着本子写字：练习页
+    case practice
+    /// 挺胸得意：连续打卡、破纪录
+    case proud
+    /// 拿着数据板：统计页
+    case stats
 
     fileprivate var assetName: String { "mascot_pose_\(rawValue)" }
 }
@@ -114,6 +130,69 @@ struct MascotAvatar: View {
         }
         // 纯装饰：语义由旁边的文字承担，读屏念一遍「图片」只会打断句子。
         .accessibilityHidden(true)
+    }
+}
+
+// MARK: - 只画一张脸
+//
+//  和 `MascotAvatar` 的区别：不裁圆、不带底盘。
+//  开关行、评分角标这种「挨着一行文字」的位置，圆形头像会显得像另起一个控件；
+//  直接放一张脸，视觉上是这句话的表情，不是一张图。
+
+/// 一张脸，高度即尺寸，不裁圆。
+struct MascotFace: View {
+
+    let emotion: MascotEmotion
+    var height: CGFloat
+
+    init(_ emotion: MascotEmotion, height: CGFloat = 38) {
+        self.emotion = emotion
+        self.height = height
+    }
+
+    var body: some View {
+        Image(emotion.assetName)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height: height)
+            .accessibilityHidden(true)
+    }
+}
+
+// MARK: - 一起听
+//
+//  播放中轻轻点头（±2.5°，1.1 秒一个来回）。幅度必须小：她只有几十点高，
+//  转到 5° 以上看着像在摇头否定。关掉「减弱动态效果」时完全不转。
+
+struct MascotListening: View {
+
+    var playing: Bool
+    var height: CGFloat
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var tilted = false
+
+    init(playing: Bool, height: CGFloat = 56) {
+        self.playing = playing
+        self.height = height
+    }
+
+    var body: some View {
+        MascotFigure(.headphone, height: height)
+            .rotationEffect(.degrees(tilted ? 2.5 : 0), anchor: .bottom)
+            .onAppear { sync() }
+            .onChange(of: playing) { _, _ in sync() }
+    }
+
+    private func sync() {
+        guard playing, !reduceMotion else {
+            // 停下时要显式归零：只取消动画的话，她会歪着停在那儿。
+            withAnimation(.easeOut(duration: 0.2)) { tilted = false }
+            return
+        }
+        withAnimation(.easeInOut(duration: 1.1).repeatForever(autoreverses: true)) {
+            tilted = true
+        }
     }
 }
 

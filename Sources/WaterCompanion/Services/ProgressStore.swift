@@ -305,6 +305,16 @@ final class ProgressStore {
         }
     }
 
+    /// 「汐汐伴学」开关。
+    ///
+    /// 只存布尔，不在这里动任何视图状态：配色是 `Theme.companion` 这个全局开关在
+    /// 根视图里读它落下的，界面怎么重建由 RootView 决定（见那边的 `.id`）。
+    func setCompanion(_ on: Bool) {
+        update { p in
+            p.companion = on
+        }
+    }
+
     /// 记录备考级别（cet4 / cet6 / ky / ck / all）。
     /// 只存 key 字符串，不在这里校验：解析交给 `CetLevel.fromKey`，
     /// 非法值会得到 nil，界面重新弹选级页，行为比「静默落回四级」可预期。

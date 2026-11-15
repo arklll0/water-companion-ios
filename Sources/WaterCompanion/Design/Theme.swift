@@ -43,12 +43,38 @@ extension Color {
             traits.userInterfaceStyle == .dark ? UIColor(hex: dark) : UIColor(hex: light)
         })
     }
+
+    /// 品牌派生色：随「明暗 × 伴学」四路取值。
+    ///
+    /// 为什么不做成两个 `static let` 让调用方去选：页面代码里 200 多处都在写
+    /// `Theme.Colors.primary`，逐个改成分支等于把「换色」这件事摊到每个文件里，
+    /// 必然漏掉一两处，而漏掉的那处只在伴学模式下才看得见。
+    /// 这里让同一个 `Color` 在解析时读全局开关，调用方一行都不用改。
+    ///
+    /// 真正触发重绘的是 RootView 上的 `.id(companion)`：开关一变整棵子树重建，
+    /// 每个颜色重新解析一次。等价于 Android 那边改完开关「重开一次 App」的轻量版。
+    init(brand light: UInt32, dark: UInt32, companionLight: UInt32, companionDark: UInt32) {
+        self.init(uiColor: UIColor { traits in
+            let isDark = traits.userInterfaceStyle == .dark
+            if Theme.companion {
+                return UIColor(hex: isDark ? companionDark : companionLight)
+            }
+            return UIColor(hex: isDark ? dark : light)
+        })
+    }
 }
 
 // MARK: - 主题
 
 /// 设计 token。所有颜色 / 字体 / 间距的唯一出口。
 enum Theme {
+
+    /// 「汐汐伴学」开关。由 RootView 在每次建树前按存档落下来。
+    ///
+    /// 刻意不是 SwiftUI 的 State：这个值只影响 `Color` 的解析结果，
+    /// 颜色本身不需要「观察」它 —— 让界面换色的是 RootView 上的 `.id(companion)`。
+    /// 只有一处会写它（RootView），其余地方一律只读，所以不需要加锁。
+    static var companion = false
 
     /// 品牌色阶（绝对色板，不随明暗翻转）。
     /// 色相锁死 165°、只动亮度，所以任意两档摆在一起都天然是一家人。
@@ -67,12 +93,21 @@ enum Theme {
 
     /// 语义槽位（随明暗模式翻转）。
     enum Colors {
-        /// 品牌主色：浅色墨绿 / 深色提亮墨绿
-        static let primary = Color(light: 0x0E5F4B, dark: 0x5FC7A0)
+        /// 品牌主色：浅色墨绿 / 深色提亮墨绿；伴学模式换蓝（#2E5BD8 锚点）
+        static let primary = Color(
+            brand: 0x0E5F4B, dark: 0x5FC7A0,
+            companionLight: 0x2E5BD8, companionDark: 0x8FB0FF
+        )
         /// 压在主色上的文字（按钮标题、完成徽标的勾）
-        static let onPrimary = Color(light: 0xFFFFFF, dark: 0x052018)
+        static let onPrimary = Color(
+            brand: 0xFFFFFF, dark: 0x052018,
+            companionLight: 0xFFFFFF, companionDark: 0x0A1430
+        )
         /// 主色的低饱和容器（浅底强调块）
-        static let primarySoft = Color(light: 0xCFE5DE, dark: 0x143D31)
+        static let primarySoft = Color(
+            brand: 0xCFE5DE, dark: 0x143D31,
+            companionLight: 0xE2EBFE, companionDark: 0x1B2952
+        )
         /// 页面底色
         static let background = Color(light: 0xF6F7F8, dark: 0x101316)
         /// 卡片 / 内容面
@@ -86,15 +121,30 @@ enum Theme {
         /// 分隔线 / 卡片描边（装饰性，不承担信息）
         static let separator = Color(light: 0xE3E6E9, dark: 0x2A3138)
         /// 完成态卡片底色
-        static let doneCard = Color(light: 0xE4EFEA, dark: 0x14352B)
+        static let doneCard = Color(
+            brand: 0xE4EFEA, dark: 0x14352B,
+            companionLight: 0xDFE8FD, companionDark: 0x1A2542
+        )
         /// 完成态卡片上的文字
-        static let doneText = Color(light: 0x09402F, dark: 0xA9DCC4)
+        static let doneText = Color(
+            brand: 0x09402F, dark: 0xA9DCC4,
+            companionLight: 0x1D3B92, companionDark: 0xB9CCFF
+        )
         /// 完成态卡片描边
-        static let doneEdge = Color(light: 0xA6CFC4, dark: 0x23513F)
+        static let doneEdge = Color(
+            brand: 0xA6CFC4, dark: 0x23513F,
+            companionLight: 0xB6C9F8, companionDark: 0x2C3F6B
+        )
         /// 进度环底槽
-        static let ringTrack = Color(light: 0xCFE5DE, dark: 0x223028)
+        static let ringTrack = Color(
+            brand: 0xCFE5DE, dark: 0x223028,
+            companionLight: 0xDAE4FC, companionDark: 0x232E46
+        )
         /// 横幅 / 提示条底色
-        static let banner = Color(light: 0xE8F2EF, dark: 0x16332A)
+        static let banner = Color(
+            brand: 0xE8F2EF, dark: 0x16332A,
+            companionLight: 0xEEF3FE, companionDark: 0x18203A
+        )
         /// 看板娘的底盘（头像圆、空态圆）。
         /// ★ 这是全 App 唯一一个「不属品牌绿」的容器色：角色本身是蓝的（#2E5BD8），
         ///   必须有自己的一块底，蓝色才不会渗进页面的墨绿色板。
@@ -102,7 +152,12 @@ enum Theme {
         ///   落在 #181B1F 的卡片上会整片糊掉，只剩一团白头发。
         ///   两档都保持浅色 —— 立绘本来就是画在白底上的，浅底才是不改画的观感；
         ///   深色下的浅圆看起来像一张「贴纸」，这是有意的取舍，不是漏改。
-        static let mascotHalo = Color(light: 0xCFE5DE, dark: 0xB4C7BE)
+        /// ★ 伴学模式下这块底跟着换蓝：绿底上放蓝色立绘，那圈绿会像没抠干净。
+        ///   深色档也保持浅色（理由同上），只是浅蓝色。
+        static let mascotHalo = Color(
+            brand: 0xCFE5DE, dark: 0xB4C7BE,
+            companionLight: 0xE2EBFE, companionDark: 0xD8E3FB
+        )
         /// 错误色
         static let error = Color(light: 0xA3312A, dark: 0xE8837B)
         /// 功能性描边（空心圈、未选中控件）

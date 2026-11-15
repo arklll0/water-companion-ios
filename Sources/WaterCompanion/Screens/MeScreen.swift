@@ -262,11 +262,46 @@ struct MeScreen: View {
                 .labelsHidden()
             }
             .padding(.vertical, Space.xs)
+
+            companionRow
         } header: {
             Text("外观")
         } footer: {
             Text(themeFooter)
         }
+    }
+
+    /// 汐汐伴学开关。与 Android 版同一张脸（害羞）、同一句文案。
+    ///
+    /// 打开后换的是**配色**：品牌派生色整体从墨绿切到 #2E5BD8 那一族（见 `Theme.Colors`）。
+    /// iOS 没有 Android 的 activity-alias，桌面图标不跟着换 —— 那需要
+    /// `CFBundleIcons` alternate 图标 + 系统弹窗，不做，也不假装做了。
+    private var companionRow: some View {
+        HStack(spacing: Space.md) {
+            MascotFace(.shy, height: 38)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("汐汐伴学")
+                    .font(Typography.bodyEmph)
+                    .foregroundStyle(Theme.Colors.textPrimary)
+                Text(progress.companion ? "蓝色配色已生效" : "打开后换蓝色配色")
+                    .font(Typography.micro)
+                    .foregroundStyle(Theme.Colors.textSecondary)
+            }
+
+            Spacer(minLength: 0)
+
+            Toggle(
+                "",
+                isOn: Binding(
+                    get: { progress.companion },
+                    set: { store.setCompanion($0) }
+                )
+            )
+            .labelsHidden()
+            .tint(Theme.Colors.primary)
+        }
+        .padding(.vertical, Space.xs)
     }
 
     private var themeFooter: String {

@@ -187,17 +187,22 @@ struct ListenScreen: View {
     private func sentenceCard(_ item: ListenItem) -> some View {
         AppCard {
             VStack(alignment: .leading, spacing: Space.md) {
-                HStack(spacing: Space.sm) {
+                HStack(alignment: .top, spacing: Space.sm) {
                     Text(dueSet.contains(item.id) ? "复训" : "盲听")
                         .font(Typography.micro)
                         .foregroundStyle(
                             dueSet.contains(item.id) ? Theme.Colors.primary : Theme.Colors.textSecondary
                         )
                     Spacer(minLength: 0)
-                    Text("第 \(cursor + 1) 句")
-                        .font(Typography.micro)
-                        .monospacedDigit()
-                        .foregroundStyle(Theme.Colors.textSecondary)
+                    if progress.companion {
+                        // 她在卡片右上角一起听，播放中轻轻点头
+                        MascotListening(playing: speaking, height: 56)
+                    } else {
+                        Text("第 \(cursor + 1) 句")
+                            .font(Typography.micro)
+                            .monospacedDigit()
+                            .foregroundStyle(Theme.Colors.textSecondary)
+                    }
                 }
 
                 if revealed {
@@ -271,6 +276,11 @@ struct ListenScreen: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
+
+            // 她闭着眼戴耳机，正好是这一格要的状态
+            if progress.companion {
+                MascotFigure(.headphone, height: 115)
+            }
         }
         .padding(.horizontal, Space.md)
         .padding(.vertical, Space.sm)
@@ -297,10 +307,26 @@ struct ListenScreen: View {
                 gradeChip("听懂了", 3)
             }
 
-            Text(rateHint)
-                .font(Typography.micro)
-                .foregroundStyle(Theme.Colors.textSecondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack(spacing: Space.sm) {
+                // 只有两档给表情：没听懂要给台阶，听懂了一起高兴；
+                // 「模糊」不表态，免得像在评判。
+                if let face = rateFace {
+                    MascotFace(face, height: 36)
+                }
+                Text(rateHint)
+                    .font(Typography.micro)
+                    .foregroundStyle(Theme.Colors.textSecondary)
+                Spacer(minLength: 0)
+            }
+        }
+    }
+
+    private var rateFace: MascotEmotion? {
+        guard progress.companion else { return nil }
+        switch score {
+        case 1: return .kind
+        case 3: return .joy
+        default: return nil
         }
     }
 

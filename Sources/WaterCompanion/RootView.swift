@@ -74,10 +74,19 @@ struct RootView: View {
     @State private var path = NavigationPath()
 
     var body: some View {
-        NavigationStack(path: $path) {
+        // 伴学配色是全局开关（见 `Theme.companion`）：必须在建视图树之前落下，
+        // 否则这一次渲染拿到的还是上一轮的值。
+        Theme.companion = store.progress.companion
+
+        return NavigationStack(path: $path) {
             VStack(spacing: 0) {
                 page
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    // 换配色要让当前这页整棵子树重建，颜色才会重新解析
+                    // （`Color` 的 dynamicProvider 是解析时才读开关的）。
+                    // ★ 只挂 `page`，不挂 NavigationStack / TabBar：挂外层会把页签跳回首页，
+                    //   用户是在「我的」里拨的开关，得留在原地。
+                    .id(store.progress.companion)
 
                 TabBar(selection: $tab)
                     .padding(.horizontal, Space.pageEdge)
