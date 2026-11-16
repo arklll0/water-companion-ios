@@ -58,8 +58,8 @@ targets:
       properties:
         CFBundleDisplayName: 水伴英语
         CFBundleName: WaterCompanion
-        CFBundleShortVersionString: "3.0.2"
-        CFBundleVersion: "73"
+        CFBundleShortVersionString: "3.0.3"
+        CFBundleVersion: "74"
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
@@ -75,8 +75,8 @@ targets:
         SUPPORTS_MACCATALYST: NO
         # 资产目录里只有 AppIcon
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        MARKETING_VERSION: "3.0.2"
-        CURRENT_PROJECT_VERSION: "73"
+        MARKETING_VERSION: "3.0.3"
+        CURRENT_PROJECT_VERSION: "74"
         CODE_SIGN_STYLE: Manual
         CODE_SIGNING_REQUIRED: NO
         CODE_SIGNING_ALLOWED: NO

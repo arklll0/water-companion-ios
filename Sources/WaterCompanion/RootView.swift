@@ -242,10 +242,9 @@ private struct TabBar: View {
         }
         .padding(.horizontal, Space.xs)
         .padding(.vertical, Space.xs)
-        .background(.ultraThinMaterial, in: Capsule())
-        .overlay {
-            Capsule().strokeBorder(Theme.Colors.separator.opacity(0.7), lineWidth: 0.8)
-        }
-        .shadow(color: Color.black.opacity(0.10), radius: 14, x: 0, y: 5)
+        // 底栏是导航层，正属于 HIG 说的「玻璃该在的地方」。
+        // 原来的 `.ultraThinMaterial` + 描边 + 投影三件套由 `liquidGlass` 一并接管：
+        // iOS 26 上是系统玻璃（会跟着背后的内容折射），更早的系统是手写近似。
+        .liquidGlass(in: Capsule())
     }
 }

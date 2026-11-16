@@ -109,13 +109,11 @@ struct ListenScreen: View {
                     .padding(.vertical, Space.xs)
                 }
                 .scrollIndicators(.hidden)
-
-                if current != nil {
-                    rateRow
+                // 底部操作板贴着安全区浮起来，句子卡从它下面滚过去 ——
+                // 玻璃背后必须有东西，底下要是纯色，那就只是加了层灰。
+                .safeAreaInset(edge: .bottom, spacing: 0) {
+                    bottomPanel
                 }
-
-                controls
-                footer
             }
             .padding(.horizontal, Space.pageEdge)
             .padding(.top, Space.sm)
@@ -297,6 +295,31 @@ struct ListenScreen: View {
         .padding(.top, Space.xxl)
     }
 
+    // MARK: - 底部操作板（一块玻璃）
+
+    /// 自评 + 播放控制 + 连播设置，装在**同一块**玻璃里。
+    ///
+    /// 为什么不是「底栏一块玻璃、操作板再来一块」：两块玻璃上下贴在一起时，
+    /// 各自的湿边会在缝里对撞出一条脏线，HIG 说的「不要玻璃叠玻璃」就是这个意思。
+    /// 装进一块之后，句子卡从它下面滚过去，玻璃里才有东西在动。
+    @ViewBuilder
+    private var bottomPanel: some View {
+        // 今天的句子听完了就别留一块按不动的控制板：三个按钮全灰，
+        // 用户会以为是自己弄坏了，而不是「已经做完了」。
+        if !session.isEmpty {
+            GlassPanel(radius: Radius.card, horizontal: Space.md, vertical: Space.sm) {
+                VStack(spacing: Space.sm) {
+                    rateRow
+                    controls
+                    footer
+                }
+            }
+            // 面板顶端留一条空气：句子卡滚到底时可以露一截在玻璃上沿之外，
+            // 贴死了会像被切开。
+            .padding(.top, Space.sm)
+        }
+    }
+
     // MARK: - 三档自评
 
     private var rateRow: some View {
@@ -402,7 +425,9 @@ struct ListenScreen: View {
                 )
                 .contentShape(Circle())
         }
-        .buttonStyle(.plain)
+        // 播放控制是这一页唯一的"物理"受力点，按下去缩一点、提亮一点，
+        // 手感才配得上它浮在玻璃上。
+        .buttonStyle(LiquidPressStyle())
     }
 
     // MARK: - 底部：连播 / 间隔 / 速度
