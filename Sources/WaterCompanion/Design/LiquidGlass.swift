@@ -49,8 +49,13 @@ extension View {
     ///     否则描边会露在内容外面一圈。
     ///   - tint: 染色。用来表达"当前选中的那个"或"主操作"，不要用来装饰。
     ///   - interactive: 是否需要随按压产生形变（只有按钮给 true）。
+    ///
+    /// ★ 约束是 `InsettableShape` 而不是 `Shape`：湿边描边用的是 `strokeBorder`，
+    ///   它只存在于 `InsettableShape`（描边往内收，不会溢出到形状外面）。
+    ///   底栏的 `Capsule`、面板的 `RoundedRectangle` 都满足；如果以后要传别的形状，
+    ///   先确认它是不是 `InsettableShape`。
     @ViewBuilder
-    func liquidGlass<S: Shape>(
+    func liquidGlass<S: InsettableShape>(
         in shape: S,
         tint: Color? = nil,
         interactive: Bool = false
@@ -75,7 +80,7 @@ extension View {
 
 // MARK: - 手写近似
 
-private struct GlassFallback<S: Shape>: ViewModifier {
+private struct GlassFallback<S: InsettableShape>: ViewModifier {
 
     let shape: S
     let tint: Color?
